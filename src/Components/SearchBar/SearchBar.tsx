@@ -42,7 +42,7 @@ const SearchBar = () => {
         className="px-2 py-1 w-11/12 focus:outline-none border-0"
       />
       <button
-        className="bg-green-500 text-white px-2 py-1"
+        className="bg-green-500 text-white px-2 py-1 w-1/12"
         disabled={isSearching}
         type="submit"
       >
