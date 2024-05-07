@@ -1,5 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
-import { useDebounce } from "../../Hooks/useDebounce";
+import { useDebounce } from "../../../Hooks/useDebounce";
 
 const SearchBar = () => {
   const [searchValue, setSearchValue] = useState<string>("");

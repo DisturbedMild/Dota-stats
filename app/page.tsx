@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/searchbar/SearchBar";
 
 const newsUrl =
   "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/key=?appid=570&count=10";
