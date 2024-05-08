@@ -1,30 +1,31 @@
-"use client";
+import SearchBar from "@/components/searchbar/searchBar";
+import { Post } from "@/components/post/post";
 
-import { useEffect } from "react";
-import SearchBar from "./components/searchbar/SearchBar";
+export type TPost = {
+  gid: string;
+  title: string;
+  url: string;
+  author: string;
+  contents: string;
+  date: number;
+};
 
-const newsUrl =
-  "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/key=?appid=570&count=10";
+const postsUrl =
+  "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=570&count=5";
 
-const HomePage = () => {
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch(newsUrl);
+async function getData() {
+  const res = await fetch(postsUrl);
 
-  //     console.log(response);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
 
-  //     if (!response.ok) {
-  //       throw new Error("Can't fetch data");
-  //     }
+  return res.json();
+}
 
-  //     const data = await response.json();
-
-  //     console.log(data);
-  //   };
-
-  //   fetchData();
-  // }, []);
-
+const HomePage = async () => {
+  const data = await getData();
+  const posts = data.appnews.newsitems;
   return (
     <>
       <article className="content flex gap-2">
@@ -32,6 +33,9 @@ const HomePage = () => {
           <SearchBar />
           <div className="mt-2 px-2 py-2 w-full h-screen bg-neutral-500/20 text-white">
             Content
+            {posts.map((item: TPost) => (
+              <Post key={item.gid} item={item} />
+            ))}
           </div>
         </section>
         <aside className="bg-neutral-500/20 w-1/3">
