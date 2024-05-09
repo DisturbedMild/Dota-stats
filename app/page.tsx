@@ -1,5 +1,5 @@
-import SearchBar from "@/components/searchbar/searchBar";
-import { Post } from "@/components/post/post";
+import SearchBar from "@components/searchbar/searchBar";
+import { Post } from "@components/post/post";
 
 export type TPost = {
   gid: string;
