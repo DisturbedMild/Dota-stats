@@ -7,7 +7,7 @@ import Image from "next/image";
 import type { TPost } from "@/app/page";
 
 const formatpostsContent = (post: TPost) => {
-  if (post.url.includes("steam_community_announcements")) {
+  if ((post.feedlabel = "Community Announcements")) {
     const content = post.contents;
     const getImgSrc = content.split("[/img]")[0].split("[img]")[1];
 
@@ -54,8 +54,16 @@ export const Post = ({ item }: { item: TPost }) => {
       </div>
 
       <div className="flex flex-col justify-between w-7/12">
-        <h2 className=" mt-2 text-xl">{item.title}</h2>
-
+        <div>
+          <h2 className="mb-2 text-xl line-clamp-1">{item.title}</h2>
+          <p className="line-clamp-5">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero
+            dignissimos, atque autem earum sed nulla perferendis, nemo commodi
+            in corporis repellendus quisquam est accusantium architecto ratione
+            unde. Delectus atque voluptate quaerat deserunt laboriosam est alias
+            accusamus, modi soluta nisi assumenda!
+          </p>
+        </div>
         <p>
           {item.author}&nbsp;|&nbsp;
           <a href={item.url} target="_blank" className="text-blue-400">

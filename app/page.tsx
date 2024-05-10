@@ -1,5 +1,6 @@
 import SearchBar from "@components/searchbar/searchBar";
 import { Post } from "@components/post/post";
+import Link from "next/link";
 
 export type TPost = {
   gid: string;
@@ -8,6 +9,7 @@ export type TPost = {
   author: string;
   contents: string;
   date: number;
+  feedlabel: string;
 };
 
 const postsUrl =
@@ -32,6 +34,10 @@ const HomePage = async () => {
         <section className="body w-2/3">
           <SearchBar />
           <div className="flex flex-col gap-6 mt-2 px-2 py-2 w-full bg-neutral-500/20 text-white">
+            <div className="flex justify-between">
+              <h1 className="text-2xl">Recent Posts:</h1>
+              <Link href="/posts">All posts --- </Link>
+            </div>
             {posts.map((item: TPost) => (
               <Post key={item.gid} item={item} />
             ))}
