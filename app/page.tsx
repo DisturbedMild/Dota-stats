@@ -11,7 +11,7 @@ export type TPost = {
 };
 
 const postsUrl =
-  "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=570&count=5";
+  "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=570&count=10";
 
 async function getData() {
   const res = await fetch(postsUrl);
@@ -31,8 +31,7 @@ const HomePage = async () => {
       <article className="content flex gap-2">
         <section className="body w-2/3">
           <SearchBar />
-          <div className="mt-2 px-2 py-2 w-full h-screen bg-neutral-500/20 text-white">
-            Content
+          <div className="flex flex-col gap-6 mt-2 px-2 py-2 w-full bg-neutral-500/20 text-white">
             {posts.map((item: TPost) => (
               <Post key={item.gid} item={item} />
             ))}
