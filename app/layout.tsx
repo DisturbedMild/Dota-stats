@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import MainNavigation from "@components/navigation/mainNavigation";
+import ReactQueryProvider from "@/utils/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <MainNavigation />
-        <main className="container mx-auto">{children}</main>
+        <ReactQueryProvider>
+          <main className="container mx-auto">{children}</main>
+        </ReactQueryProvider>
+        <footer className="mt-8">
+          <div className="container mx-auto">Footer</div>
+        </footer>
       </body>
     </html>
   );
