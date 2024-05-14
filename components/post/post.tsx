@@ -4,7 +4,7 @@ import defaultPostImage from "./default-post.png";
 import "./styles.css";
 
 import Image from "next/image";
-import type { TPost } from "@/app/page";
+import type { TPost } from "./posts";
 
 const formatpostsContent = (post: TPost) => {
   if ((post.feedlabel = "Community Announcements")) {
@@ -18,7 +18,7 @@ const formatpostsContent = (post: TPost) => {
         .split("img]")[2]
         .replaceAll("[", "<")
         .replaceAll("]", ">");
-      console.log(textContent);
+
       return { url: updatedImageUrl, contents: textContent };
     }
   }
