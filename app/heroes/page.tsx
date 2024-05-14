@@ -1,6 +1,8 @@
 // interface Props {}
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import Image from "next/image";
 
 type THero = {
   attack_type: string;
@@ -50,9 +52,32 @@ const HeroesPage = () => {
     <>
       <h1>Heroes</h1>
       <div className="grid grid-cols-8 gap-1 text-white">
-        {heroes.map((item: THero) => (
-          <div key={item.id}>{item.localized_name}</div>
-        ))}
+        {heroes.map((item: THero) => {
+          const imageSrc = `/heroes/${item.localized_name
+            .replaceAll(" ", "_")
+            .toLocaleLowerCase()}.png`;
+
+          return (
+            <Link
+              key={item.id}
+              href={`/heroes/${item.localized_name.replaceAll(" ", "_")}`}
+              className="relative"
+            >
+              <Image
+                src={imageSrc}
+                alt={item.localized_name}
+                width={256}
+                height={144}
+              />
+              <div
+                className="absolute bottom-0.5 left-2 z-10 text-xl"
+                key={item.id}
+              >
+                {item.localized_name}
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </>
   );
