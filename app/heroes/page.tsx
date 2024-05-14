@@ -50,32 +50,35 @@ const HeroesPage = () => {
 
   return (
     <>
-      <h1>Heroes</h1>
-      <div className="grid grid-cols-8 gap-1 text-white">
+      <h1 className="text-2xl text-white mb-4">Heroes:</h1>
+      <div className="grid grid-cols-6 gap-2 text-white">
         {heroes.map((item: THero) => {
           const imageSrc = `/heroes/${item.localized_name
             .replaceAll(" ", "_")
             .toLocaleLowerCase()}.png`;
 
           return (
-            <Link
+            <div
               key={item.id}
-              href={`/heroes/${item.localized_name.replaceAll(" ", "_")}`}
-              className="relative"
+              className="relative group transition-all hover:scale-110"
             >
-              <Image
-                src={imageSrc}
-                alt={item.localized_name}
-                width={256}
-                height={144}
-              />
-              <div
-                className="absolute bottom-0.5 left-2 z-10 text-xl"
-                key={item.id}
+              <Link
+                href={`/heroes/${item.localized_name.replaceAll(" ", "_")}`}
               >
-                {item.localized_name}
-              </div>
-            </Link>
+                <Image
+                  src={imageSrc}
+                  alt={item.localized_name}
+                  width={256}
+                  height={144}
+                />
+                <div
+                  className="absolute -bottom-2 left-0 flex px-2 items-center z-10 w-full h-8 text-xl transition-all bg-neutral-900/70 opacity-0 group-hover:bottom-0 group-hover:opacity-100"
+                  key={item.id}
+                >
+                  {item.localized_name}
+                </div>
+              </Link>
+            </div>
           );
         })}
       </div>
