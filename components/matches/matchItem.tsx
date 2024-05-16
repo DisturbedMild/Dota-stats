@@ -1,9 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import type { TMatch } from "./asideMatches";
-import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "@/utils/fetchData";
 import HeroIcon from "./heroIcon";
 
 const getMatchHeroes = (heroes: any, arr: number[]) => {
@@ -13,17 +10,29 @@ const getMatchHeroes = (heroes: any, arr: number[]) => {
   return heroesArray;
 };
 
+const convertTime = (time: number) => {
+  let minutes = Math.floor(time / 60);
+  let extraSeconds = time % 60;
+  const minutesTime = minutes < 10 ? "0" + minutes : minutes;
+  const extraSecondsTime =
+    extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
+  return {
+    minutes: minutesTime,
+    seconds: extraSecondsTime,
+  };
+};
+
 const MatchItem = ({
   match_id,
   radiant_win,
   radiant_team,
   dire_team,
   duration,
-  start_time,
   heroes,
 }: any) => {
   const radiantHeroes = getMatchHeroes(heroes, radiant_team);
   const direHeroes = getMatchHeroes(heroes, dire_team);
+  const matchDuration = convertTime(duration);
 
   return (
     <div className="p-2 bg-neutral-500/20 text-white">
@@ -43,7 +52,9 @@ const MatchItem = ({
       >
         Winner {radiant_win ? "Radiant" : "Dire"}
       </div>
-      <div className="text-center">{duration}</div>
+      <div className="text-center">
+        {matchDuration.minutes}:{matchDuration.seconds}
+      </div>
       <div>
         <p className="mb-2 text-green-500 text-left">Radian</p>
         <div className="flex gap-2">

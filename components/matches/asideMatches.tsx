@@ -7,7 +7,6 @@ import { fetchData } from "@/utils/fetchData";
 export type TMatch = {
   match_id: number;
   radiant_win: number;
-  start_time: number;
   duration: number;
   radiant_team: number[];
   dire_team: number[];
@@ -62,7 +61,6 @@ const AsideMatches = () => {
                 dire_team={match.dire_team}
                 radiant_win={match.radiant_win}
                 duration={match.duration}
-                start_time={match.start_time}
                 heroes={dataHeroes}
               />
             );
