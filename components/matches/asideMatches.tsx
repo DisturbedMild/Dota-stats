@@ -1,30 +1,76 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import MatchItem from "./matchItem";
+import { fetchData } from "@/utils/fetchData";
 
-const fetchProPublicMatches = async () => {
-  const response = await fetch(
-    "https://api.opendota.com/api/publicMatches?min_rank=80"
-  );
-
-  if (!response.ok) {
-    throw new Error("Something went wrong with heroes");
-  }
-
-  return response.json();
+export type TMatch = {
+  match_id: number;
+  radiant_win: number;
+  start_time: number;
+  duration: number;
+  radiant_team: number[];
+  dire_team: number[];
 };
 
+// const getTeamHeroes = (heroes, matches) => {};
+
 const AsideMatches = () => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["heroes"],
-    queryFn: fetchProPublicMatches,
+  const {
+    isPending: isPendingMatches,
+    error: errorMatches,
+    data: dataMatches,
+  } = useQuery({
+    queryKey: ["matches"],
+    queryFn: () =>
+      fetchData("https://api.opendota.com/api/publicMatches?min_rank=80"),
   });
 
-  console.log(data);
+  const {
+    isPending: isPendingHeroes,
+    error: errorHeroes,
+    data: dataHeroes,
+  } = useQuery({
+    queryKey: ["heroes"],
+    queryFn: () => fetchData("https://api.opendota.com/api/heroes"),
+  });
+
+  // const { isPending, error, data } = useQuery({
+  //   queryKey: ["matches"],
+  //   queryFn: () => fetchData("https://api.opendota.com/api/heroes"),
+  // });
+
+  if (errorMatches) {
+    return <div>Error occured</div>;
+  }
+
+  if (isPendingMatches) {
+    return <div>Loading....</div>;
+  }
 
   return (
-    <aside className="bg-neutral-500/20 w-1/3">
-      <h2 className="text-center text-white">Latest Pro Publics</h2>
+    <aside className="w-1/3">
+      <h2 className="text-left text-white mb-4 text-xl">Latest Pro Publics</h2>
+      <div className="flex flex-col gap-3">
+        {dataMatches.map((match: TMatch, index: number) => {
+          if (index <= 8) {
+            return (
+              <MatchItem
+                key={match.match_id}
+                match_id={match.match_id}
+                radiant_team={match.radiant_team}
+                dire_team={match.dire_team}
+                radiant_win={match.radiant_win}
+                duration={match.duration}
+                start_time={match.start_time}
+                heroes={dataHeroes}
+              />
+            );
+          } else {
+            return;
+          }
+        })}
+      </div>
     </aside>
   );
 };
