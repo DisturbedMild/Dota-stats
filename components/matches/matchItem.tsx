@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import HeroIcon from "./heroIcon";
+import { TMatch } from "./asideMatches";
+import { THero } from "@/app/heroes/page";
 
-const getMatchHeroes = (heroes: any, arr: number[]) => {
+const getMatchHeroes = (heroes: THero[], arr: number[]) => {
   const heroesArray = arr?.map((id) => {
     return heroes.find((hero: any) => hero.id === id);
   });
@@ -22,22 +24,15 @@ const convertTime = (time: number) => {
   };
 };
 
-const MatchItem = ({
-  match_id,
-  radiant_win,
-  radiant_team,
-  dire_team,
-  duration,
-  heroes,
-}: any) => {
-  const radiantHeroes = getMatchHeroes(heroes, radiant_team);
-  const direHeroes = getMatchHeroes(heroes, dire_team);
-  const matchDuration = convertTime(duration);
+const MatchItem = ({ match, heroes }: { match: TMatch; heroes: THero[] }) => {
+  const radiantHeroes = getMatchHeroes(heroes, match.radiant_team);
+  const direHeroes = getMatchHeroes(heroes, match.dire_team);
+  const matchDuration = convertTime(match.duration);
 
   return (
     <div className="p-2 bg-neutral-500/20 text-white">
       <div className="flex items-center gap-2">
-        <h3 className="text-xl">Match {match_id}</h3>
+        <h3 className="text-xl">Match {match.match_id}</h3>
         <Image
           src={"/ranks/immortal.png"}
           width={40}
@@ -47,10 +42,10 @@ const MatchItem = ({
       </div>
       <div
         className={`${
-          radiant_win ? "text-green-500" : "text-red-500"
+          match.radiant_win ? "text-green-500" : "text-red-500"
         } text-center uppercase`}
       >
-        Winner {radiant_win ? "Radiant" : "Dire"}
+        Winner {match.radiant_win ? "Radiant" : "Dire"}
       </div>
       <div className="text-center">
         {matchDuration.minutes}:{matchDuration.seconds}

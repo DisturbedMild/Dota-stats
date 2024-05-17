@@ -49,18 +49,14 @@ const AsideMatches = () => {
 
   return (
     <aside className="w-1/3">
-      <h2 className="text-left text-white mb-4 text-xl">Latest Pro Publics</h2>
+      <h2 className="text-left text-white mb-1 text-xl">Latest Pro Publics</h2>
       <div className="flex flex-col gap-3">
         {dataMatches.map((match: TMatch, index: number) => {
           if (index <= 8) {
             return (
               <MatchItem
                 key={match.match_id}
-                match_id={match.match_id}
-                radiant_team={match.radiant_team}
-                dire_team={match.dire_team}
-                radiant_win={match.radiant_win}
-                duration={match.duration}
+                match={match}
                 heroes={dataHeroes}
               />
             );
