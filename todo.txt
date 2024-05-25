@@ -1,0 +1,4 @@
+TODO: Add abilities for hero
+TODO: Create class for all possible requests in services/api
+TODO: Add Link to AsideMatches heroes
+TODO: Add Steam openID auth 

@@ -122,7 +122,7 @@ const HeroPage = () => {
   const winrate = heroOverallWinrate(dataHeroMatchups);
 
   return (
-    <section>
+    <section className="h-screen">
       <div className="flex gap-4">
         <div className="w-2/12">
           <Image
@@ -147,7 +147,7 @@ const HeroPage = () => {
             Number(winrate) < 50 ? "text-red-500" : "text-green-500"
           }`}
         >
-          {winrate}%
+          Winrate:{winrate}%
         </div>
       </div>
     </section>
