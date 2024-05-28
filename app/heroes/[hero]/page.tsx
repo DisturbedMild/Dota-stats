@@ -1,80 +1,20 @@
 "use client";
 
-import { fetchData } from "@/utils/fetchData";
-import { useQuery } from "@tanstack/react-query";
+import { API } from "@/services/api";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import Abillity from "@/components/abilities/ability";
+import {
+  IHeroStats,
+  IMatchup,
+  IHeroAbilities,
+  IAbility,
+} from "@/services/api/endpoints/types";
 
-type THeroStats = {
-  id: number;
-  name: string;
-  primary_attr: string;
-  attack_type: string;
-  roles: string[];
-  base_health: number;
-  base_health_regen: number;
-  base_mana: number;
-  base_mana_regen: number;
-  base_armor: number;
-  base_mr: number;
-  base_attack_min: number;
-  base_attack_max: number;
-  base_str: number;
-  base_agi: number;
-  base_int: number;
-  str_gain: number;
-  agi_gain: number;
-  int_gain: number;
-  attack_range: number;
-  projectile_speed: number;
-  attack_rate: number;
-  base_attack_time: number;
-  attack_point: number;
-  move_speed: number;
-  turn_rate: null;
-  cm_enabled: true;
-  legs: null;
-  day_vision: number;
-  night_vision: number;
-  localized_name: string;
-  // "1_pick": number;
-  // "1_win": number;
-  // "2_pick": number;
-  // "2_win": number;
-  // "3_pick": number;
-  // "3_win": number;
-  // "4_pick": number;
-  // "4_win": number;
-  // "5_pick": number;
-  // "5_win": number;
-  // "6_pick": number;
-  // "6_win": number;
-  // "7_pick": number;
-  // "7_win": number;
-  // "8_pick": number;
-  // "8_win": number;
-  // "turbo_picks": number;
-  // number: number[];
-  // turbo_wins: 114397;
-  // turbo_wins_trend:number[],
-  // pro_pick: number;
-  // pro_win: number;
-  // pro_ban: number;
-  // pub_pick: number;
-  // pub_pick_trend: number[];
-  // pub_win: number;
-  // pub_win_trend: number[];
-};
-
-type TMatchup = {
-  hero_id?: number;
-  games_played: number;
-  wins: number;
-};
-
-const getHero = (heroes: THeroStats[], name: string) => {
-  if (heroes !== undefined) {
-    const hero = heroes?.find((hero: THeroStats) => {
+const getHero = (heroes: IHeroStats[], name: string) => {
+  if (heroes) {
+    const hero = heroes.find((hero: IHeroStats) => {
       const heroName = hero.localized_name.replaceAll(" ", "_");
 
       if (heroName === name) return hero;
@@ -83,10 +23,10 @@ const getHero = (heroes: THeroStats[], name: string) => {
   }
 };
 
-const heroOverallWinrate = (games: TMatchup[]) => {
+const heroOverallWinrate = (games: IMatchup[]) => {
   if (games) {
     const gamesPlayed = games.reduce(
-      (acc: any, curr: TMatchup) => {
+      (acc: { games: number; wins: number }, curr: IMatchup) => {
         acc.games += curr.games_played;
         acc.wins += curr.wins;
         return acc;
@@ -98,59 +38,113 @@ const heroOverallWinrate = (games: TMatchup[]) => {
   }
 };
 
+const getHeroAbilities = (
+  name: string | undefined,
+  heroAbillities: IHeroAbilities[],
+  abilities: IAbility[]
+) => {
+  const newAbilities: IAbility[] = [];
+  if (name) {
+    const map = new Map(Object.entries(heroAbillities));
+    const abilitiesArr = map.get(name);
+    abilitiesArr?.abilities.forEach((ability: any) => {
+      if (abilities[ability]?.dname.length > 0) {
+        newAbilities.push(abilities[ability]);
+      }
+    });
+    return newAbilities;
+  } else {
+    return [];
+  }
+};
+
 const HeroPage = () => {
+  const [heroStats, setHeroStats] = useState<IHeroStats[]>([]);
+  const [heroMatchups, setHeroMatchups] = useState<IMatchup[]>([]);
+  const [heroAbillities, setHeroAbilities] = useState<IHeroAbilities[]>([]);
+  const [abillities, setAbilities] = useState<IAbility[]>([]);
+  const [heroStatsLoading, setHeroStatsLoading] = useState(true);
+
   const { hero }: { hero: string } = useParams();
-  const {
-    isPending: isPendingHeroStats,
-    error: errorHeroStats,
-    data: dataHeroStats,
-  } = useQuery({
-    queryKey: ["heroStats"],
-    queryFn: () => fetchData("https://api.opendota.com/api/heroStats"),
-  });
+  const currentHero = getHero(heroStats, hero);
 
-  const heroStats = getHero(dataHeroStats, hero);
+  useEffect(() => {
+    API.heroes
+      .getHeroStats()
+      .then((data) => {
+        setHeroStats(data);
+      })
+      .catch((error) => {})
+      .finally(() => {
+        setHeroStatsLoading(false);
+      });
+  }, []);
 
-  const { data: dataHeroMatchups } = useQuery({
-    queryKey: ["heroMatchups"],
-    queryFn: () =>
-      fetchData(
-        `https://api.opendota.com/api/heroes/${heroStats?.id}/matchups`
-      ),
-  });
+  useEffect(() => {
+    if (currentHero) {
+      API.heroes
+        .getHeroMatchups(currentHero.id)
+        .then((data) => setHeroMatchups(data))
+        .catch((error) => {});
+    }
+  }, [currentHero]);
 
-  const winrate = heroOverallWinrate(dataHeroMatchups);
+  useEffect(() => {
+    API.constants
+      .getConstants("hero_abilities")
+      .then((data) => setHeroAbilities(data))
+      .catch((error) => {});
+  }, []);
+
+  useEffect(() => {
+    API.constants
+      .getConstants("abilities")
+      .then((data) => setAbilities(data))
+      .catch((error) => {});
+  }, []);
+
+  const winrate = heroOverallWinrate(heroMatchups);
+  const heroAbilitiesArray = getHeroAbilities(
+    currentHero?.name,
+    heroAbillities,
+    abillities
+  );
 
   return (
-    <section className="h-screen">
-      <div className="flex gap-4">
-        <div className="w-2/12">
-          <Image
-            src={`/heroes/${hero
-              ?.replaceAll(" ", "_")
-              .toLocaleLowerCase()}.png`}
-            alt={`${heroStats?.localized_name}`}
-            width={256}
-            height={144}
-          />
+    !heroStatsLoading && (
+      <section className="h-screen">
+        <div className="flex gap-4">
+          <div className="w-2/12">
+            <Image
+              src={`/heroes/${hero
+                ?.replaceAll(" ", "_")
+                .toLocaleLowerCase()}.png`}
+              alt={`${currentHero?.localized_name}`}
+              width={256}
+              height={144}
+            />
+          </div>
+          <div className="w-10/12 text-lg text-white">
+            <h1 className="text-2xl font-bold">
+              {currentHero?.localized_name}
+            </h1>
+            <p></p>
+          </div>
+          <div
+            className={`${
+              Number(winrate) < 50 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            Winrate:{winrate}%
+          </div>
         </div>
-        <div className="w-10/12 text-lg text-white">
-          <h1 className="text-2xl font-bold">{heroStats?.localized_name}</h1>
-          <p>
-            {heroStats?.roles.map((role: string) => (
-              <span key={role}>{role} </span>
-            ))}
-          </p>
+        <div>
+          {heroAbilitiesArray.map((ability: IAbility) => (
+            <Abillity key={ability.dname} {...ability} />
+          ))}
         </div>
-        <div
-          className={`${
-            Number(winrate) < 50 ? "text-red-500" : "text-green-500"
-          }`}
-        >
-          Winrate:{winrate}%
-        </div>
-      </div>
-    </section>
+      </section>
+    )
   );
 };
 

@@ -1,6 +1,6 @@
 import { AxiosClient } from "@/services/api/axios-client";
 
-export class MatchEndpoint {
+export class APIConstants {
   constructor(private readonly httpClient: AxiosClient) {
     this.httpClient = httpClient;
   }
