@@ -5,8 +5,8 @@ export class APIConstants {
     this.httpClient = httpClient;
   }
 
-  async getConstants(resourse: string) {
-    const request = await this.httpClient.get(
+  async getConstants(resourse: string): Promise<any> {
+    const request = await this.httpClient.get<any>(
       `https://api.opendota.com/api/constants/${resourse}`
     );
 
