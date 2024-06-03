@@ -10,52 +10,54 @@ import {
   IMatchup,
   IHeroAbilities,
   IAbility,
+  HeroKey,
 } from "@/services/api/endpoints/types";
 
 const getHero = (heroes: IHeroStats[] | null, name: string) => {
-  if (heroes !== null) {
-    const hero = heroes.find((hero: IHeroStats) => {
-      const heroName = hero.localized_name.replaceAll(" ", "_");
-
-      if (heroName === name) return hero;
-    });
-    return hero;
+  if (heroes === null) {
+    return;
   }
+  const hero = heroes.find((hero: IHeroStats) => {
+    const heroName = hero.localized_name.replaceAll(" ", "_");
+
+    if (heroName === name) return hero;
+  });
+  return hero;
 };
 
 const heroOverallWinrate = (games: IMatchup[] | null): number => {
-  if (games !== null) {
-    const gamesPlayed = games.reduce(
-      (acc: { games: number; wins: number }, curr: IMatchup) => {
-        acc.games += curr.games_played;
-        acc.wins += curr.wins;
-        return acc;
-      },
-      { games: 0, wins: 0 }
-    );
-
-    return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
-  } else {
+  if (games === null) {
     return 0;
   }
+  const gamesPlayed = games.reduce(
+    (acc: { games: number; wins: number }, curr: IMatchup) => {
+      acc.games += curr.games_played;
+      acc.wins += curr.wins;
+      return acc;
+    },
+    { games: 0, wins: 0 }
+  );
+
+  return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
 };
 
 const getHeroAbilities = (
-  name: string | undefined,
-  heroAbillities: IHeroAbilities[] | null,
-  abilities: IAbility[] | null
+  heroAbillities: Record<HeroKey, IHeroAbilities[]> | null,
+  abilities: IAbility[] | null,
+  name?: string
 ) => {
   const newAbilities: IAbility[] = [];
-  if (name && heroAbillities !== null) {
-    const map = new Map(Object.entries(heroAbillities));
-    const abilitiesArr = map.get(name);
-    abilitiesArr?.abilities.forEach((ability: any) => {
-      if (abilities && abilities[ability]?.dname.length > 0) {
-        newAbilities.push(abilities[ability]);
-      }
-    });
-    return newAbilities;
+  if (!name || heroAbillities === null) {
+    return;
   }
+  const map = new Map(Object.entries(heroAbillities));
+  const abilitiesArr = map.get(name);
+  abilitiesArr?.abilities.forEach((ability: any) => {
+    if (abilities && abilities[ability]?.dname.length > 0) {
+      newAbilities.push(abilities[ability]);
+    }
+  });
+  return newAbilities;
 };
 
 const HeroPage = () => {
@@ -107,9 +109,9 @@ const HeroPage = () => {
 
   const winrate = heroOverallWinrate(heroMatchups);
   const heroAbilitiesArray = getHeroAbilities(
-    currentHero?.name,
     heroAbillities,
-    abillities
+    abillities,
+    currentHero?.name
   );
 
   return (

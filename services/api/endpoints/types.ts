@@ -240,3 +240,5 @@ export interface IAbility {
   lore: string;
   img: string;
 }
+
+export type HeroKey = "npc_dota_hero_antimage" | "npc_dota_hero_axe";
