@@ -3,7 +3,7 @@
 import { API } from "@/services/api";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import {useState, useEffect, useMemo} from "react";
 import Abillity from "@/components/abilities/ability";
 import {
   IHeroStats,
@@ -12,6 +12,7 @@ import {
   IAbility,
   HeroKey,
 } from "@/services/api/endpoints/types";
+import ability from "@/components/abilities/ability";
 
 const getHero = (heroes: IHeroStats[] | null, name: string) => {
   if (heroes === null) {
@@ -41,32 +42,13 @@ const heroOverallWinrate = (games: IMatchup[] | null): number => {
   return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
 };
 
-const getHeroAbilities = (
-  heroAbillities: Record<HeroKey, IHeroAbilities[]> | null,
-  abilities: IAbility[] | null,
-  name?: string
-) => {
-  const newAbilities: IAbility[] = [];
-  if (!name || heroAbillities === null) {
-    return;
-  }
-  const map = new Map(Object.entries(heroAbillities));
-  const abilitiesArr = map.get(name);
-  abilitiesArr?.abilities.forEach((ability: any) => {
-    if (abilities && abilities[ability]?.dname.length > 0) {
-      newAbilities.push(abilities[ability]);
-    }
-  });
-  return newAbilities;
-};
-
 const HeroPage = () => {
   const [heroStats, setHeroStats] = useState<IHeroStats[] | null>(null);
   const [heroMatchups, setHeroMatchups] = useState<IMatchup[] | null>(null);
-  const [heroAbillities, setHeroAbilities] = useState<IHeroAbilities[] | null>(
+  const [heroAbillities, setHeroAbilities] = useState<Record<HeroKey, IHeroAbilities> | null>(
     null
   );
-  const [abillities, setAbilities] = useState<IAbility[] | null>(null);
+  const [abillities, setAbilities] = useState<Record<string, IAbility> | null>(null);
   const [heroStatsLoading, setHeroStatsLoading] = useState(true);
 
   const { hero }: { hero: string } = useParams();
@@ -107,12 +89,23 @@ const HeroPage = () => {
       .catch((error) => {});
   }, []);
 
+  const abilitiesInfo = useMemo(() => {
+    if (!heroAbillities || !abillities || !currentHero) return [];
+
+    const currentHeroAbilities = heroAbillities[currentHero.name].abilities;
+    if (!currentHeroAbilities) return [];
+
+    const result: IAbility[] = [];
+    currentHeroAbilities.map((ability) => {
+      if (abillities[ability]) {
+        result.push(abillities[ability]);
+      }
+    })
+
+    return result;
+  }, [heroAbillities, abillities, currentHero])
+
   const winrate = heroOverallWinrate(heroMatchups);
-  const heroAbilitiesArray = getHeroAbilities(
-    heroAbillities,
-    abillities,
-    currentHero?.name
-  );
 
   return (
     !heroStatsLoading && (
@@ -143,7 +136,7 @@ const HeroPage = () => {
           </div>
         </div>
         <div>
-          {heroAbilitiesArray?.map((ability: IAbility) => (
+          {abilitiesInfo?.map((ability: IAbility) => (
             <Abillity key={ability.dname} {...ability} />
           ))}
         </div>

@@ -149,7 +149,7 @@ export type IHeroes = IHero[];
 
 export interface IHeroStats {
   id: number;
-  name: string;
+  name: HeroKey;
   primary_attr: string;
   attack_type: string;
   roles: string[];
