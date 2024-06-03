@@ -1,5 +1,6 @@
 import { API_URL } from "@/app/constants";
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
+import { setupCache } from "axios-cache-interceptor";
 
 export class AxiosClient {
   /**
@@ -16,12 +17,14 @@ export class AxiosClient {
    * @private
    */
   private readonly axiosClient: AxiosInstance;
+  private readonly instance;
 
   constructor() {
-    this.axiosClient = axios.create({
+    this.instance = axios.create({
       baseURL: `${this.baseUrl}/`,
       headers: { "Content-Type": "application/json" },
     });
+    this.axiosClient = setupCache(this.instance);
   }
 
   public get<T>(url: string): Promise<AxiosResponse<T>> {

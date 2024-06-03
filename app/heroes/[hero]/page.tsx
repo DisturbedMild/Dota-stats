@@ -1,29 +1,23 @@
 "use client";
 
-import { API } from "@/services/api";
+import {API} from "@/services/api";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import {useState, useEffect, useMemo} from "react";
-import Abillity from "@/components/abilities/ability";
-import {
-  IHeroStats,
-  IMatchup,
-  IHeroAbilities,
-  IAbility,
-  HeroKey,
-} from "@/services/api/endpoints/types";
+import {useParams} from "next/navigation";
+import {useEffect, useMemo, useState} from "react";
+import Ability from "@/components/abilities/ability";
+import {HeroKey, IAbility, IHeroAbilities, IHeroStats, IMatchup,} from "@/services/api/endpoints/types";
 import ability from "@/components/abilities/ability";
+import HeroProfile from "@components/hero/heroProfile";
 
 const getHero = (heroes: IHeroStats[] | null, name: string) => {
   if (heroes === null) {
     return;
   }
-  const hero = heroes.find((hero: IHeroStats) => {
+  return heroes.find((hero: IHeroStats) => {
     const heroName = hero.localized_name.replaceAll(" ", "_");
 
     if (heroName === name) return hero;
   });
-  return hero;
 };
 
 const heroOverallWinrate = (games: IMatchup[] | null): number => {
@@ -36,7 +30,7 @@ const heroOverallWinrate = (games: IMatchup[] | null): number => {
       acc.wins += curr.wins;
       return acc;
     },
-    { games: 0, wins: 0 }
+    {games: 0, wins: 0}
   );
 
   return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
@@ -45,13 +39,13 @@ const heroOverallWinrate = (games: IMatchup[] | null): number => {
 const HeroPage = () => {
   const [heroStats, setHeroStats] = useState<IHeroStats[] | null>(null);
   const [heroMatchups, setHeroMatchups] = useState<IMatchup[] | null>(null);
-  const [heroAbillities, setHeroAbilities] = useState<Record<HeroKey, IHeroAbilities> | null>(
+  const [heroAbilities, setHeroAbilities] = useState<Record<HeroKey, IHeroAbilities> | null>(
     null
   );
-  const [abillities, setAbilities] = useState<Record<string, IAbility> | null>(null);
+  const [abilities, setAbilities] = useState<Record<string, IAbility> | null>(null);
   const [heroStatsLoading, setHeroStatsLoading] = useState(true);
 
-  const { hero }: { hero: string } = useParams();
+  const {hero}: { hero: string } = useParams();
   const currentHero = getHero(heroStats, hero);
 
   useEffect(() => {
@@ -60,7 +54,8 @@ const HeroPage = () => {
       .then((data) => {
         setHeroStats(data);
       })
-      .catch((error) => {})
+      .catch(() => {
+      })
       .finally(() => {
         setHeroStatsLoading(false);
       });
@@ -71,7 +66,8 @@ const HeroPage = () => {
       API.heroes
         .getHeroMatchups(currentHero.id)
         .then((data) => setHeroMatchups(data))
-        .catch((error) => {});
+        .catch(() => {
+        });
     }
   }, [currentHero]);
 
@@ -79,67 +75,45 @@ const HeroPage = () => {
     API.constants
       .getConstants("hero_abilities")
       .then((data) => setHeroAbilities(data))
-      .catch((error) => {});
+      .catch(() => {
+      });
   }, []);
 
   useEffect(() => {
     API.constants
       .getConstants("abilities")
       .then((data) => setAbilities(data))
-      .catch((error) => {});
+      .catch(() => {
+      });
   }, []);
 
   const abilitiesInfo = useMemo(() => {
-    if (!heroAbillities || !abillities || !currentHero) return [];
+    if (!heroAbilities || !abilities || !currentHero) return [];
 
-    const currentHeroAbilities = heroAbillities[currentHero.name].abilities;
+    const currentHeroAbilities = heroAbilities[currentHero.name].abilities;
     if (!currentHeroAbilities) return [];
 
     const result: IAbility[] = [];
     currentHeroAbilities.map((ability) => {
-      if (abillities[ability]) {
-        result.push(abillities[ability]);
+      if (abilities[ability].dname) {
+        result.push(abilities[ability]);
       }
     })
 
     return result;
-  }, [heroAbillities, abillities, currentHero])
+  }, [heroAbilities, abilities, currentHero]);
 
   const winrate = heroOverallWinrate(heroMatchups);
-
+  console.log(abilitiesInfo)
   return (
     !heroStatsLoading && (
       <section className="h-screen">
-        <div className="flex gap-4">
-          <div className="w-2/12">
-            <Image
-              src={`/heroes/${hero
-                ?.replaceAll(" ", "_")
-                .toLocaleLowerCase()}.png`}
-              alt={`${currentHero?.localized_name}`}
-              width={256}
-              height={144}
-            />
-          </div>
-          <div className="w-10/12 text-lg text-white">
-            <h1 className="text-2xl font-bold">
-              {currentHero?.localized_name}
-            </h1>
-            <p></p>
-          </div>
-          <div
-            className={`${
-              Number(winrate) < 50 ? "text-red-500" : "text-green-500"
-            }`}
-          >
-            Winrate:{winrate}%
-          </div>
-        </div>
-        <div>
-          {abilitiesInfo?.map((ability: IAbility) => (
-            <Abillity key={ability.dname} {...ability} />
-          ))}
-        </div>
+        <HeroProfile
+          hero={hero}
+          currentHero={currentHero}
+          winrate={winrate}
+          abilitiesInfo={abilitiesInfo}
+        />
       </section>
     )
   );
