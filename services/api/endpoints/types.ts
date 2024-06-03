@@ -149,7 +149,7 @@ export type IHeroes = IHero[];
 
 export interface IHeroStats {
   id: number;
-  name: string;
+  name: HeroKey;
   primary_attr: string;
   attack_type: string;
   roles: string[];
@@ -240,3 +240,5 @@ export interface IAbility {
   lore: string;
   img: string;
 }
+
+export type HeroKey = "npc_dota_hero_antimage" | "npc_dota_hero_axe";
