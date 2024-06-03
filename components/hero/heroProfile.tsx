@@ -11,7 +11,7 @@ type THeroProfileProps = {
 
 const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfileProps) => {
   return (
-    <div className="relative w-full bg-blue-100 rounded-lg overflow-hidden bg-black/90">
+    <div className="relative w-full rounded-lg overflow-hidden bg-black/90">
       <Image
         className="absolute opacity-35 bg-no-repeat blur-xl object-cover w-[125%] h-[125%] w-full h-full "
         src={`/heroes/${hero
