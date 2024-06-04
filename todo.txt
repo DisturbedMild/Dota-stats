@@ -5,6 +5,4 @@ https://steamcommunity.com/dev
 https://partner.steamgames.com/doc/features/auth
 https://partner.steamgames.com/doc/features/auth#client_to_backend_webapi
 TODO: Temporary question mark icon for skills
-TODO: Skeleton loading bar
-TODO: Show details of hero
 TODO: Tab bar for hero info: Matchups/Items/Ranking
