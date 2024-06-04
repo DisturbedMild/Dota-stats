@@ -4,9 +4,8 @@ import defaultPostImage from "./default-post.png";
 import "./styles.css";
 
 import Image from "next/image";
-import type { TPost } from "./posts";
-
-const formatpostsContent = (post: TPost) => {
+import {IPost} from "@/services/api/endpoints/types";
+const formatPostsContent = (post: IPost) => {
   if ((post.feedlabel = "Community Announcements")) {
     const content = post.contents;
     const getImgSrc = content.split("[/img]")[0].split("[img]")[1];
@@ -30,8 +29,8 @@ const imageLoader = ({ src, width, quality }: any) => {
   }`;
 };
 
-export const Post = ({ item }: { item: TPost }) => {
-  const updatedContent = formatpostsContent(item);
+export const Post = ({ item }: { item: IPost }) => {
+  const updatedContent = formatPostsContent(item);
   return (
     <li key={item.gid} className="flex gap-4">
       <div className=" w-5/12">
