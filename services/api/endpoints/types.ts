@@ -1,3 +1,13 @@
+export interface IPost {
+  gid: string;
+  title: string;
+  url: string;
+  author: string;
+  contents: string;
+  date: number;
+  feedlabel: string;
+}
+
 export interface IMatches {
   match_id: number;
   duration: number;

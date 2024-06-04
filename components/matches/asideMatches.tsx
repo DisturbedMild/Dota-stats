@@ -1,9 +1,10 @@
 "use client";
 
 import MatchItem from "./matchItem";
-import { useEffect, useState } from "react";
-import { API } from "@/services/api";
-import { IHeroes, IPublicMatches } from "@/services/api/endpoints/types";
+import {Suspense, useEffect, useState} from "react";
+import {API} from "@/services/api";
+import {IHeroes, IPublicMatches} from "@/services/api/endpoints/types";
+import Skeleton from "@components/ui/loaders/skeleton";
 
 export type TMatch = {
   match_id: number;
@@ -23,7 +24,8 @@ const AsideMatches = () => {
     API.matches
       .getPublicMatches("?min_rank=80")
       .then((data) => setMatches(data))
-      .catch((error) => {})
+      .catch((error) => {
+      })
       .finally(() => {
         setMatchesLoading(false);
       });
@@ -31,13 +33,13 @@ const AsideMatches = () => {
 
   return (
     <aside className="w-1/3">
-      <h2 className="text-left text-white mb-1 text-xl">Latest Pro Publics</h2>
+      <h2 className="text-left text-white mb-1 text-xl">Latest Pro public matches</h2>
       <div className="flex flex-col gap-3">
-        {matchesLoading && <div>Loading...</div>}
+        {matchesLoading && <Skeleton styles="shadow rounded-md mt-8 p-4 w-full mx-auto" />}
         {!matchesLoading &&
           matches?.map((match: TMatch, index: number) => {
             if (index <= 8) {
-              return <MatchItem key={match.match_id} match={match} />;
+              return <MatchItem key={match.match_id} match={match}/>;
             } else {
               return;
             }

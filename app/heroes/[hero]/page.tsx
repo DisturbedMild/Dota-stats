@@ -1,13 +1,11 @@
 "use client";
 
 import {API} from "@/services/api";
-import Image from "next/image";
 import {useParams} from "next/navigation";
 import {useEffect, useMemo, useState} from "react";
-import Ability from "@/components/abilities/ability";
 import {HeroKey, IAbility, IHeroAbilities, IHeroStats, IMatchup,} from "@/services/api/endpoints/types";
-import ability from "@/components/abilities/ability";
 import HeroProfile from "@components/hero/heroProfile";
+import HeroDetails from "@components/hero/heroDetails";
 
 const getHero = (heroes: IHeroStats[] | null, name: string) => {
   if (heroes === null) {
@@ -104,7 +102,7 @@ const HeroPage = () => {
   }, [heroAbilities, abilities, currentHero]);
 
   const winrate = heroOverallWinrate(heroMatchups);
-  console.log(abilitiesInfo)
+  console.log(currentHero)
   return (
     !heroStatsLoading && (
       <section className="h-screen">
@@ -114,6 +112,7 @@ const HeroPage = () => {
           winrate={winrate}
           abilitiesInfo={abilitiesInfo}
         />
+        <HeroDetails currentHero={currentHero} />
       </section>
     )
   );

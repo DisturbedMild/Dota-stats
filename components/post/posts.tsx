@@ -1,15 +1,8 @@
-import { Post } from "@components/post/post";
 import Link from "next/link";
-
-export type TPost = {
-  gid: string;
-  title: string;
-  url: string;
-  author: string;
-  contents: string;
-  date: number;
-  feedlabel: string;
-};
+import {Post} from "@components/post/post";
+import {IPost} from "@/services/api/endpoints/types";
+import {Suspense} from "react";
+import Skeleton from "@components/ui/loaders/skeleton";
 
 const postsUrl =
   "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=570&count=10";
@@ -34,8 +27,10 @@ async function Posts() {
         <h1 className="text-2xl">Recent News:</h1>
         <Link href="/posts">All posts --- </Link>
       </div>
-      {posts.map((item: TPost) => (
-        <Post key={item.gid} item={item} />
+      {posts.map((item: IPost) => (
+        <Suspense key={item.gid} fallback={<Skeleton/>}>
+          <Post item={item}/>
+        </Suspense>
       ))}
     </div>
   );
