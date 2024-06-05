@@ -2,10 +2,11 @@
 
 import {API} from "@/services/api";
 import {useParams} from "next/navigation";
-import {useEffect, useMemo, useState} from "react";
-import {HeroKey, IAbility, IHeroAbilities, IHeroStats, IMatchup,} from "@/services/api/endpoints/types";
+import React, {useEffect, useMemo, useState} from "react";
+import {HeroKey, IAbility, IHeroAbilities, IHeroStats, IMatchup } from "@/services/api/endpoints/types";
 import HeroProfile from "@components/hero/heroProfile";
 import HeroDetails from "@components/hero/heroDetails";
+import HeroDetailsNavbar from "@components/hero/detail-nav/heroDetailsNavbar";
 
 const getHero = (heroes: IHeroStats[] | null, name: string) => {
   if (heroes === null) {
@@ -112,7 +113,8 @@ const HeroPage = () => {
           winrate={winrate}
           abilitiesInfo={abilitiesInfo}
         />
-        <HeroDetails currentHero={currentHero} />
+        <HeroDetails currentHero={currentHero}/>
+        <HeroDetailsNavbar/>
       </section>
     )
   );
