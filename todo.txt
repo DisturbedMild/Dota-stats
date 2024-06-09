@@ -1,9 +1,13 @@
-TODO: Create class for all possible requests in services/api
-TODO: Add Link to AsideMatches heroes
+==> Overall
 TODO: Add login via steam
 https://steamcommunity.com/dev
 https://partner.steamgames.com/doc/features/auth
 https://partner.steamgames.com/doc/features/auth#client_to_backend_webapi
-TODO: Temporary question mark icon for skills
+
+==> Home Page
+TODO: Add Link to AsideMatches heroes -> hero page
+TODO Add Link to AsideMatches match -> match page
+==> Hero Page
 TODO: Tab bar for hero info: Matchups/Items/Matchups/Durations/Players/Items
 TODO: Add Link to player name in Hero Rankings component
+TODO: Add spell description while hover on skill
