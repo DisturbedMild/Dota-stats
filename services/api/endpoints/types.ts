@@ -8,6 +8,21 @@ export interface IPost {
   feedlabel: string;
 }
 
+export interface IHeroPlayerRanking {
+  account_id: number;
+  score: number;
+  personaname: string;
+  name?: string | null;
+  avatar: string;
+  last_login?: string;
+  rank_tier: number
+}
+
+export interface IHeroPlayersRanking {
+  hero_id?: number;
+  rankings: IHeroPlayerRanking[]
+}
+
 export interface IMatches {
   match_id: number;
   duration: number;

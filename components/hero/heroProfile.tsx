@@ -35,9 +35,9 @@ const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfile
             {currentHero?.attack_type} - <span
             className="uppercase text-xs text-gray-500">{currentHero?.roles.map((role: string, index: number) => {
             if (index === currentHero?.roles.length - 1) {
-              return <>{role}</>
+              return <span key={role}>{role}</span>
             } else {
-              return <>{role}, </>
+              return <span key={role}>{role}, </span>
             }
           })}</span>
           </div>

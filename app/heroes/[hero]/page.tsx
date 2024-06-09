@@ -3,7 +3,13 @@
 import {API} from "@/services/api";
 import {useParams} from "next/navigation";
 import React, {useEffect, useMemo, useState} from "react";
-import {HeroKey, IAbility, IHeroAbilities, IHeroStats, IMatchup } from "@/services/api/endpoints/types";
+import {
+  HeroKey,
+  IAbility,
+  IHeroAbilities,
+  IHeroStats,
+  IMatchup
+} from "@/services/api/endpoints/types";
 import HeroProfile from "@components/hero/heroProfile";
 import HeroDetails from "@components/hero/heroDetails";
 import HeroDetailsNavbar from "@components/hero/detail-nav/heroDetailsNavbar";
@@ -103,10 +109,10 @@ const HeroPage = () => {
   }, [heroAbilities, abilities, currentHero]);
 
   const winrate = heroOverallWinrate(heroMatchups);
-  console.log(currentHero)
+
   return (
     !heroStatsLoading && (
-      <section className="h-screen">
+      <section>
         <HeroProfile
           hero={hero}
           currentHero={currentHero}
@@ -114,7 +120,7 @@ const HeroPage = () => {
           abilitiesInfo={abilitiesInfo}
         />
         <HeroDetails currentHero={currentHero}/>
-        <HeroDetailsNavbar/>
+        <HeroDetailsNavbar currentHero={currentHero} />
       </section>
     )
   );
