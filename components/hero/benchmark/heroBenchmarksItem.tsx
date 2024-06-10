@@ -27,7 +27,7 @@ type CustomTooltipProps = {
   label: string;
 }
 
-const CustomTooltip = ({name, active, payload, label}: { name: string } & CustomTooltipProps) => {
+const CustomTooltip = ({name}: { name: string}, {active, payload, label}: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="p-2 bg-black/40">
@@ -40,9 +40,12 @@ const CustomTooltip = ({name, active, payload, label}: { name: string } & Custom
   return null;
 }
 
-type THeroBenchmarksItemProps = { [key: string]: IHeroBenchmarks }
+type THeroBenchmarksItemProps = {
+  percentile: number;
+  value: number
+}
 
-const HeroBenchmarksItem = ({name, result}: { name: string, result: THeroBenchmarksItemProps }) => {
+const HeroBenchmarksItem = ({name, result}: { name: string, result: THeroBenchmarksItemProps[] }) => {
   return (
     <div>
       <ResponsiveContainer width="100%" height={250}>

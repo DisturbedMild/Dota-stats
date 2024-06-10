@@ -6,7 +6,7 @@ import HeroBenchmarksItem from "@components/hero/benchmark/heroBenchmarksItem";
 type THeroBenchmarks = Pick<IHeroBenchmarks, "result">;
 
 const HeroBenchmarks = ({result}: THeroBenchmarks) => {
-  const resultKeys= Object.keys(result);
+  const resultKeys = Object.keys(result) as (keyof typeof result)[];
 
   return (
     <div className="grid grid-cols-3 gap-8">
