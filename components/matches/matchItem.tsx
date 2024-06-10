@@ -3,28 +3,16 @@
 import Image from "next/image";
 import HeroIcon from "./heroIcon";
 import { TMatch } from "./asideMatches";
-import { THero } from "@/app/heroes/page";
 import { IHeroes } from "@/services/api/endpoints/types";
 import { useEffect, useState } from "react";
 import { API } from "@/services/api";
+import { convertTime } from "@/utils/convertTime";
 
 const getMatchHeroes = (heroes: IHeroes, arr: number[]) => {
   const heroesArray = arr?.map((id) => {
     return heroes.find((hero: any) => hero.id === id);
   });
   return heroesArray;
-};
-
-const convertTime = (time: number) => {
-  let minutes = Math.floor(time / 60);
-  let extraSeconds = time % 60;
-  const minutesTime = minutes < 10 ? "0" + minutes : minutes;
-  const extraSecondsTime =
-    extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
-  return {
-    minutes: minutesTime,
-    seconds: extraSecondsTime,
-  };
 };
 
 const MatchItem = ({ match }: { match: TMatch }) => {

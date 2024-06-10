@@ -57,8 +57,9 @@ export interface IHeroBenchmarks {
   }
 }
 
-export interface IMatches {
+export interface IMatch {
   match_id: number;
+  account_id: number;
   duration: number;
   start_time: number;
   radiant_team_id: number;
@@ -73,6 +74,9 @@ export interface IMatches {
   dire_score: number;
   radiant_win: boolean;
   radiant: boolean;
+  kills:number;
+  deaths: number;
+  assists: number;
 }
 
 export interface IMatchDuration {

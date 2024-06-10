@@ -7,6 +7,7 @@ import {
   IMatchup,
   IHeroPlayersRanking,
   IHeroBenchmarks,
+  IMatch,
 } from "@/services/api/endpoints/types";
 
 import {AxiosClient} from "@/services/api/axios-client";
@@ -27,6 +28,14 @@ export class HeroEndpoint {
   async getHeroMatchups(hero_id: number): Promise<IMatchup[]> {
     const request = await this.httpClient.get<IMatchup[]>(
       `https://api.opendota.com/api/heroes/${hero_id}/matchups`
+    );
+
+    return request.data;
+  }
+
+  async getHeroMatches(hero_id: number): Promise<IMatch[]> {
+    const request = await this.httpClient.get<IMatch[]>(
+      `https://api.opendota.com/api/heroes/${hero_id}/matches`
     );
 
     return request.data;
