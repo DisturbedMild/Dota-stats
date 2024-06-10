@@ -1,13 +1,15 @@
 import {
   IHeroes,
-  IMatches,
   IMatchDuration,
   IHeroPlayers,
   IHeroItemsPopolarity,
   IHeroStats,
-  IMatchup, IHeroPlayersRanking,
+  IMatchup,
+  IHeroPlayersRanking,
+  IHeroBenchmarks,
 } from "@/services/api/endpoints/types";
-import { AxiosClient } from "@/services/api/axios-client";
+
+import {AxiosClient} from "@/services/api/axios-client";
 
 export class HeroEndpoint {
   constructor(private readonly httpClient: AxiosClient) {
@@ -26,6 +28,14 @@ export class HeroEndpoint {
     const request = await this.httpClient.get<IMatchup[]>(
       `https://api.opendota.com/api/heroes/${hero_id}/matchups`
     );
+
+    return request.data;
+  }
+
+  async geHeroBenchmarks(hero_id: number): Promise<IHeroBenchmarks> {
+    const request = await this.httpClient.get<IHeroBenchmarks>(
+      `https://api.opendota.com/api/benchmarks?hero_id=${hero_id}`
+    )
 
     return request.data;
   }

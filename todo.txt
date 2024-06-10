@@ -7,7 +7,25 @@ https://partner.steamgames.com/doc/features/auth#client_to_backend_webapi
 ==> Home Page
 TODO: Add Link to AsideMatches heroes -> hero page
 TODO Add Link to AsideMatches match -> match page
-==> Hero Page
-TODO: Tab bar for hero info: Matchups/Items/Matchups/Durations/Players/Items
+
+==> Heroes Page
+
+ ==> Hero Page
+TODO: Tab bar for hero info: Matchups/Items/Durations/Players/Recent
 TODO: Add Link to player name in Hero Rankings component
 TODO: Add spell description while hover on skill
+TODO: Fix TS errors in heroBenchmarks.tsx and heroBenchmarksItem.tsx
+
+==> Items Page
+
+==> Blog
+
+==> Matches
+
+ ==> Match Page
+
+==> Players
+
+  ==> Player Page
+
+==> Cybersport
