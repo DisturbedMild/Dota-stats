@@ -14,8 +14,9 @@ TODO Add Link to AsideMatches match -> match page
 TODO: Tab bar for hero info: Matchups/Items/Durations/Players/Recent
 TODO: Add Link to player name in Hero Rankings component
 TODO: Add spell description while hover on skill
-TODO: Fix TS errors in heroBenchmarks.tsx and heroBenchmarksItem.tsx
 TODO: Add Grid to Benchmark item
+
+WARNING: TS-IGNORE in HeroBenchmarksItem.tsx
 
 ==> Items Page
 
