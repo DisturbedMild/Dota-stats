@@ -7,9 +7,8 @@ import {
   YAxis,
   CartesianAxis,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
-import {IHeroBenchmarks} from "@/services/api/endpoints/types";
 
 const COLORS: Record<string, string> = {
   GOLD_PER_MIN: "#f6fd00",
@@ -22,17 +21,18 @@ const COLORS: Record<string, string> = {
 }
 
 type CustomTooltipProps = {
+  name: string;
   active: boolean;
   payload: any;
   label: string;
 }
 
-const CustomTooltip = ({name, active, payload, label}:{ name: string} & CustomTooltipProps) => {
-  if (active && payload && payload.length) {
+const CustomTooltip = (props: CustomTooltipProps) => {
+  if (props.active && props.payload && props.payload.length) {
     return (
       <div className="p-2 bg-black/40">
-        <p className="label">{`${label}`}</p>
-        <p className="desc capitalize">{name.replaceAll("_", " ")}: {payload[0].value.toFixed(2)}</p>
+        <p className="label">{`${props.label}`}</p>
+        <p className="desc capitalize">{props.name.replaceAll("_", " ")}: {props.payload[0].value.toFixed(2)}</p>
       </div>
     );
   }
@@ -52,7 +52,6 @@ const HeroBenchmarksItem = ({name, result}: { name: string, result: THeroBenchma
         <AreaChart
           width={400}
           height={250}
-          // @ts-ignore
           data={result}
           id={name}
         >
@@ -65,10 +64,9 @@ const HeroBenchmarksItem = ({name, result}: { name: string, result: THeroBenchma
           <CartesianAxis/>
           <XAxis dataKey={(data) => (data.percentile * 100) + "%"}/>
           <YAxis dataKey="value"/>
-          <Tooltip content={<CustomTooltip name={name}/>}/>
+          <Tooltip content={<CustomTooltip name={name} active={false} payload={[]} label={""} />}/>
           <Area type="linear" dataKey={(data) => data.value} stroke={COLORS[name.toUpperCase()]} fillOpacity={1}
                 fill={`url(#${name}-UV)`}/>
-          {/*<Area type="linear" dataKey="value" stroke={COLORS[name.toUpperCase()]} fill={COLORS[name.toUpperCase()]}/>*/}
         </AreaChart>
       </ResponsiveContainer>
       <div className="py-1 text-gray-400 text-right uppercase text-xls">{name.replaceAll("_", " ")}</div>
