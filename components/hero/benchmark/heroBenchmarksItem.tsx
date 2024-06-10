@@ -27,7 +27,7 @@ type CustomTooltipProps = {
   label: string;
 }
 
-const CustomTooltip = ({name}: { name: string}, {active, payload, label}: CustomTooltipProps) => {
+const CustomTooltip = ({name, active, payload, label}:{ name: string} & CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="p-2 bg-black/40">
