@@ -12,10 +12,11 @@ TODO Add Link to AsideMatches match -> match page
 ==> Heroes Page
 
  ==> Hero Page
-TODO: Tab bar for hero info: Matchups/Items/Durations/Players/Recent
+TODO: Tab bar for hero info Items/Durations/Players/Recent
 TODO: Add Link to player name in Hero Rankings component
 TODO: Add spell description while hover on skill
 TODO: Add Grid to Benchmark item
+TODO: Calculate Advantage score in Matchups tab, add sorting by winrate.
 
 Recent - https://api.opendota.com/api/heroes/102/matches
 
