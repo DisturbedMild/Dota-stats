@@ -23,8 +23,7 @@ const AsideMatches = () => {
     API.matches
       .getPublicMatches("?min_rank=80")
       .then((data) => setMatches(data))
-      .catch((error) => {
-      })
+      .catch(() => {})
       .finally(() => {
         setMatchesLoading(false);
       });

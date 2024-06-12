@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
-import { useDebounce } from "@/hooks/useDebounce";
+import { useDebounce } from "@/common/hooks/useDebounce";
 
 const SearchBar = () => {
   const [searchValue, setSearchValue] = useState<string>("");

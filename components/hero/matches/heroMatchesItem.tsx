@@ -1,12 +1,11 @@
 "use client";
 
 import {IMatch} from "@/services/api/endpoints/types";
-import {convertTime} from "@/utils/convertTime";
+import {convertTime} from "@/common/utils/convertTime";
 
 type THeroMatchesItemProps = {
   match: IMatch
 }
-
 
 type calcKDAProps = Pick<IMatch, "kills" | "assists" | "deaths">;
 
@@ -27,8 +26,8 @@ const calcKDALineWidth = ({kills, assists, deaths}: calcKDAProps): {
 const HeroMatchesItem = ({match}: THeroMatchesItemProps) => {
   const matchDuration = convertTime(match.duration);
 
-  const KDAPercentages = calcKDALineWidth({kills: match.kills, deaths: match.deaths, assists: match.assists})
-  console.log(KDAPercentages);
+  const KDAPercentages = calcKDALineWidth({kills: match.kills, deaths: match.deaths, assists: match.assists});
+
   return (
     <div className="flex items-center px-6 py-2 border-t border-b border-gray-200/10">
       <div className="w-3/12 text-xls">{match.account_id}</div>

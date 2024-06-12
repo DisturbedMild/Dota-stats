@@ -6,7 +6,7 @@ import { TMatch } from "./asideMatches";
 import { IHeroes } from "@/services/api/endpoints/types";
 import { useEffect, useState } from "react";
 import { API } from "@/services/api";
-import { convertTime } from "@/utils/convertTime";
+import { convertTime } from "@/common/utils/convertTime";
 
 const getMatchHeroes = (heroes: IHeroes, arr: number[]) => {
   const heroesArray = arr?.map((id) => {

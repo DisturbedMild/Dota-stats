@@ -1,7 +1,7 @@
 import React from "react";
 
 import {ITabProps} from "@components/ui/tablist/types";
-import {sanitizeForId} from "@/utils/stringUtils";
+import {sanitizeForId} from "@/common/utils/stringUtils";
 
 const TabItem: React.FC<ITabProps> = ({label, children, className}: ITabProps) => (
   <div

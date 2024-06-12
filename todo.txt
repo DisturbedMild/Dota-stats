@@ -4,6 +4,7 @@ https://steamcommunity.com/dev
 https://partner.steamgames.com/doc/features/auth
 https://partner.steamgames.com/doc/features/auth#client_to_backend_webapi
 
+TODO: Add context for api calls
 ==> Home Page
 TODO: Add Link to AsideMatches heroes -> hero page
 TODO Add Link to AsideMatches match -> match page

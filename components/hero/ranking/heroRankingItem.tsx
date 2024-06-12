@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import getNumberWithOrdinal from "@/utils/getNumberWithOrdinal";
+import getNumberWithOrdinal from "@/common/utils/getNumberWithOrdinal";
 
 type THeroRankingItem = {
   name: string;
