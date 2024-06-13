@@ -26,7 +26,7 @@ const HeroDetailsNavbar = ({ currentHero }: THeroDetailsNavBar) => {
         .catch(() => {
         });
     }
-  }, []);
+  }, [currentHero]);
 
   useEffect(() => {
     if(currentHero) {
@@ -36,7 +36,7 @@ const HeroDetailsNavbar = ({ currentHero }: THeroDetailsNavBar) => {
         .catch(() => {
         });
     }
-  }, []);
+  }, [currentHero]);
 
   useEffect(() => {
     if(currentHero) {
@@ -46,7 +46,7 @@ const HeroDetailsNavbar = ({ currentHero }: THeroDetailsNavBar) => {
         .catch(() => {
         });
     }
-  }, []);
+  }, [currentHero]);
 
   useEffect(() => {
     if(currentHero) {
@@ -56,7 +56,7 @@ const HeroDetailsNavbar = ({ currentHero }: THeroDetailsNavBar) => {
         .catch(() => {
         });
     }
-  }, []);
+  }, [currentHero]);
 
   return (
     <TabList className="flex gap-12 justify-center mb-10 pb-4 text-white border-b border-gray-700" activeTabClasses="relative text-green-500 transition-all after:absolute after:left-2/4 after:-translate-x-1/2 after:-bottom-4 after:bg-green-500 after:w-28 after:h-1" activeTabIndex={0}>

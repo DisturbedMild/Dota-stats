@@ -2,6 +2,7 @@
 
 import {IHeroes} from "@/services/api/endpoints/types";
 import Image from "next/image";
+import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 
 type THeroMatchupsItem = {
   heroes: IHeroes;
@@ -19,7 +20,7 @@ const HeroMatchupsItem = ({heroes, id, games, wins}: THeroMatchupsItem) => {
 
   return (
     hero &&
-    <div className="flex items-center px-6 py-2 rounded-t">
+    (<div className="flex items-center px-6 py-2 border-t border-b border-gray-200/10 rounded-t">
       <div className="w-6/12 flex items-center gap-2 text-base">
         <Image
           src={imageSrc}
@@ -31,8 +32,8 @@ const HeroMatchupsItem = ({heroes, id, games, wins}: THeroMatchupsItem) => {
       </div>
       <div className="w-2/12 text-base">{games}</div>
       <div className="w-2/12 text-base">{(wins * 100 / games).toFixed(2)}</div>
-      <div className="w-2/12 text-base">Calculate by Willson Score</div>
-    </div>
+      <div className="w-2/12 text-base">{calculateWilsonScore(wins, games)}</div>
+    </div>)
   )
 }
 

@@ -1,7 +1,6 @@
 import {
   IMatch,
   IPublicMatches,
-  IMatches,
 } from "@/services/api/endpoints/types";
 import { AxiosClient } from "@/services/api/axios-client";
 
@@ -10,16 +9,16 @@ export class MatchEndpoint {
     this.httpClient = httpClient;
   }
 
-  async getHeroMatches(hero_id: number): Promise<IMatches> {
-    const request = await this.httpClient.get<IMatches>(
+  async getHeroMatches(hero_id: number): Promise<IMatch[]> {
+    const request = await this.httpClient.get<IMatch[]>(
       `https://api.opendota.com/api/heroes/${hero_id}/matches`
     );
 
     return request.data;
   }
 
-  async getProMatches(): Promise<IMatches> {
-    const request = await this.httpClient.get<IMatches>(
+  async getProMatches(): Promise<IMatch[]> {
+    const request = await this.httpClient.get<IMatch[]>(
       "https://api.opendota.com/api/proMatches"
     );
 
