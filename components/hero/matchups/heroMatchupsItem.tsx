@@ -30,9 +30,9 @@ const HeroMatchupsItem = ({heroes, id, games, wins}: THeroMatchupsItem) => {
         />
         <span className="text-xls">{hero.localized_name}</span>
       </div>
-      <div className="w-2/12 text-base">{games}</div>
-      <div className="w-2/12 text-base">{(wins * 100 / games).toFixed(2)}</div>
-      <div className="w-2/12 text-base">{calculateWilsonScore(wins, games)}</div>
+      <div className="w-2/12 text-base text-center">{games}</div>
+      <div className="w-2/12 text-base text-center">{(wins * 100 / games).toFixed(2)}</div>
+      <div className="w-2/12 text-base text-center">{calculateWilsonScore(wins, games)}</div>
     </div>)
   )
 }
