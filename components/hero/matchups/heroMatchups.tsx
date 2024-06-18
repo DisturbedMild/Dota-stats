@@ -1,49 +1,62 @@
 import HeroMatchupsItem from "@components/hero/matchups/heroMatchupsItem";
-import {useContext, useState} from "react";
+import {useContext, useState, useReducer} from "react";
 import {APIContext} from "@/common/context/api-context";
-import {IMatchup} from "@/services/api/endpoints/types";
-import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
+import {ISortedHeroMatchup} from "@/services/api/endpoints/types";
 
-type THeroMatchups = {
-  heroMatchups: IMatchup[];
+enum heroMatchupActionKind {
+  SORT_BY_GAMES = 'SORT_BY_GAMES',
+  SORT_BY_WINRATE = 'SORT_BY_WINRATE',
+  SORT_BY_ADVANTAGE = 'SORT_BY_ADVANTAGE',
 }
 
-interface ISortedHeroMatchups extends IMatchup {
-  winrate: number;
-  advantage: number
+interface heroMatchupAction {
+  type: heroMatchupActionKind,
+  payload: boolean
 }
 
+interface THeroMatchupProps {
+  heroMatchups: ISortedHeroMatchup[];
+}
 
-const HeroMatchups = ({heroMatchups}: THeroMatchups) => {
-  const arrWithWinrate = heroMatchups.map((heroMatchup) => {
-    return {
-      winrate: Number((heroMatchup.wins * 100 / heroMatchup.games_played).toFixed(2)),
-      advantage: calculateWilsonScore(heroMatchup.wins, heroMatchup.games_played),
-      ...heroMatchup
-    }
-  })
-  const sorted = arrWithWinrate.sort((a, b) => b.games_played - a.games_played);
-  const [sortedHeroes, setSortedHeroes] = useState<ISortedHeroMatchups[]>(sorted);
+const reducer = (state: ISortedHeroMatchup[], action: heroMatchupAction) => {
+  const {type, payload} = action;
+  switch (type) {
+    case heroMatchupActionKind.SORT_BY_WINRATE:
+      return payload ?
+        state.sort((a, b) => a.winrate - b.winrate) :
+        state.sort((a, b) => b.winrate - a.winrate)
+
+    case heroMatchupActionKind.SORT_BY_ADVANTAGE:
+      return payload ?
+        state.sort((a, b) => a.advantage - b.advantage) :
+        state.sort((a, b) => b.advantage - a.advantage)
+
+    case heroMatchupActionKind.SORT_BY_GAMES:
+      return payload ?
+        state.sort((a, b) => a.games_played - b.games_played) :
+        state.sort((a, b) => b.games_played - a.games_played)
+  }
+}
+
+const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
+  const [sortedByGames, setSortedByGames] = useState(false);
   const [sortedByWinrate, setSortedByWinrate] = useState(false);
   const [sortedByAdvantage, setSortedByAdvantage] = useState(false);
+  const [sortedHeroes, dispatch] = useReducer(reducer, heroMatchups)
 
+  const handleGamesSorting = () => {
+    setSortedByGames(sortedByGames => !sortedByGames);
+    dispatch({type: heroMatchupActionKind.SORT_BY_GAMES, payload: sortedByGames})
+  }
 
   const handleWinrateSorting = () => {
     setSortedByWinrate(sortedByWinrate => !sortedByWinrate);
-    setSortedHeroes((sortedHeroes) =>
-      sortedByWinrate ?
-        sortedHeroes.sort((a, b) => a.winrate - b.winrate) :
-        sortedHeroes.sort((a, b) => b.winrate - a.winrate)
-    )
+    dispatch({type: heroMatchupActionKind.SORT_BY_WINRATE, payload: sortedByWinrate})
   }
 
   const handleAdvantageSorting = () => {
     setSortedByAdvantage(sortedByAdvantage => !sortedByAdvantage);
-    setSortedHeroes((sortedHeroes) =>
-      sortedByAdvantage ?
-        sortedHeroes.sort((a, b) => a.advantage - b.advantage) :
-        sortedHeroes.sort((a, b) => b.advantage - a.advantage)
-    )
+    dispatch({type: heroMatchupActionKind.SORT_BY_ADVANTAGE, payload: sortedByAdvantage})
   }
 
   const {heroes} = useContext(APIContext);
@@ -55,11 +68,11 @@ const HeroMatchups = ({heroMatchups}: THeroMatchups) => {
       <article className="rounded border-amber-50/50 border border-gray-300/10">
         <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-[#020024] to-[#2da65c]">
           <div className="w-6/12 text-base">HERO</div>
-          <div className="w-2/12 text-base text-center">GAMES</div>
+          <div className="w-2/12 text-base text-center cursor-pointer" onClick={handleGamesSorting}>GAMES</div>
           <div className="w-2/12 text-base text-center cursor-pointer" onClick={handleWinrateSorting}>WIN %</div>
           <div className="w-2/12 text-base text-center cursor-pointer" onClick={handleAdvantageSorting}>ADVANTAGE</div>
         </header>
-        {sortedHeroes && heroes && sortedHeroes.map((matchup: IMatchup) =>
+        {sortedHeroes && heroes && sortedHeroes.map((matchup: ISortedHeroMatchup) =>
           <HeroMatchupsItem
             key={matchup.hero_id}
             heroes={heroes}

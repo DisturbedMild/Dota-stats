@@ -277,6 +277,12 @@ export interface IMatchup {
   wins: number;
 }
 
+export interface ISortedHeroMatchup extends IMatchup {
+  winrate: number;
+  advantage: number
+}
+
+
 export interface IHeroAbilities {
   abilities: string[];
   talents: [
