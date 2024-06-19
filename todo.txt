@@ -12,7 +12,7 @@ TODO Add Link to AsideMatches match -> match page
 ==> Heroes Page
 
  ==> Hero Page
-TODO: Tab bar for hero info Items/Durations/Players
+TODO: Tab bar for hero info Items/Players
 TODO: Add Link to player name in Hero Rankings component
 TODO: Add spell description while hover on skill
 TODO: Add Grid to Benchmark item

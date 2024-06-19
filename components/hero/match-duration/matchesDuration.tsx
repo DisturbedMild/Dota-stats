@@ -119,40 +119,46 @@ const MatchesDuration = (({heroMatchesDuration}: TMatchesDurationProps) => {
     }
   })
   newHeroMatchesDuration.sort((a, b) => a.duration_bin - b.duration_bin);
+
   return (
-    <div className="flex justify-center">
-      <ResponsiveContainer width="80%" height={400}>
-        <BarChart
-          data={newHeroMatchesDuration}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid stroke="#f5f5f533"/>
-          <XAxis dataKey="duration_bin"/>
-          <YAxis dataKey="games_played"/>
-          <Tooltip
-            content={<CustomTooltip active={false} payload={[]} label={""}/>}
-            cursor={<Rectangle fill="rgba(255,255,255, 0.2)" stroke="rgba(255,255,255, 0.2)"/>}
-          />
-          <Bar
-            background={false}
-            dataKey="games_played"
+    <>
+      <h3 className="mb-4 pl-4 text-[#ffffff99] text-xls">
+        <span className="font-medium text-[#ffffffde]">Duration</span> Data from professional matches
+      </h3>
+      <article className="flex">
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart
+            data={newHeroMatchesDuration}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 0,
+              bottom: 5,
+            }}
           >
-            {newHeroMatchesDuration.map((match) => (
-              <Cell
-                key={match.games_played}
-                fill={(match.wins * 100 / match.games_played) > 50 ? "rgba(34, 197,94, 0.5)" : "rgba(229, 184, 22, 0.5)"}
-                stroke={(match.wins * 100 / match.games_played) > 50 ? "rgba(34, 197,94, 0.8)" : "rgba(229, 184, 22, 0.8)"}
-              />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+            <CartesianGrid stroke="#f5f5f533"/>
+            <XAxis dataKey="duration_bin"/>
+            <YAxis dataKey="games_played"/>
+            <Tooltip
+              content={<CustomTooltip active={false} payload={[]} label={""}/>}
+              cursor={<Rectangle fill="rgba(255,255,255, 0.2)" stroke="rgba(255,255,255, 0.2)"/>}
+            />
+            <Bar
+              background={false}
+              dataKey="games_played"
+            >
+              {newHeroMatchesDuration.map((match) => (
+                <Cell
+                  key={match.games_played}
+                  fill={(match.wins * 100 / match.games_played) > 50 ? "rgba(34, 197,94, 0.5)" : "rgba(229, 184, 22, 0.5)"}
+                  stroke={(match.wins * 100 / match.games_played) > 50 ? "rgba(34, 197,94, 0.8)" : "rgba(229, 184, 22, 0.8)"}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </article>
+    </>
   )
 })
 
