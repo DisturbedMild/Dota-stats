@@ -2,7 +2,7 @@ import {
   IHeroes,
   IMatchDuration,
   IHeroPlayers,
-  IHeroItemsPopolarity,
+  IHeroItemsPopularity,
   IHeroStats,
   IMatchup,
   IHeroPlayersRanking,
