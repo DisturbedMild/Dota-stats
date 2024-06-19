@@ -73,8 +73,8 @@ export class HeroEndpoint {
     return request.data;
   }
 
-  async getHeroItemsPopularity(hero_id: number): Promise<IHeroItemsPopolarity> {
-    const request = await this.httpClient.get<IHeroItemsPopolarity>(
+  async getHeroItemsPopularity(hero_id: number): Promise<IHeroItemsPopularity> {
+    const request = await this.httpClient.get<IHeroItemsPopularity>(
       `https://api.opendota.com/api/heroes/${hero_id}/items`
     );
 
