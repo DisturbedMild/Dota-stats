@@ -2,12 +2,20 @@ import TabList from "@components/ui/tablist/tabList";
 import TabItem from "@components/ui/tablist/tabItem";
 import {useEffect, useState} from "react";
 import {API} from "@/services/api";
-import {IHeroPlayersRanking, IHeroStats, IHeroBenchmarks, IMatch, ISortedHeroMatchup} from "@/services/api/endpoints/types";
+import {
+  IHeroPlayersRanking,
+  IHeroStats,
+  IHeroBenchmarks,
+  IMatch,
+  ISortedHeroMatchup,
+  IMatchDuration
+} from "@/services/api/endpoints/types";
 import HeroRanking from "@components/hero/ranking/heroRanking";
 import HeroBenchmarks from "@components/hero/benchmark/heroBenchmarks";
 import HeroMatches from "@components/hero/matches/heroMatches";
 import HeroMatchups from "@components/hero/matchups/heroMatchups";
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
+import MatchesDuration from "@components/hero/match-duration/matchesDuration";
 
 type THeroDetailsNavBar = {
   currentHero: IHeroStats | undefined,
@@ -19,6 +27,7 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
   const [heroBenchmarks, setHeroBenchmarks] = useState<IHeroBenchmarks | null>(null);
   const [heroMatches, setHeroMatches] = useState<IMatch[] | []>([]);
   const [heroMatchups, setHeroMatchups] = useState<ISortedHeroMatchup[] | []>([]);
+  const [heroMatchesDuration, setHeroMatchesDuration] = useState<IMatchDuration[] | []>([]);
 
   useEffect(() => {
     if (currentHero) {
@@ -68,6 +77,16 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
     }
   }, [currentHero]);
 
+  useEffect(() => {
+    if (currentHero) {
+      API.heroes
+        .getHeroMatchDuration(currentHero.id)
+        .then((data) => setHeroMatchesDuration(data))
+        .catch(() => {
+        });
+    }
+  }, [currentHero]);
+
   return (
     <TabList className="flex gap-12 justify-center mb-10 pb-4 text-white border-b border-gray-700"
              activeTabClasses="relative text-green-500 transition-all after:absolute after:left-2/4 after:-translate-x-1/2 after:-bottom-4 after:bg-green-500 after:w-28 after:h-1"
@@ -85,7 +104,7 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
         {heroMatchups && <HeroMatchups heroMatchups={heroMatchups}/>}
       </TabItem>
       <TabItem className="text-white" label="Durations">
-        <p>Tab #4, the last tab.</p>
+        {heroMatchesDuration && <MatchesDuration heroMatchesDuration={heroMatchesDuration} />}
       </TabItem>
       <TabItem className="text-white" label="Players">
         <p>Tab #5, the last tab.</p>

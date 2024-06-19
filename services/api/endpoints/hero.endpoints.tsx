@@ -57,9 +57,9 @@ export class HeroEndpoint {
     return request.data;
   }
 
-  async getHeroMatchDuration(hero_id: number): Promise<IMatchDuration> {
-    const request = await this.httpClient.get<IMatchDuration>(
-      `https://api.opendota.com/api/rankings?hero_id=1`
+  async getHeroMatchDuration(hero_id: number): Promise<IMatchDuration[]> {
+    const request = await this.httpClient.get<IMatchDuration[]>(
+      `https://api.opendota.com/api/heroes/${hero_id}/durations`
     );
 
     return request.data;
