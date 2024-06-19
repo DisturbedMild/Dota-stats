@@ -8,7 +8,8 @@ import {
   IHeroBenchmarks,
   IMatch,
   ISortedHeroMatchup,
-  IMatchDuration
+  IMatchDuration,
+  IHeroPlayer
 } from "@/services/api/endpoints/types";
 import HeroRanking from "@components/hero/ranking/heroRanking";
 import HeroBenchmarks from "@components/hero/benchmark/heroBenchmarks";
@@ -16,11 +17,11 @@ import HeroMatches from "@components/hero/matches/heroMatches";
 import HeroMatchups from "@components/hero/matchups/heroMatchups";
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 import MatchesDuration from "@components/hero/match-duration/matchesDuration";
+import HeroPlayers from "@components/hero/players/heroPlayers";
 
 type THeroDetailsNavBar = {
   currentHero: IHeroStats | undefined,
 }
-
 
 const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
   const [heroPlayersRanking, setHeroPlayersRanking] = useState<IHeroPlayersRanking | null>(null);
@@ -28,6 +29,7 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
   const [heroMatches, setHeroMatches] = useState<IMatch[] | []>([]);
   const [heroMatchups, setHeroMatchups] = useState<ISortedHeroMatchup[] | []>([]);
   const [heroMatchesDuration, setHeroMatchesDuration] = useState<IMatchDuration[] | []>([]);
+  const [heroPlayers, setHeroPlayers] = useState<IHeroPlayer[] | []>([]);
 
   useEffect(() => {
     if (currentHero) {
@@ -87,6 +89,16 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
     }
   }, [currentHero]);
 
+  useEffect(() => {
+    if (currentHero) {
+      API.heroes
+        .getHeroPlayers(currentHero.id)
+        .then((data) => setHeroPlayers(data))
+        .catch(() => {
+        });
+    }
+  }, [currentHero]);
+
   return (
     <TabList className="flex gap-12 justify-center mb-10 pb-4 text-white border-b border-gray-700"
              activeTabClasses="relative text-green-500 transition-all after:absolute after:left-2/4 after:-translate-x-1/2 after:-bottom-4 after:bg-green-500 after:w-28 after:h-1"
@@ -107,7 +119,7 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
         {heroMatchesDuration && <MatchesDuration heroMatchesDuration={heroMatchesDuration} />}
       </TabItem>
       <TabItem className="text-white" label="Players">
-        <p>Tab #5, the last tab.</p>
+        {heroPlayers && <HeroPlayers heroPlayers={heroPlayers} />}
       </TabItem>
       <TabItem className="text-white" label="Items">
         <p>Tab #6, the last tab.</p>

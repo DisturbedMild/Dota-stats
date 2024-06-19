@@ -87,31 +87,13 @@ export interface IMatchDuration {
 
 export interface IHeroPlayer {
   account_id: number;
-  steamid: string;
-  avatar: string;
-  avatarmedium: string;
-  avatarfull: string;
-  profileurl: string;
-  personalname: string;
-  last_login: string;
-  full_history_name: string;
-  cheese: number;
-  fh_unavalible: boolean;
-  loccountrycode: string;
-  name: string;
-  country_code: string;
-  fantasy_role: number;
-  team_id: number;
-  team_name: string;
-  team_tag: string;
-  is_locked: boolean;
-  is_pro: boolean;
-  locked_until: number;
+  games_played: number;
+  wins: number;
 }
 
 export type IHeroPlayers = IHeroPlayer[];
 
-export interface IHeroItemsPopolarity {
+export interface IHeroItemsPopularity {
   start_game_items: unknown;
   early_game_items: unknown;
   mid_game_items: unknown;
