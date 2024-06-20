@@ -7,7 +7,7 @@ import {
   YAxis,
   CartesianAxis,
   Tooltip,
-  ResponsiveContainer,
+  ResponsiveContainer, CartesianGrid,
 } from "recharts";
 
 const COLORS: Record<string, string> = {
@@ -61,7 +61,7 @@ const HeroBenchmarksItem = ({name, result}: { name: string, result: THeroBenchma
               <stop offset="95%" stopColor={COLORS[name.toUpperCase()]} stopOpacity={0}/>
             </linearGradient>
           </defs>
-          <CartesianAxis/>
+          <CartesianGrid stroke="#f5f5f533"/>
           <XAxis dataKey={(data) => (data.percentile * 100) + "%"}/>
           <YAxis dataKey="value"/>
           <Tooltip content={<CustomTooltip name={name} active={false} payload={[]} label={""} />}/>
