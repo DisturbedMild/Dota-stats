@@ -9,10 +9,16 @@ const HeroBenchmarks = ({result}: THeroBenchmarks) => {
   const resultKeys = Object.keys(result) as (keyof typeof result)[];
 
   return (
-    <div className="grid grid-cols-3 gap-8">
-      {resultKeys.map((key) => <HeroBenchmarksItem key={key} name={key} result={result[key]} />)}
-    </div>
-  );
+    <>
+      <h3 className="mb-4 text-[#ffffff99] text-xls">
+        <span className="font-medium text-[#ffffffde]">Benchmark</span> Data from professional matches
+      </h3>
+      <article className="grid grid-cols-3 gap-8">
+        {resultKeys.map((key) => <HeroBenchmarksItem key={key} name={key} result={result[key]}/>)}
+      </article>
+    </>
+  )
+    ;
 }
 
 export default HeroBenchmarks;

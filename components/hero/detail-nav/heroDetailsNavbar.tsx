@@ -9,7 +9,7 @@ import {
   IMatch,
   ISortedHeroMatchup,
   IMatchDuration,
-  IHeroPlayer
+  IHeroPlayer, IHeroItemsPopularity
 } from "@/services/api/endpoints/types";
 import HeroRanking from "@components/hero/ranking/heroRanking";
 import HeroBenchmarks from "@components/hero/benchmark/heroBenchmarks";
@@ -18,6 +18,7 @@ import HeroMatchups from "@components/hero/matchups/heroMatchups";
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 import MatchesDuration from "@components/hero/match-duration/matchesDuration";
 import HeroPlayers from "@components/hero/players/heroPlayers";
+import HeroItems from "@components/hero/items/heroItems";
 
 type THeroDetailsNavBar = {
   currentHero: IHeroStats | undefined,
@@ -30,7 +31,9 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
   const [heroMatchups, setHeroMatchups] = useState<ISortedHeroMatchup[] | []>([]);
   const [heroMatchesDuration, setHeroMatchesDuration] = useState<IMatchDuration[] | []>([]);
   const [heroPlayers, setHeroPlayers] = useState<IHeroPlayer[] | []>([]);
+  const [heroItemsPopularity, setHeroItemsPopularity] = useState<IHeroItemsPopularity | null>(null);
   const [heroPlayersLoading, setHeroPlayersLoading] = useState(true);
+  const [heroItemsPopularityLoading, setHeroItemsPopularityLoading] = useState(true);
 
   useEffect(() => {
     if (currentHero) {
@@ -101,6 +104,15 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
     }
   }, [currentHero]);
 
+  useEffect(() => {
+    if (currentHero) {
+      API.heroes
+        .getHeroItemsPopularity(currentHero.id)
+        .then((data) => setHeroItemsPopularity(data))
+        .catch(() => {})
+        .finally(() => setHeroItemsPopularityLoading(false));
+    }
+  }, [currentHero]);
   return (
     <TabList className="flex gap-12 justify-center mb-10 pb-4 text-white border-b border-gray-700"
              activeTabClasses="relative text-green-500 transition-all after:absolute after:left-2/4 after:-translate-x-1/2 after:-bottom-4 after:bg-green-500 after:w-28 after:h-1"
@@ -125,7 +137,8 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
         {!heroPlayersLoading && <HeroPlayers heroPlayers={heroPlayers} />}
       </TabItem>
       <TabItem className="text-white" label="Items">
-        <p>Tab #6, the last tab.</p>
+        {heroItemsPopularityLoading && <p>Loading</p>}
+        {!heroItemsPopularityLoading && heroItemsPopularity && <HeroItems heroItemsPopularity={heroItemsPopularity} />}
       </TabItem>
     </TabList>
   )

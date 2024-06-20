@@ -201,6 +201,7 @@ export interface IItem {
   const: number;
   behavior: string;
   notes: string;
+  dispellable?: string;
   dmg_type?: string;
   attrib: {key: string, value: string, display?: string}[],
   mc: number | boolean;

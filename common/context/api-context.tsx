@@ -6,10 +6,12 @@ import {API} from "@/services/api";
 
 type APIContextType = {
   heroes: IHeroes | null;
+  items: IItems | null;
 }
 
 export const APIContext = createContext<APIContextType>({
-  heroes: null
+  heroes: null,
+  items: null
 })
 
 type APIContextProvideProps = {
