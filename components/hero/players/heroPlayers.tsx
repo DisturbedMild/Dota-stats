@@ -43,7 +43,7 @@ const HeroPlayers = ({heroPlayers}: THeroPlayersProps) => {
           <div className="w-2/12 text-base text-center cursor-pointer">WIN %</div>
           <div className="w-2/12 text-base text-center cursor-pointer">ADVANTAGE</div>
         </header>
-        {heroPlayers && currentTableData.map((player) =>
+        {currentTableData.map((player) =>
           <HeroPlayer
             key={player.account_id} id={player.account_id}
             games={player.games_played} wins={player.wins}

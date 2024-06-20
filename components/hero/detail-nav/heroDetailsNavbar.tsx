@@ -30,6 +30,7 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
   const [heroMatchups, setHeroMatchups] = useState<ISortedHeroMatchup[] | []>([]);
   const [heroMatchesDuration, setHeroMatchesDuration] = useState<IMatchDuration[] | []>([]);
   const [heroPlayers, setHeroPlayers] = useState<IHeroPlayer[] | []>([]);
+  const [heroPlayersLoading, setHeroPlayersLoading] = useState(true);
 
   useEffect(() => {
     if (currentHero) {
@@ -95,7 +96,8 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
         .getHeroPlayers(currentHero.id)
         .then((data) => setHeroPlayers(data))
         .catch(() => {
-        });
+        })
+        .finally(() => setHeroPlayersLoading(false));
     }
   }, [currentHero]);
 
@@ -119,7 +121,8 @@ const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
         {heroMatchesDuration && <MatchesDuration heroMatchesDuration={heroMatchesDuration} />}
       </TabItem>
       <TabItem className="text-white" label="Players">
-        {heroPlayers && <HeroPlayers heroPlayers={heroPlayers} />}
+        {heroPlayersLoading && <p>Loading...</p>}
+        {!heroPlayersLoading && <HeroPlayers heroPlayers={heroPlayers} />}
       </TabItem>
       <TabItem className="text-white" label="Items">
         <p>Tab #6, the last tab.</p>
