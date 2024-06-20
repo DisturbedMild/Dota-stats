@@ -1,7 +1,7 @@
 "use client";
 
 import React, {createContext, useEffect, useState} from "react";
-import {IHeroes} from "@/services/api/endpoints/types";
+import {IHeroes, IItems} from "@/services/api/endpoints/types";
 import {API} from "@/services/api";
 
 type APIContextType = {
@@ -18,6 +18,7 @@ type APIContextProvideProps = {
 
 export const APIContextProvider = ({children}: APIContextProvideProps) => {
   const [heroes, setHeroes] = useState<IHeroes | null>(null);
+  const [items, setItems] = useState<IItems | null>(null);
 
   useEffect(() => {
     API.heroes
@@ -29,8 +30,19 @@ export const APIContextProvider = ({children}: APIContextProvideProps) => {
       });
   }, []);
 
+  useEffect(() => {
+    API.constants
+      .getConstants("items")
+      .then((data: IItems) => {
+        setItems(data);
+      })
+      .catch((error) => {
+      });
+  }, []);
+
   const ctxValue = {
-    heroes
+    heroes,
+    items
   }
 
   return <APIContext.Provider value={ctxValue}>

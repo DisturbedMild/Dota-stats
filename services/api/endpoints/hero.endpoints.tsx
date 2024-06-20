@@ -25,6 +25,14 @@ export class HeroEndpoint {
     return request.data;
   }
 
+  async getItems(): Promise<IHeroes> {
+    const request = await this.httpClient.get<IHeroes>(
+      "https://api.opendota.com/api/heroes"
+    );
+
+    return request.data;
+  }
+
   async getHeroMatchups(hero_id: number): Promise<IMatchup[]> {
     const request = await this.httpClient.get<IMatchup[]>(
       `https://api.opendota.com/api/heroes/${hero_id}/matchups`

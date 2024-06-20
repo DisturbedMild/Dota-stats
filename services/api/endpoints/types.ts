@@ -93,13 +93,6 @@ export interface IHeroPlayer {
 
 export type IHeroPlayers = IHeroPlayer[];
 
-export interface IHeroItemsPopularity {
-  start_game_items: unknown;
-  early_game_items: unknown;
-  mid_game_items: unknown;
-  late_game_items: unknown;
-}
-
 export interface IPublicMatches {
   match_id: number;
   radiant_win: boolean;
@@ -191,6 +184,43 @@ export interface IHero {
 }
 
 export type IHeroes = IHero[];
+
+export interface IItem {
+  abilities: [
+    {
+      type: string;
+      title: string;
+      description: string;
+    }
+  ],
+  hint: [];
+  id: number;
+  img: string;
+  dname: string;
+  qual: string;
+  const: number;
+  behavior: string;
+  notes: string;
+  dmg_type?: string;
+  attrib: {key: string, value: string, display?: string}[],
+  mc: number | boolean;
+  hc: boolean;
+  cd: number | boolean;
+  lore: string;
+  components: string[] | null;
+  created: boolean;
+  charges: number | boolean;
+
+}
+
+export type IItems = IItem[];
+
+export interface IHeroItemsPopularity {
+  start_game_items: number[];
+  early_game_items: number[];
+  mid_game_items: number[];
+  late_game_items: number[];
+}
 
 export interface IHeroStats {
   id: number;
