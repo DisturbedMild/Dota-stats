@@ -198,11 +198,14 @@ export interface IItem {
   img: string;
   dname: string;
   qual: string;
-  const: number;
+  cost: number;
   behavior: string;
   notes: string;
   dispellable?: string;
   dmg_type?: string;
+  bkbpierce?: string;
+  target_team?: any[] | string;
+  target_type?: string;
   attrib: {key: string, value: string, display?: string}[],
   mc: number | boolean;
   hc: boolean;

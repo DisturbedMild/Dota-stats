@@ -112,7 +112,7 @@ const HeroPage = () => {
 
   return (
     !heroStatsLoading && (
-      <section>
+      <section className="mx-auto w-10/12">
         <HeroProfile
           hero={hero}
           currentHero={currentHero}

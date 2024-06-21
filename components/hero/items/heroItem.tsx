@@ -2,6 +2,8 @@
 
 import {IItem} from "@/services/api/endpoints/types";
 import Image, {type ImageLoaderProps} from "next/image";
+import {useState} from "react";
+import HeroItemPopup from "@components/hero/items/heroItemPopup";
 
 type THeroItemProps = {
   item: IItem;
@@ -12,8 +14,21 @@ const imageLoader = ({src, width}: ImageLoaderProps) => {
 }
 
 const HeroItem = ({item}: THeroItemProps) => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const showPopupHandler = () => {
+    setShowPopup(true);
+  }
+
+  const hidePopupHandler = () => {
+    setShowPopup(false);
+  }
+
   return (
-    <Image src={item.img} alt={item.dname} loader={imageLoader} width={50} height={50} className="h-fit" />
+    <div className="relative basis-11" onMouseEnter={showPopupHandler} onMouseLeave={hidePopupHandler}>
+      <Image src={item.img} alt={item.dname} loader={imageLoader} width={52} height={44} className="h-fit"/>
+      {showPopup && <HeroItemPopup item={item} />}
+    </div>
   )
 }
 

@@ -20,7 +20,7 @@ const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfile
       <div className="flex items-start p-14 relative z-10 gap-5">
         <div className="w-2/12">
           <Image
-            className="rounded-3xl"
+            className="rounded-xl"
             src={`/heroes/${hero?.replaceAll(" ", "_").toLocaleLowerCase()}.png`}
             alt={`${currentHero?.localized_name}`}
             width={256}
@@ -66,8 +66,8 @@ const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfile
             </div>
           </div>
           <div className="flex items-center gap-4 justify-center">
-            {abilitiesInfo && abilitiesInfo?.map((ability: IAbility) => (
-              <Ability key={ability.dname} {...ability} />
+            {abilitiesInfo && abilitiesInfo?.map((ability: IAbility, i) => (
+              <Ability key={ability.dname + i} {...ability} />
             ))}
           </div>
         </div>

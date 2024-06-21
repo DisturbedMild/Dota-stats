@@ -33,7 +33,7 @@ const HeroItemsList = ({itemsList}: THeroItemsListProps) => {
   console.log(currentItems);
 
   return (
-    <div className="grid grid-cols-6 grid-rows-6 justify-center mt-4 w-3/12">
+    <div className="flex flex-wrap gap-1 h-fit items-start mt-4">
       {currentItems.map((item) => (<HeroItem key={item.id} item={item} />))}
     </div>
   )
