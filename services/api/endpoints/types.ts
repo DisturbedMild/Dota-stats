@@ -199,7 +199,7 @@ export interface IItem {
   dname: string;
   qual: string;
   cost: number;
-  behavior: string;
+  behavior: string | boolean | string[];
   notes: string;
   dispellable?: string;
   dmg_type?: string;

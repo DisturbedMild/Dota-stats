@@ -27,6 +27,41 @@ const HeroItemPopup = ({item}: THeroItemPopupProps) => {
           </span>
         </div>
       </div>
+      <div className={`flex flex-col mb-3 px-1.5 pb-1 text-xls ${
+        (item.behavior || item.dmg_type || item.bkbpierce) && "border-b border-b-white"
+      }`}>
+        {item.behavior && (
+          <div>
+            <span className="uppercase text-xls">Target: </span>
+            {typeof item.behavior === "string" && <span>{item.behavior}</span> }
+            {Array.isArray(item.behavior) && item.behavior.map(behavior => <span key={behavior}> {behavior} </span>) }
+          </div>
+        )}
+        {item.dmg_type && (
+          <div>
+            <span>DAMAGE TYPE: </span>
+            <span className={`${
+              item.dmg_type === "Physical" ? 
+                "text-pink-800" : 
+                item.dmg_type === "Magical" 
+                  ? "text-blue-600" : 
+                  "text-amber-300"}}`
+            }>{item.dmg_type}</span>
+          </div>
+        )}
+        {item.bkbpierce && item.bkbpierce === "Yes" && (
+          <div>
+            <span>PIERCES DEBUFF IMMUNITY: </span>
+            <span className="text-green-600">{item.bkbpierce}</span>
+          </div>
+        )}
+        {item.dispellable && item.dispellable !== "No" && (
+          <div>
+            <span>DISPELLABLE: </span>
+            <span className={`${item.dispellable === "Yes" ? "text-green-600" : "text-pink-800"}`}>{item.dispellable}</span>
+          </div>
+        )}
+      </div>
       <div className=" px-1.5 py-2 bg-gray-900/60">
         <div className="flex flex-col">
           {item?.attrib.map(attr =>
