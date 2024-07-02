@@ -10,9 +10,9 @@ import {
   IHeroStats,
   IMatchup
 } from "@/services/api/endpoints/types";
-import HeroProfile from "@components/hero/heroProfile";
-import HeroDetails from "@components/hero/heroDetails";
-import HeroDetailsNavbar from "@components/hero/detail-nav/heroDetailsNavbar";
+import HeroProfile from "@components/hero/HeroProfile";
+import HeroDetails from "@components/hero/HeroDetails";
+import HeroDetailsNavbar from "@components/hero/detail-nav/HeroDetailsNavbar";
 
 const getHero = (heroes: IHeroStats[] | null, name: string) => {
   if (heroes === null) {
