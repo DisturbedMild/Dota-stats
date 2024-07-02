@@ -3,9 +3,9 @@
 import {IHeroBenchmarks} from "@/services/api/endpoints/types";
 import HeroBenchmarksItem from "@components/hero/benchmark/HeroBenchmarksItem";
 
-type THeroBenchmarks = Pick<IHeroBenchmarks, "result">;
+type HeroBenchmarksProps = Pick<IHeroBenchmarks, "result">;
 
-const HeroBenchmarks = ({result}: THeroBenchmarks) => {
+const HeroBenchmarks = ({result}: HeroBenchmarksProps) => {
   const resultKeys = Object.keys(result) as (keyof typeof result)[];
 
   return (

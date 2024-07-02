@@ -5,11 +5,11 @@ import {APIContext} from "@/common/context/api-context";
 import {IHeroItemsPopularity, IItems} from "@/services/api/endpoints/types";
 import HeroItem from "@components/hero/items/HeroItem";
 
-type THeroItemsListProps = {
+type HeroItemsListProps = {
   itemsList: Record<string, IHeroItemsPopularity>
 }
 
-const HeroItemsList = ({itemsList}: THeroItemsListProps) => {
+const HeroItemsList = ({itemsList}: HeroItemsListProps) => {
   const { items } = useContext(APIContext);
   const currentItems: IItems = [];
 

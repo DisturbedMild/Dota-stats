@@ -3,14 +3,14 @@
 import Image, {type ImageLoaderProps} from "next/image";
 import {IItem} from "@/services/api/endpoints/types";
 
-type THeroItemPopupProps = {
+type HeroItemPopupProps = {
   item: IItem;
 }
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
 }
 
-const HeroItemPopup = ({item}: THeroItemPopupProps) => {
+const HeroItemPopup = ({item}: HeroItemPopupProps) => {
   return (
     <div className="absolute bottom-4 right-14 w-72 bg-gray-800 cursor-pointer z-10 border border-gray-900">
       <div className="grid grid-cols-66-160 items-start gap-x-4 px-1.5 py-3">

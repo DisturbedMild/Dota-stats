@@ -6,11 +6,11 @@ import {IHeroPlayer} from "@/services/api/endpoints/types";
 import HeroPlayer from "@components/hero/players/HeroPlayer";
 import Pagination from "@components/ui/pagination/Pagination";
 
-type THeroPlayersProps = {
+type HeroPlayersProps = {
   heroPlayers: IHeroPlayer[];
 }
 
-const HeroPlayers = ({heroPlayers}: THeroPlayersProps) => {
+const HeroPlayers = ({heroPlayers}: HeroPlayersProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, SetPostsPerPage] = useState(100);
 

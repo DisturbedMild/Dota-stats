@@ -4,7 +4,7 @@ import {useMemo} from "react";
 import {IMatch} from "@/services/api/endpoints/types";
 import {convertTime} from "@/common/utils/convertTime";
 
-type THeroMatchesItemProps = {
+type HeroMatchesItemProps = {
   match: IMatch
 }
 
@@ -23,7 +23,7 @@ const calcKDALineWidth = ({kills, assists, deaths}: calcKDAProps): {
   return {killsPercentage, assistsPercentage, deathsPercentage};
 };
 
-const HeroMatchesItem = ({match}: THeroMatchesItemProps) => {
+const HeroMatchesItem = ({match}: HeroMatchesItemProps) => {
   const matchDuration = convertTime(match.duration);
   const {kills, assists, deaths} = match;
 

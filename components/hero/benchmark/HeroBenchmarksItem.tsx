@@ -39,12 +39,12 @@ const CustomTooltip = (props: CustomTooltipProps) => {
   return null;
 }
 
-type THeroBenchmarksItemProps = {
+type HeroBenchmarksItemProps = {
   percentile: number;
   value: number
 }
 
-const HeroBenchmarksItem = ({name, result}: { name: string, result: THeroBenchmarksItemProps[] }) => {
+const HeroBenchmarksItem = ({name, result}: { name: string, result: HeroBenchmarksItemProps[] }) => {
   return (
     <div>
       <ResponsiveContainer width="100%" height={250}>

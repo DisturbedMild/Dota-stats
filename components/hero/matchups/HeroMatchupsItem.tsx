@@ -4,14 +4,14 @@ import {IHeroes} from "@/services/api/endpoints/types";
 import Image from "next/image";
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 
-type THeroMatchupsItem = {
+type HeroMatchupsItem = {
   heroes: IHeroes;
   id: number | undefined;
   games: number;
   wins: number;
 }
 
-const HeroMatchupsItem = ({heroes, id, games, wins}: THeroMatchupsItem) => {
+const HeroMatchupsItem = ({heroes, id, games, wins}: HeroMatchupsItem) => {
   if (!id) return null;
   const hero = heroes.find((hero) => hero.id === id);
   const imageSrc = `/heroes/${hero?.localized_name

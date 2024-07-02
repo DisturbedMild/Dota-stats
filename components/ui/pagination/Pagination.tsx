@@ -5,7 +5,7 @@ import {usePagination, DOTS} from "@/common/hooks/usePagination";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
-type TPaginationProps = {
+type PaginationProps = {
   onPageChange: (page: number) => void;
   totalCount: number;
   siblingCount: number;
@@ -13,7 +13,7 @@ type TPaginationProps = {
   pageSize: number;
 }
 
-const Pagination = (props: TPaginationProps) => {
+const Pagination = (props: PaginationProps) => {
   const {
     onPageChange,
     totalCount,

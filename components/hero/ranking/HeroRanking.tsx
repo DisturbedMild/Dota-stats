@@ -3,9 +3,9 @@
 import {IHeroPlayersRanking, IHeroPlayerRanking} from "@/services/api/endpoints/types";
 import HeroRankingItem from "./HeroRankingItem";
 
-type THeroRankingProps = IHeroPlayersRanking
+type HeroRankingProps = IHeroPlayersRanking
 
-const HeroRanking = ({rankings}: THeroRankingProps) => {
+const HeroRanking = ({rankings}: HeroRankingProps) => {
   return (
     <>
       <h3 className="mb-4 text-[#ffffff99] text-xls">

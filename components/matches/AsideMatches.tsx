@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {API} from "@/services/api";
 import {Skeleton} from "@components/ui/loaders/Skeleton";
 
-export type TMatch = {
+export type MatchProps = {
   match_id: number;
   radiant_win: number;
   duration: number;
@@ -35,7 +35,7 @@ const AsideMatches = () => {
       <div className="flex flex-col gap-3">
         {matchesLoading && <Skeleton styles="shadow rounded-md mt-8 p-4 w-full mx-auto"/>}
         {!matchesLoading &&
-          matches?.map((match: TMatch, index: number) => {
+          matches?.map((match: MatchProps, index: number) => {
             if (index <= 8) {
               return <MatchItem key={match.match_id} match={match}/>;
             } else {

@@ -2,7 +2,7 @@
 
 import {IHeroStats} from "@/services/api/endpoints/types";
 
-type THeroDetails = {
+type HeroDetailsProps = {
   currentHero: IHeroStats | undefined,
 }
 
@@ -18,7 +18,7 @@ const calcBaseDamage = (attr: string, str: number, int: number, agi: number) => 
   }
 }
 
-const heroDetails = ({currentHero}: THeroDetails) => {
+const heroDetails = ({currentHero}: HeroDetailsProps) => {
   let baseAttack;
   if (currentHero) {
     baseAttack = calcBaseDamage(currentHero.primary_attr, currentHero.base_str, currentHero.base_int, currentHero.base_agi)

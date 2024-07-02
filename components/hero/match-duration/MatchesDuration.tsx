@@ -14,7 +14,7 @@ import {
 import {IMatchDuration} from "@/services/api/endpoints/types";
 import {convertTime} from "@/common/utils/convertTime";
 
-type TMatchesDurationProps = {
+type MatchesDurationProps = {
   heroMatchesDuration: IMatchDuration[]
 }
 
@@ -40,7 +40,7 @@ const CustomTooltip = (props: BarCustomTooltipProps) => {
   return null;
 }
 
-const MatchesDuration = (({heroMatchesDuration}: TMatchesDurationProps) => {
+const MatchesDuration = (({heroMatchesDuration}: MatchesDurationProps) => {
   const newHeroMatchesDuration = heroMatchesDuration.map(match => {
     const {minutes} = convertTime(Number(match.duration_bin))
     return {

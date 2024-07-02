@@ -5,7 +5,7 @@ import {useState} from "react";
 import HeroItemPopup from "@components/hero/items/HeroItemPopup";
 import {IItem} from "@/services/api/endpoints/types";
 
-type THeroItemProps = {
+type HeroItemProps = {
   item: IItem;
 }
 
@@ -13,7 +13,7 @@ const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
 }
 
-const HeroItem = ({item}: THeroItemProps) => {
+const HeroItem = ({item}: HeroItemProps) => {
   const [showPopup, setShowPopup] = useState(false);
 
   const showPopupHandler = () => {

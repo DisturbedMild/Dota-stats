@@ -2,7 +2,7 @@
 
 import {useMemo} from "react";
 
-type TUsePaginationProps = {
+type UsePaginationProps = {
   totalCount: number;
   pageSize: number;
   siblingCount: number;
@@ -17,7 +17,7 @@ const range = (start: number, end: number)  => {
   return Array.from({length}).map((_, i) => i + start);
 }
 
-export const usePagination = ({totalCount, pageSize, siblingCount = 1, currentPage}: TUsePaginationProps): any[] => {
+export const usePagination = ({totalCount, pageSize, siblingCount = 1, currentPage}: UsePaginationProps): any[] => {
   const paginationRange = useMemo(() => {
     const totalPageCount = Math.ceil(totalCount / pageSize);
 

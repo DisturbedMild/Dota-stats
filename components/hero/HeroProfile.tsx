@@ -6,14 +6,14 @@ import {IAbility, IHeroStats} from "@/services/api/endpoints/types";
 import Ability from "@components/abilities/Ability";
 import Spinner from "@components/ui/loaders/Spinner";
 
-type THeroProfileProps = {
+type HeroProfileProps = {
   hero: string,
   currentHero: IHeroStats | undefined,
   winrate: number,
   abilitiesInfo: IAbility[],
 }
 
-const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfileProps) => {
+const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: HeroProfileProps) => {
   const [abilities, setAbilities] = useState(abilitiesInfo);
   const onErrorAbilityHandler = useCallback((name: string) => {
       setAbilities(prevState => {

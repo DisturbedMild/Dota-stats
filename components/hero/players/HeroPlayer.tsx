@@ -2,13 +2,13 @@
 
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 
-type THeroPlayerProps = {
+type HeroPlayerProps = {
   id: number;
   games: number;
   wins: number;
 }
 
-const HeroPlayer = ({id, games, wins}: THeroPlayerProps) => {
+const HeroPlayer = ({id, games, wins}: HeroPlayerProps) => {
   return (
     <div
       className="flex items-center px-6 py-2 border-t border-b border-gray-200/10 rounded-t text-xls text-[#ffffff99]">

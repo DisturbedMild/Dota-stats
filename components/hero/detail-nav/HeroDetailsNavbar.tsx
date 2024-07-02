@@ -23,13 +23,13 @@ import HeroItems from "@components/hero/items/HeroItems";
 import TabList from "@components/ui/tablist/TabList";
 import TabItem from "@components/ui/tablist/TabItem";
 
-type THeroDetailsNavBar = {
+type HeroDetailsNavBar = {
   currentHero: IHeroStats | undefined,
 }
 
 const tabs = [""]
 
-const HeroDetailsNavbar = ({currentHero}: THeroDetailsNavBar) => {
+const HeroDetailsNavbar = ({currentHero}: HeroDetailsNavBar) => {
   const [heroPlayersRanking, setHeroPlayersRanking] = useState<IHeroPlayersRanking | null>(null);
   const [heroBenchmarks, setHeroBenchmarks] = useState<IHeroBenchmarks | null>(null);
   const [heroMatches, setHeroMatches] = useState<IMatch[] | []>([]);

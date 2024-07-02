@@ -3,11 +3,11 @@
 import {IMatch} from "@/services/api/endpoints/types";
 import HeroMatchesItem from "@components/hero/matches/HeroMatchesItem";
 
-type THeroMatchesProp = {
+type HeroMatchesProp = {
   matches: IMatch[]
 }
 
-const HeroMatches = ({matches}: THeroMatchesProp) => {
+const HeroMatches = ({matches}: HeroMatchesProp) => {
   return (
     <>
       <h3 className="mb-3 text-[#ffffff99] text-xls"><span className="font-medium text-[#ffffffde]">Recent</span>   Data from professional matches</h3>

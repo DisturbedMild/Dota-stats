@@ -3,7 +3,7 @@
 import Image from "next/image";
 import getNumberWithOrdinal from "@/common/utils/getNumberWithOrdinal";
 
-type THeroRankingItem = {
+type HeroRankingItemProps = {
   name: string;
   rank: number;
   tier: number;
@@ -15,7 +15,7 @@ const imageLoader = ({src, width}: { src: string, width: number }) => {
   return `${src}?w=${width}`
 }
 
-const HeroRankingItem = ({name, rank, tier, score, avatar}: THeroRankingItem) => {
+const HeroRankingItem = ({name, rank, tier, score, avatar}: HeroRankingItemProps) => {
   return (
     <div className="flex items-center px-6 py-2 border-t border-b border-gray-200/10">
       <div className="w-3/12 text-xls">{getNumberWithOrdinal(rank)}</div>

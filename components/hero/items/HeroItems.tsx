@@ -3,11 +3,11 @@
 import HeroItemsList from "@/components/hero/items/HeroItemsList";
 import {IHeroItemsPopularity} from "@/services/api/endpoints/types";
 
-type THeroItems = {
+type HeroItemsProps = {
   heroItemsPopularity: IHeroItemsPopularity;
 }
 
-const HeroItems = ({heroItemsPopularity}: THeroItems) => {
+const HeroItems = ({heroItemsPopularity}: HeroItemsProps) => {
   const popularItems = Object.entries(heroItemsPopularity);
 
   return (
