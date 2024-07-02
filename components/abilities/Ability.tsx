@@ -1,9 +1,9 @@
 "use client";
 
-import {IAbility} from "@/services/api/endpoints/types";
 import type {ImageLoaderProps} from 'next/image';
 import Image from "next/image";
 import {useState} from "react";
+import {IAbility} from "@/services/api/endpoints/types";
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;

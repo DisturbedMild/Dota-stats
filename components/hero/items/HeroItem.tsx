@@ -1,9 +1,9 @@
 "use client";
 
-import {IItem} from "@/services/api/endpoints/types";
 import Image, {type ImageLoaderProps} from "next/image";
 import {useState} from "react";
-import HeroItemPopup from "@components/hero/items/heroItemPopup";
+import HeroItemPopup from "@components/hero/items/HeroItemPopup";
+import {IItem} from "@/services/api/endpoints/types";
 
 type THeroItemProps = {
   item: IItem;

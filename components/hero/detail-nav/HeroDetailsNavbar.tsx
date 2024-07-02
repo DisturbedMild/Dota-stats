@@ -1,5 +1,5 @@
-import TabList from "@components/ui/tablist/tabList";
-import TabItem from "@components/ui/tablist/tabItem";
+"use client";
+
 import {useEffect, useState} from "react";
 import {API} from "@/services/api";
 import {
@@ -12,14 +12,16 @@ import {
   IHeroPlayer,
   IHeroItemsPopularity
 } from "@/services/api/endpoints/types";
-import HeroRanking from "@components/hero/ranking/heroRanking";
-import HeroBenchmarks from "@components/hero/benchmark/heroBenchmarks";
-import HeroMatches from "@components/hero/matches/heroMatches";
-import HeroMatchups from "@components/hero/matchups/heroMatchups";
+import HeroRanking from "@components/hero/ranking/HeroRanking";
+import HeroBenchmarks from "@components/hero/benchmark/HeroBenchmarks";
+import HeroMatches from "@components/hero/matches/HeroMatches";
+import HeroMatchups from "@components/hero/matchups/HeroMatchups";
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
-import MatchesDuration from "@components/hero/match-duration/matchesDuration";
-import HeroPlayers from "@components/hero/players/heroPlayers";
-import HeroItems from "@components/hero/items/heroItems";
+import MatchesDuration from "@components/hero/match-duration/MatchesDuration";
+import HeroPlayers from "@components/hero/players/HeroPlayers";
+import HeroItems from "@components/hero/items/HeroItems";
+import TabList from "@components/ui/tablist/TabList";
+import TabItem from "@components/ui/tablist/TabItem";
 
 type THeroDetailsNavBar = {
   currentHero: IHeroStats | undefined,

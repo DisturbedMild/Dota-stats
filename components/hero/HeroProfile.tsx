@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
-import {IAbility, IHeroStats} from "@/services/api/endpoints/types";
-import Ability from "@components/abilities/ability";
 import {useCallback, useState} from "react";
-import Spinner from "@components/ui/loaders/spinner";
+import {IAbility, IHeroStats} from "@/services/api/endpoints/types";
+import Ability from "@components/abilities/Ability";
+import Spinner from "@components/ui/loaders/Spinner";
 
 type THeroProfileProps = {
   hero: string,

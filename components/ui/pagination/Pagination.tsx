@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import {usePagination, DOTS} from "@/common/hooks/usePagination";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";

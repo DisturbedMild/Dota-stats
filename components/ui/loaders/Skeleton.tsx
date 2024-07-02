@@ -2,7 +2,7 @@ type TSkeleton = {
   styles?: string;
 }
 
-const Skeleton = ({ styles }: TSkeleton) => {
+export const Skeleton = ({ styles }: TSkeleton) => {
   return (
     <div className={styles}>
       <div className="animate-pulse flex space-x-4">
@@ -24,6 +24,4 @@ const Skeleton = ({ styles }: TSkeleton) => {
       </div>
     </div>
   )
-}
-
-export default Skeleton;
+};

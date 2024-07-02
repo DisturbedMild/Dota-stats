@@ -1,7 +1,7 @@
 "use client";
 
 import {IHeroBenchmarks} from "@/services/api/endpoints/types";
-import HeroBenchmarksItem from "@components/hero/benchmark/heroBenchmarksItem";
+import HeroBenchmarksItem from "@components/hero/benchmark/HeroBenchmarksItem";
 
 type THeroBenchmarks = Pick<IHeroBenchmarks, "result">;
 

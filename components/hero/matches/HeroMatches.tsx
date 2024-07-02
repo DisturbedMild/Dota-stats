@@ -1,6 +1,7 @@
-import HeroMatchesItem from "@components/hero/matches/heroMatchesItem";
+"use client";
 
 import {IMatch} from "@/services/api/endpoints/types";
+import HeroMatchesItem from "@components/hero/matches/HeroMatchesItem";
 
 type THeroMatchesProp = {
   matches: IMatch[]

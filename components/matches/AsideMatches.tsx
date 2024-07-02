@@ -1,9 +1,9 @@
 "use client";
 
-import MatchItem from "./matchItem";
+import MatchItem from "./MatchItem";
 import {useEffect, useState} from "react";
 import {API} from "@/services/api";
-import Skeleton from "@components/ui/loaders/skeleton";
+import {Skeleton} from "@components/ui/loaders/Skeleton";
 
 export type TMatch = {
   match_id: number;

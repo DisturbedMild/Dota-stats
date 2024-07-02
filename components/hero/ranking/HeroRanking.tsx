@@ -1,5 +1,7 @@
+"use client";
+
 import {IHeroPlayersRanking, IHeroPlayerRanking} from "@/services/api/endpoints/types";
-import HeroRankingItem from "./heroRankingItem";
+import HeroRankingItem from "./HeroRankingItem";
 
 type THeroRankingProps = IHeroPlayersRanking
 

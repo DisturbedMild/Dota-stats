@@ -1,6 +1,6 @@
 "use client";
 
-import HeroItemsList from "@/components/hero/items/heroItemsList";
+import HeroItemsList from "@/components/hero/items/HeroItemsList";
 import {IHeroItemsPopularity} from "@/services/api/endpoints/types";
 
 type THeroItems = {

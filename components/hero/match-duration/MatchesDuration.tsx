@@ -1,4 +1,5 @@
-import {IMatchDuration} from "@/services/api/endpoints/types";
+"use client";
+
 import {
   Bar,
   BarChart,
@@ -10,6 +11,7 @@ import {
   XAxis,
   YAxis
 } from "recharts";
+import {IMatchDuration} from "@/services/api/endpoints/types";
 import {convertTime} from "@/common/utils/convertTime";
 
 type TMatchesDurationProps = {

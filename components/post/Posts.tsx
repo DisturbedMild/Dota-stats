@@ -1,8 +1,8 @@
 import Link from "next/link";
-import {Post} from "@components/post/post";
-import {IPost} from "@/services/api/endpoints/types";
 import {Suspense} from "react";
-import Skeleton from "@components/ui/loaders/skeleton";
+import {IPost} from "@/services/api/endpoints/types";
+import {Post} from '@components/post/Post';
+import {Skeleton} from "@components/ui/loaders/Skeleton";
 
 const postsUrl =
   "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=570&count=10";

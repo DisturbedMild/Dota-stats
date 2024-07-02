@@ -1,9 +1,9 @@
 "use client";
 
-import HeroItem from "@components/hero/items/heroItem";
 import {useContext} from "react";
 import {APIContext} from "@/common/context/api-context";
 import {IHeroItemsPopularity, IItems} from "@/services/api/endpoints/types";
+import HeroItem from "@components/hero/items/HeroItem";
 
 type THeroItemsListProps = {
   itemsList: Record<string, IHeroItemsPopularity>

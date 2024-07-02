@@ -1,3 +1,5 @@
+"use client";
+
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 
 type THeroPlayerProps = {

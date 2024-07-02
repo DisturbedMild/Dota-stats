@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import {ITabProps} from "@components/ui/tablist/types";

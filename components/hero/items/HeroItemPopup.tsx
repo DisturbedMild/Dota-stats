@@ -1,3 +1,5 @@
+"use client";
+
 import Image, {type ImageLoaderProps} from "next/image";
 import {IItem} from "@/services/api/endpoints/types";
 

@@ -1,7 +1,6 @@
 "use client";
 
 import defaultPostImage from "./default-post.png";
-import "./styles.css";
 
 import Image from "next/image";
 import {IPost} from "@/services/api/endpoints/types";

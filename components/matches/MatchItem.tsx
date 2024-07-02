@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import HeroIcon from "./heroIcon";
-import { TMatch } from "./asideMatches";
-import { IHeroes } from "@/services/api/endpoints/types";
 import { useEffect, useState } from "react";
 import { API } from "@/services/api";
+import HeroIcon from "./HeroIcon";
+import { TMatch } from "./asideMatches";
+import { IHeroes } from "@/services/api/endpoints/types";
 import { convertTime } from "@/common/utils/convertTime";
 
 const getMatchHeroes = (heroes: IHeroes, arr: number[]) => {

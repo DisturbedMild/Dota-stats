@@ -1,8 +1,8 @@
 "use client";
 
+import {useMemo} from "react";
 import {IMatch} from "@/services/api/endpoints/types";
 import {convertTime} from "@/common/utils/convertTime";
-import {useMemo} from "react";
 
 type THeroMatchesItemProps = {
   match: IMatch

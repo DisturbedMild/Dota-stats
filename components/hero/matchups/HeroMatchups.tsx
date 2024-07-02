@@ -1,4 +1,6 @@
-import HeroMatchupsItem from "@components/hero/matchups/heroMatchupsItem";
+"use client";
+
+import HeroMatchupsItem from "@components/hero/matchups/HeroMatchupsItem";
 import {useContext, useState, useReducer, useEffect} from "react";
 import {APIContext} from "@/common/context/api-context";
 import {ISortedHeroMatchup} from "@/services/api/endpoints/types";
@@ -26,6 +28,7 @@ const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
   const handleSorting = (sorting: Sorting) => {
     if (sortBy === sorting) {
       setOrderBy(prevState => prevState === Toggle.ASC ? Toggle.DESC : Toggle.ASC);
+      // setSortBy(null);
     } else {
       setSortBy(sorting);
       setOrderBy(Toggle.ASC);
@@ -35,24 +38,20 @@ const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
   useEffect(() => {
     switch (sortBy) {
       case Sorting.BY_WINRATE:
-          orderBy === Toggle.DESC ?
-            setSortedHeroMatchups(prevState => prevState.sort((a, b) => b.winrate - a.winrate)) :
-            setSortedHeroMatchups(prevState => prevState.sort((a, b) => a.winrate - b.winrate))
-        break;
+        orderBy === Toggle.DESC ?
+          setSortedHeroMatchups(prevState => prevState.sort((a, b) => b.winrate - a.winrate)) :
+          setSortedHeroMatchups(prevState => prevState.sort((a, b) => a.winrate - b.winrate))
       case Sorting.BY_ADVANTAGE:
         orderBy === Toggle.DESC ?
           setSortedHeroMatchups(prevState => prevState.sort((a, b) => b.advantage - a.advantage)) :
           setSortedHeroMatchups(prevState => prevState.sort((a, b) => a.advantage - b.advantage))
-        break;
       case Sorting.BY_GAMES:
         orderBy === Toggle.DESC ?
           setSortedHeroMatchups(prevState => prevState.sort((a, b) => b.games_played - a.games_played)) :
           setSortedHeroMatchups(prevState => prevState.sort((a, b) => a.games_played - b.games_played))
+      // case null:
+      //   setSortedHeroMatchups(prevState => prevState.sort((a, b) => b.games_played - a.games_played))
     }
-    // if (sortBy === null) {
-    //   setSortedHeroMatchups(prevState => prevState.sort((a, b) => a.games_played - b.games_played))
-    // }
-    // console.log(orderBy, Toggle.ASC, sortedHeroMatchups)
   }, [sortBy, orderBy]);
 
   const {heroes} = useContext(APIContext);

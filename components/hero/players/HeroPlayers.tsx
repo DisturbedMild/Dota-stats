@@ -1,8 +1,10 @@
+"use client";
+
 import {useMemo, useState} from "react";
 
 import {IHeroPlayer} from "@/services/api/endpoints/types";
-import HeroPlayer from "@components/hero/players/heroPlayer";
-import Pagination from "@components/ui/pagination/pagination";
+import HeroPlayer from "@components/hero/players/HeroPlayer";
+import Pagination from "@components/ui/pagination/Pagination";
 
 type THeroPlayersProps = {
   heroPlayers: IHeroPlayer[];
