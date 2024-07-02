@@ -13,11 +13,9 @@ type THeroProfileProps = {
 
 const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfileProps) => {
   const [abilities, setAbilities] = useState(abilitiesInfo);
-  console.log(abilities);
   const onErrorAbilityHandler = useCallback((name: string) => {
       setAbilities(prevState => {
         const abilityIndex = prevState.findIndex((ability, index) => ability.dname === name);
-        console.log(abilityIndex)
         if(abilityIndex <= 0) return prevState;
 
         const temp = prevState.splice(abilityIndex, 1);
