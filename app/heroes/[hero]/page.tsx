@@ -2,7 +2,7 @@
 
 import {API} from "@/services/api";
 import {useParams} from "next/navigation";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {
   HeroKey,
   IAbility,
@@ -25,22 +25,6 @@ const getHero = (heroes: IHeroStats[] | null, name: string) => {
   });
 };
 
-const heroOverallWinrate = (games: IMatchup[] | null): number => {
-  if (games === null) {
-    return 0;
-  }
-  const gamesPlayed = games.reduce(
-    (acc: { games: number; wins: number }, curr: IMatchup) => {
-      acc.games += curr.games_played;
-      acc.wins += curr.wins;
-      return acc;
-    },
-    {games: 0, wins: 0}
-  );
-
-  return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
-};
-
 const HeroPage = () => {
   const [heroStats, setHeroStats] = useState<IHeroStats[] | null>(null);
   const [heroMatchups, setHeroMatchups] = useState<IMatchup[] | null>(null);
@@ -49,6 +33,25 @@ const HeroPage = () => {
   );
   const [abilities, setAbilities] = useState<Record<string, IAbility> | null>(null);
   const [heroStatsLoading, setHeroStatsLoading] = useState(true);
+  const [abilitiesLoaded, setAbilitiesLoaded] = useState(true);
+
+  const heroOverallWinrate = useCallback((games: IMatchup[] | null): number => {
+    if (games === null) {
+      return 0;
+    }
+    const gamesPlayed = games.reduce(
+      (acc: { games: number; wins: number }, curr: IMatchup) => {
+        acc.games += curr.games_played;
+        acc.wins += curr.wins;
+        return acc;
+      },
+      {games: 0, wins: 0}
+    );
+
+    return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
+  }, [heroMatchups]
+)
+
 
   const {hero}: { hero: string } = useParams();
   const currentHero = getHero(heroStats, hero);
@@ -89,7 +92,11 @@ const HeroPage = () => {
       .getConstants("abilities")
       .then((data) => setAbilities(data))
       .catch(() => {
+      })
+      .finally(() => {
+        setAbilitiesLoaded(false);
       });
+    ;
   }, []);
 
   const abilitiesInfo = useMemo(() => {
@@ -113,14 +120,17 @@ const HeroPage = () => {
   return (
     !heroStatsLoading && (
       <section className="mx-auto w-10/12">
-        <HeroProfile
-          hero={hero}
-          currentHero={currentHero}
-          winrate={winrate}
-          abilitiesInfo={abilitiesInfo}
-        />
+        {!abilitiesLoaded &&
+            <HeroProfile
+                hero={hero}
+                currentHero={currentHero}
+                winrate={winrate}
+                abilitiesInfo={abilitiesInfo}
+            />
+        }
+
         <HeroDetails currentHero={currentHero}/>
-        <HeroDetailsNavbar currentHero={currentHero} />
+        <HeroDetailsNavbar currentHero={currentHero}/>
       </section>
     )
   );

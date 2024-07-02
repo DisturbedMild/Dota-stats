@@ -1,6 +1,8 @@
 import Image from "next/image";
 import {IAbility, IHeroStats} from "@/services/api/endpoints/types";
 import Ability from "@components/abilities/ability";
+import {useCallback, useState} from "react";
+import Spinner from "@components/ui/loaders/spinner";
 
 type THeroProfileProps = {
   hero: string,
@@ -10,6 +12,20 @@ type THeroProfileProps = {
 }
 
 const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfileProps) => {
+  const [abilities, setAbilities] = useState(abilitiesInfo);
+  console.log(abilities);
+  const onErrorAbilityHandler = useCallback((name: string) => {
+      setAbilities(prevState => {
+        const abilityIndex = prevState.findIndex((ability, index) => ability.dname === name);
+        console.log(abilityIndex)
+        if(abilityIndex <= 0) return prevState;
+
+        const temp = prevState.splice(abilityIndex, 1);
+        const sortedAbilities = [...temp, ...prevState];
+        return sortedAbilities;
+      })
+  }, [abilitiesInfo])
+
   return (
     <div className="relative w-full rounded-lg overflow-hidden bg-black/90">
       <Image
@@ -42,10 +58,11 @@ const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfile
           })}</span>
           </div>
           <div
-            className={`my-3 text-xs uppercase ${
-              Number(winrate) < 50 ? "text-red-500" : "text-green-500"
+            className={`flex items-center gap-2 my-3 text-xs uppercase ${
+              Number(winrate) === 0 ? "text-white" ? Number(winrate) < 50 : "text-red-500" : "text-green-500"
             }`}
-          > Winrate:{winrate}%
+          > Winrate: {winrate === 0 ? <Spinner w={12} h={12} lineColor={"#00da96"} /> : winrate + "%"}
+
           </div>
         </div>
         <div className="flex flex-col gap-4 w-6/12">
@@ -66,8 +83,8 @@ const HeroProfile = ({ hero, currentHero, winrate, abilitiesInfo }: THeroProfile
             </div>
           </div>
           <div className="flex items-center gap-4 justify-center">
-            {abilitiesInfo && abilitiesInfo?.map((ability: IAbility, i) => (
-              <Ability key={ability.dname + i} {...ability} />
+            {abilities?.map((ability: IAbility, i) => (
+              <Ability key={ability.dname + i} {...ability} onErrorAbility={onErrorAbilityHandler} />
             ))}
           </div>
         </div>

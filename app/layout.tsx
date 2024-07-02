@@ -1,12 +1,12 @@
 import React from "react";
 import type {Metadata} from "next";
-import {Roboto} from "next/font/google";
+import {Inter} from "next/font/google";
 import "./globals.css";
 import MainNavigation from "@components/navigation/mainNavigation";
 import ReactQueryProvider from "@/common/utils/ReactQueryProvider";
 import {APIContextProvider} from "@/common/context/api-context";
 
-const roboto = Roboto({
+const roboto = Inter({
   weight: '400',
   subsets: ['latin'],
 })

@@ -51,7 +51,7 @@ const HeroesPage = () => {
   return (
     <>
       <h1 className="text-2xl text-white mb-4">Heroes:</h1>
-      <div className="grid grid-cols-6 gap-2 text-white">
+      <div className="grid grid-cols-8 gap-2 text-white">
         {heroes.map((item: THero) => {
           const imageSrc = `/heroes/${item.localized_name
             .replaceAll(" ", "_")
