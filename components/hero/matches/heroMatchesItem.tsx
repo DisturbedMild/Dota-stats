@@ -2,6 +2,7 @@
 
 import {IMatch} from "@/services/api/endpoints/types";
 import {convertTime} from "@/common/utils/convertTime";
+import {useMemo} from "react";
 
 type THeroMatchesItemProps = {
   match: IMatch
@@ -15,7 +16,6 @@ const calcKDALineWidth = ({kills, assists, deaths}: calcKDAProps): {
   deathsPercentage: number
 } => {
   const sum = kills + assists + deaths;
-
   const killsPercentage = Number((kills * 100 / sum).toFixed(0)),
     assistsPercentage = Number((assists * 100 / sum).toFixed(0)),
     deathsPercentage = Number((deaths * 100 / sum).toFixed(0));
@@ -25,8 +25,9 @@ const calcKDALineWidth = ({kills, assists, deaths}: calcKDAProps): {
 
 const HeroMatchesItem = ({match}: THeroMatchesItemProps) => {
   const matchDuration = convertTime(match.duration);
+  const {kills, assists, deaths} = match;
 
-  const KDAPercentages = calcKDALineWidth({kills: match.kills, deaths: match.deaths, assists: match.assists});
+  const KDAPercentages = useMemo(() => calcKDALineWidth({kills, assists, deaths}), [kills, assists, deaths]);;
 
   return (
     <div className="flex items-center px-6 py-2 border-t border-b border-gray-200/10">

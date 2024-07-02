@@ -3,7 +3,7 @@
 import HeroItem from "@components/hero/items/heroItem";
 import {useContext} from "react";
 import {APIContext} from "@/common/context/api-context";
-import {IHeroItemsPopularity, IItem, IItems} from "@/services/api/endpoints/types";
+import {IHeroItemsPopularity, IItems} from "@/services/api/endpoints/types";
 
 type THeroItemsListProps = {
   itemsList: Record<string, IHeroItemsPopularity>
@@ -12,7 +12,6 @@ type THeroItemsListProps = {
 const HeroItemsList = ({itemsList}: THeroItemsListProps) => {
   const { items } = useContext(APIContext);
   const currentItems: IItems = [];
-
 
   if (!items) {
     console.error("Items context is undefined or null")
@@ -27,10 +26,7 @@ const HeroItemsList = ({itemsList}: THeroItemsListProps) => {
         if(piece.id === Number(itemKey)) currentItems.push(piece);
       }
     }
-
   }
-
-  console.log(currentItems);
 
   return (
     <div className="flex flex-wrap gap-1 h-fit items-start mt-4">
