@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { API } from "@/services/api";
 import HeroIcon from "./HeroIcon";
-import { TMatch } from "./asideMatches";
+import { MatchProps } from "./AsideMatches";
 import { IHeroes } from "@/services/api/endpoints/types";
 import { convertTime } from "@/common/utils/convertTime";
 
@@ -15,7 +15,7 @@ const getMatchHeroes = (heroes: IHeroes, arr: number[]) => {
   return heroesArray;
 };
 
-const MatchItem = ({ match }: { match: TMatch }) => {
+const MatchItem = ({ match }: { match: MatchProps }) => {
   const [heroes, setHeroes] = useState<IHeroes>([]);
   const [heroesLoading, setHeroesLoading] = useState(true);
 
