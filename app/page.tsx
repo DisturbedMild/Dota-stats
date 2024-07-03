@@ -1,6 +1,6 @@
-import AsideMatches from "@/components/matches/asideMatches";
-import Posts from "@/components/post/posts";
-import SearchBar from "@components/searchbar/searchBar";
+import AsideMatches from "@/components/matches/AsideMatches";
+import Posts from "@/components/post/Posts";
+import SearchBar from "@components/searchbar/SearchBar";
 
 const HomePage = async () => {
   return (
