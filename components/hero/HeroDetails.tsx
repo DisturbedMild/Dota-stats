@@ -32,7 +32,7 @@ const heroDetails = ({currentHero}: HeroDetailsProps) => {
             <>
               <div className="flex justify-between  bg-gray-800/70 px-4 py-3">
                 <span>Base attack:</span>
-                <span>{baseAttack + currentHero.base_attack_min} - {baseAttack + currentHero.base_attack_max}</span>
+                <span>{(baseAttack + currentHero.base_attack_min).toFixed(0)} - {(baseAttack + currentHero.base_attack_max).toFixed(0)}</span>
               </div>
               <div className="flex justify-between  bg-gray-700/70 px-4 py-3">
                 <span>Attack range:</span>
