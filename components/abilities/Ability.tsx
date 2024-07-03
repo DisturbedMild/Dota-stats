@@ -21,26 +21,25 @@ const Ability = ({dname: name, img, onErrorAbility}: AbilityProps) => {
       {
         error &&
           <Image
-              className="w-18 h-18 backdrop-blur-1 rounded cursor-pointer opacity-70 hover:opacity-100 transition-all hover:scale-110 shadow-xl  hover:shadow-black/40"
+              className="w-12 h-12 backdrop-blur-1 rounded cursor-pointer opacity-70 hover:opacity-100 transition-all hover:scale-110 shadow-xl  hover:shadow-black/40"
               src={"/innate_icon.png"}
               alt="error"
-              width={64}
-              height={64}
+              width={48}
+              height={48}
           />
       }
       {!error &&
           <Image
-              className="w-18 h-18 backdrop-blur-1 rounded cursor-pointer opacity-70 hover:opacity-100 transition-all hover:scale-110 shadow-xl  hover:shadow-black/40"
+              className="w-12 h-12 backdrop-blur-1 rounded cursor-pointer opacity-70 hover:opacity-100 transition-all hover:scale-110 shadow-xl  hover:shadow-black/40"
               src={img}
               onError={(e) => {
-                console.log(name)
                 setError(true)
                 onErrorAbility(name)
               }}
               loader={imageLoader}
               alt=""
-              width={64}
-              height={64}
+              width={48}
+              height={48}
           />
       }
     </div>

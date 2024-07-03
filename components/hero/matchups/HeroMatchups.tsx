@@ -49,8 +49,6 @@ const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
         orderBy === Toggle.DESC ?
           setSortedHeroMatchups(prevState => prevState.sort((a, b) => b.games_played - a.games_played)) :
           setSortedHeroMatchups(prevState => prevState.sort((a, b) => a.games_played - b.games_played))
-      // case null:
-      //   setSortedHeroMatchups(prevState => prevState.sort((a, b) => b.games_played - a.games_played))
     }
   }, [sortBy, orderBy]);
 

@@ -3,7 +3,7 @@
 import {IHeroStats} from "@/services/api/endpoints/types";
 
 type HeroDetailsProps = {
-  currentHero: IHeroStats | undefined,
+  currentHero: IHeroStats,
 }
 
 const calcBaseDamage = (attr: string, str: number, int: number, agi: number) => {
@@ -23,7 +23,6 @@ const heroDetails = ({currentHero}: HeroDetailsProps) => {
   if (currentHero) {
     baseAttack = calcBaseDamage(currentHero.primary_attr, currentHero.base_str, currentHero.base_int, currentHero.base_agi)
   }
-  ;
 
   return (
     <div className="flex justify-center items-start my-12 w-full gap-4 text-white uppercase text-xs">

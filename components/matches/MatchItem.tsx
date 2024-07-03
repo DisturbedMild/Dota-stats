@@ -9,10 +9,9 @@ import { IHeroes } from "@/services/api/endpoints/types";
 import { convertTime } from "@/common/utils/convertTime";
 
 const getMatchHeroes = (heroes: IHeroes, arr: number[]) => {
-  const heroesArray = arr?.map((id) => {
+  return arr?.map((id) => {
     return heroes.find((hero: any) => hero.id === id);
   });
-  return heroesArray;
 };
 
 const MatchItem = ({ match }: { match: MatchProps }) => {
@@ -25,7 +24,7 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
       .then((data) => {
         setHeroes(data);
       })
-      .catch((error) => {})
+      .catch(() => {})
       .finally(() => {
         setHeroesLoading(false);
       });

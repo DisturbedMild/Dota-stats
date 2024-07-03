@@ -7,6 +7,7 @@ import {sanitizeForId} from "@/common/utils/stringUtils";
 
 const TabList: React.FC<ITabListProps> = ({ activeTabIndex = 0, children, className, activeTabClasses }: ITabListProps) => {
     const [activeTab, setActiveTab] = useState(activeTabIndex);
+
     const handleTabClick = (index: number) => {
       setActiveTab(index)
     }

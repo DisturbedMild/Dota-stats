@@ -252,7 +252,7 @@ export interface IHeroStats {
   base_attack_time: number;
   attack_point: number;
   move_speed: number;
-  turn_rate: null;
+  turn_rate: null | number;
   cm_enabled: true;
   legs: null;
   day_vision: number;

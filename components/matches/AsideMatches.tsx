@@ -5,13 +5,13 @@ import {useEffect, useState} from "react";
 import {API} from "@/services/api";
 import {Skeleton} from "@components/ui/loaders/Skeleton";
 
-export type MatchProps = {
+export interface MatchProps {
   match_id: number;
   radiant_win: number;
   duration: number;
   radiant_team: number[];
   dire_team: number[];
-};
+}
 
 // const getTeamHeroes = (heroes, matches) => {};
 
