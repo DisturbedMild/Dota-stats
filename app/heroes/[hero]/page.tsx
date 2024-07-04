@@ -39,12 +39,8 @@ const HeroPage = () => {
   return (
     <section className="mx-auto w-10/12">
       <HeroProfile currentHero={currentHero}/>
-      {currentHero && (
-        <>
-          <HeroDetails currentHero={currentHero}/>
-          <HeroDetailsNavbar currentHero={currentHero}/>
-        </>
-      )}
+      {currentHero && <HeroDetails currentHero={currentHero}/>}
+      <HeroDetailsNavbar currentHero={currentHero}/>
     </section>
   );
 };
