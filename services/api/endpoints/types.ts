@@ -315,6 +315,8 @@ export interface IAbility {
   dmg_type: string;
   bkbpierce: string;
   desc: string;
+  scepter_skill_name?: string;
+  shard_skill_name?: string;
   attrib: [
     {
       key: string;
@@ -324,6 +326,15 @@ export interface IAbility {
   ];
   lore: string;
   img: string;
+}
+
+export interface IAbilities {
+  abilities: IAbility[]
+};
+
+export interface ITalent {
+  desc: string;
+  level: number;
 }
 
 export type HeroKey =

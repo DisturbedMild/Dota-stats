@@ -1,16 +1,18 @@
 "use client";
 
-import Talents from "@components/hero/abilities/Talents";
-import {IAbility} from "@/services/api/endpoints/types";
+import {useCallback, useState} from "react";
+import {IAbility, ITalent} from "@/services/api/endpoints/types";
 import Ability from "@components/hero/abilities/Ability";
 import AghanimAndShard from "@components/hero/abilities/AghanimAndShard";
-import {useCallback, useState} from "react";
+import Talents from "@components/hero/abilities/Talents";
+
 
 type AbilitiesProps = {
   abilitiesInfo: IAbility[] | [];
+  talents: ITalent[] | null;
 };
 
-const Abilities = ({abilitiesInfo}: AbilitiesProps) => {
+const Abilities = ({abilitiesInfo, talents}: AbilitiesProps) => {
     const [abilities, setAbilities] = useState<IAbility[]>(abilitiesInfo);
 
   const onErrorAbilityHandler = useCallback((name: string) => {
@@ -28,7 +30,7 @@ const Abilities = ({abilitiesInfo}: AbilitiesProps) => {
 
   return (
     <div className="flex items-center gap-2 justify-center">
-      <Talents/>
+      <Talents talents={talents} />
       {abilities.map((ability: IAbility, i) => (
         <Ability key={ability.dname + i} {...ability} onErrorAbility={onErrorAbilityHandler}/>
       ))}
