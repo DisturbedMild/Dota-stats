@@ -31,8 +31,8 @@ export default function RootLayout(
         <main className="container mx-auto">{children}</main>
       </APIContextProvider>
     </ReactQueryProvider>
-    <footer className="mt-8">
-      <div className="container mx-auto py-2 text-white">
+    <footer className="mt-8 bg-black/20">
+      <div className="container mx-auto py-8 text-white">
         @Copyright Vladyslav Dmytrenko 2024.
       </div>
     </footer>

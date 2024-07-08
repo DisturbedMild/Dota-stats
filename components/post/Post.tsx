@@ -64,7 +64,7 @@ export const Post = ({ item }: { item: IPost }) => {
         </div>
         <p>
           {item.author}&nbsp;|&nbsp;
-          <a href={item.url} target="_blank" className="text-blue-400">
+          <a href={item.url} target="_blank" className="transition-all hover:text-teal">
             Read More
           </a>
         </p>

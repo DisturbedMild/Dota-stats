@@ -12,7 +12,7 @@ const HeroMatches = ({matches}: HeroMatchesProp) => {
     <>
       <h3 className="mb-3 text-[#ffffff99] text-xls"><span className="font-medium text-[#ffffffde]">Recent</span>   Data from professional matches</h3>
       <article className="rounded border-amber-50/50 border border-gray-300/10">
-        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-[#020024] to-[#2da65c]">
+        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-secondary to-teal">
           <div className="w-3/12 text-base">account id</div>
           <div className="w-2/12 text-base">duration</div>
           <div className="w-4/12 text-base">result</div>

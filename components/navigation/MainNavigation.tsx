@@ -12,49 +12,49 @@ const MainNavigation = () => {
           <li className="">
             <Link
               href="/"
-              className="bg-green-500 text-white text-size-xl px-1 py-1 uppercase "
+              className="bg-secondary text-white text-size-xl px-2 py-1 uppercase "
             >
               Dota2Stats
             </Link>
           </li>
           <li
             className={`${
-              pathname === "/cybersport" ? "text-red-500" : "text-white"
+              pathname === "/cybersport" ? "text-teal" : "text-white"
             }`}
           >
             <Link href="/cybersport">Cybersport</Link>
           </li>
           <li
             className={`${
-              pathname === "/heroes" ? "text-red-500" : "text-white"
+              pathname === "/heroes" ? "text-teal" : "text-white"
             }`}
           >
             <Link href="/heroes">Heroes</Link>
           </li>
           <li
             className={`${
-              pathname === "/items" ? "text-red-500" : "text-white"
+              pathname === "/items" ? "text-teal" : "text-white"
             }`}
           >
             <Link href="/items">Items</Link>
           </li>
           <li
             className={`${
-              pathname === "/players" ? "text-red-500" : "text-white"
+              pathname === "/players" ? "text-teal" : "text-white"
             }`}
           >
             <Link href="/players">Players</Link>
           </li>
           <li
             className={`${
-              pathname === "/matches" ? "text-red-500" : "text-white"
+              pathname === "/matches" ? "text-teal" : "text-white"
             }`}
           >
             <Link href="/matches">Matches</Link>
           </li>
           <li
             className={`${
-              pathname === "/blog" ? "text-red-500" : "text-white"
+              pathname === "/blog" ? "text-teal" : "text-white"
             }`}
           >
             <Link href="/blog">Blog</Link>

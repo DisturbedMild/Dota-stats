@@ -60,7 +60,7 @@ const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
         Recent</span> Data from professional matches
       </h3>
       <article className="rounded border-amber-50/50 border border-gray-300/10">
-        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-[#020024] to-[#2da65c]">
+        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-secondary to-teal">
           <div className="w-6/12 text-base">HERO</div>
           <div className="w-2/12 text-base text-center cursor-pointer"
                onClick={() => handleSorting(Sorting.BY_GAMES)}>GAMES

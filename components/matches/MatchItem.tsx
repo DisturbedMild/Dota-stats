@@ -37,8 +37,8 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
   return (
     <>
       {!heroesLoading && (
-        <div className="p-2 bg-neutral-500/20 text-white transition-all">
-          <div className="flex items-center gap-2">
+        <div className="p-2 bg-secondary/30 text-white transition-all">
+          <div className="flex items-center gap-2 mb-2">
             <h3 className="text-xl">Match {match.match_id}</h3>
             <Image
               src={"/ranks/immortal.png"}
@@ -49,7 +49,7 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
           </div>
           <div
             className={`${
-              match.radiant_win ? "text-green-500" : "text-red-500"
+              match.radiant_win ? "text-green" : "text-error"
             } text-center uppercase`}
           >
             Winner {match.radiant_win ? "Radiant" : "Dire"}
@@ -58,7 +58,7 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
             {matchDuration.minutes}:{matchDuration.seconds}
           </div>
           <div>
-            <p className="mb-2 text-green-500 text-left">Radian</p>
+            <p className="mb-2 text-success text-left">Radian</p>
             <div className="flex gap-2">
               {radiantHeroes.map((hero: any) => (
                 <HeroIcon key={hero.id} name={hero.localized_name} />
@@ -66,7 +66,7 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
             </div>
           </div>
           <div>
-            <p className="mt-4 mb-2 text-red-500 text-left">Dire</p>
+            <p className="mt-4 mb-2 text-error text-left">Dire</p>
             <div className="flex gap-2">
               {direHeroes.map((hero: any) => (
                 <HeroIcon key={hero.id} name={hero.localized_name} />

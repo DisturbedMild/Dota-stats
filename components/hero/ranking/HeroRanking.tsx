@@ -12,7 +12,7 @@ const HeroRanking = ({rankings}: HeroRankingProps) => {
         <span className="font-medium text-[#ffffffde]">Rankings</span>
       </h3>
       <article className="rounded border-amber-50/50 border border-gray-300/10">
-        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-[#020024] to-[#2da65c]">
+        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-secondary to-teal">
           <div className="w-3/12 text-base">RANK</div>
           <div className="w-7/12 text-base">NAME</div>
           <div className="w-2/12 text-base">SCORE</div>

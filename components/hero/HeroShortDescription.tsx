@@ -47,20 +47,13 @@ const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
         {currentHero?.localized_name}
       </h1>
       <div>
-        {currentHero?.attack_type} - <span
-        className="uppercase text-xs text-gray-500">{currentHero?.roles.map((role: string, index: number) => {
-        if (index === currentHero?.roles.length - 1) {
-          return <span key={role}>{role}</span>
-        } else {
-          return <span key={role}>{role}, </span>
-        }
-      })}</span>
+        {currentHero?.attack_type} - <span className="uppercase text-xs text-gray-500">{currentHero?.roles.join(', ')}</span>
       </div>
       <div
-        className={`flex items-center gap-2 my-3 text-xs uppercase ${
-          Number(winrate) === 0 ? "text-white" ? Number(winrate) < 50 : "text-red-500" : "text-green-500"
-        }`}
-      > Winrate: {winrate === 0 ? <Spinner w={12} h={12} lineColor={"#00da96"}/> : winrate + "%"}
+        className={`flex items-center gap-2 my-3 text-xs uppercase 
+        ${Number(winrate) === 0 ? "text-white" ? Number(winrate) < 50 : "text-red-500" : "text-green-500"}`}
+      >
+        Winrate: {winrate === 0 ? <Spinner w={12} h={12} lineColor={"#00da96"}/> : winrate + "%"}
       </div>
     </div>
   )

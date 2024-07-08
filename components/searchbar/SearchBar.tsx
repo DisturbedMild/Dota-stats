@@ -34,17 +34,17 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex gap-2 px-2 py-2 bg-neutral-500/30"
+      className="flex gap-2 px-2 py-2 bg-secondary/30"
     >
       <input
         type="text"
         name="search"
         placeholder="Search heroes, players, items, teams..."
         onChange={handleChange}
-        className="px-2 py-1 w-11/12 focus:outline-none border-0"
+        className="px-2 py-1 w-11/12 text-secondary focus:outline-none border-0"
       />
       <button
-        className="bg-green-500 text-white px-2 py-1 w-1/12"
+        className="bg-secondary text-white px-2 py-1 w-1/12 transition-all hover:text-teal hover:bg-white"
         disabled={isSearching}
         type="submit"
       >

@@ -4,15 +4,13 @@ import SearchBar from "@components/searchbar/SearchBar";
 
 const HomePage = async () => {
   return (
-    <>
-      <article className="content flex gap-2">
-        <section className="body w-2/3">
-          <SearchBar />
-          <Posts />
-        </section>
-        <AsideMatches />
-      </article>
-    </>
+    <article className="content flex gap-2">
+      <section className="body w-2/3">
+        <SearchBar/>
+        <Posts/>
+      </section>
+      <AsideMatches/>
+    </article>
   );
 };
 

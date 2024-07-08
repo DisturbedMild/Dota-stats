@@ -16,7 +16,7 @@ const HeroItems = ({heroItemsPopularity}: HeroItemsProps) => {
         <span className="font-medium text-[#ffffffde]">Suggested Items</span> Data from professional matches
       </h3>
       <article>
-        <header className="flex gap-4 px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-[#020024] to-[#2da65c]">
+        <header className="flex gap-4 px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-secondary to-teal">
           <div className="w-3/12 text-base">START GAME</div>
           <div className="w-3/12 text-base cursor-pointer">EARLY GAME</div>
           <div className="w-3/12 text-base cursor-pointer">MID GAME</div>

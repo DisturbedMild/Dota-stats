@@ -8,6 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'main': '#1B262C',
+        'secondary': '#0F4C75',
+        'light-blue': '#3282B8',
+        'ice': '#BBE1FA',
+        'teal': '#00909E',
+        'error': '#E11640',
+        'green': '#A8DF8E',
+        'success': '#1Ba781'
+      },
       boxShadow: {
         'center': '0 0px 15px -3px',
       },

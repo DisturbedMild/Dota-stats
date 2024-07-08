@@ -39,7 +39,7 @@ const HeroPlayers = ({heroPlayers}: HeroPlayersProps) => {
         />
       </div>
       <article className="rounded border border-gray-300/10">
-        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-[#020024] to-[#2da65c]">
+        <header className="flex px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-secondary to-teal">
           <div className="w-6/12 text-base">ACCOUNT ID</div>
           <div className="w-2/12 text-base text-center cursor-pointer">GAMES</div>
           <div className="w-2/12 text-base text-center cursor-pointer">WIN %</div>
