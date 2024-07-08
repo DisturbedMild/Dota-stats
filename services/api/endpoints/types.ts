@@ -311,12 +311,15 @@ export interface IHeroAbilities {
 
 export interface IAbility {
   dname: string;
-  behavior: string;
+  behavior: string | string[];
   dmg_type: string;
   bkbpierce: string;
   desc: string;
   scepter_skill_name?: string;
   shard_skill_name?: string;
+  mc?: string | string[];
+  cd?: string | string[];
+  dispellable?: string;
   attrib: [
     {
       key: string;

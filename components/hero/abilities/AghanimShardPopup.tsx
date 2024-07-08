@@ -15,7 +15,7 @@ const AghanimShardPopup = ({aghanimShardAbility}: AghanimShardPopupProps) => {
   const {dname, behavior, desc, attrib, img} = aghanimShardAbility;
   return (
     <div
-      className=" flex flex-col p-1 w-[400px] cursor-pointer z-10 border border-gray-900 bg-slate-800">
+      className=" flex flex-col p-1 w-[300px] cursor-pointer z-10 border border-gray-900 bg-slate-800">
       <div className="flex items-center gap-4 p-2 w-full h-10 bg-slate-600">
         <Image src={"/icons/scepter.png"} width={30} height={30} alt="Aghanim icon"/>
         <p className="text-white">Aghanim&apos;s Scepter</p>

@@ -51,7 +51,7 @@ const TalentsPopup = ({talents}: TalentsPopupProps) => {
 
   return (
     <div
-      className="absolute -bottom-20 right-14 flex items-center p-1 w-[440px] h-[226px] cursor-pointer z-10 border border-gray-900 bg-slate-800">
+      className="absolute -bottom-20 right-14 flex items-center p-1 w-[440px] cursor-pointer z-10 border border-gray-900 bg-slate-800">
       <Image src={'/icons/talent_tree.svg'} width={150} height={150} alt="Talent Tree"
              className="absolute z-1 w-full h-full opacity-10"/>
       <div className="w-full z-2 flex flex-wrap justify-center gap-x-2 gap-y-4 items-center text-center text-white">
