@@ -1,9 +1,10 @@
 "use client";
 
 import React, {ReactElement, useState} from "react";
-import {ITabListProps, ITabProps} from "@components/ui/tablist/types";
-import TabItem from "@components/ui/tablist/TabItem";
+
 import {sanitizeForId} from "@/common/utils/stringUtils";
+import TabItem from "@/components/ui/tablist/TabItem";
+import {ITabListProps, ITabProps} from "@/components/ui/tablist/types";
 
 const TabList: React.FC<ITabListProps> = ({ activeTabIndex = 0, children, className, activeTabClasses }: ITabListProps) => {
     const [activeTab, setActiveTab] = useState(activeTabIndex);

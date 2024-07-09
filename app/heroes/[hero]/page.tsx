@@ -1,20 +1,18 @@
 "use client";
 
-import {API} from "@/services/api";
-import {useParams} from "next/navigation";
 import React, {useEffect, useState} from "react";
-import {
-  IHeroStats,
-} from "@/services/api/endpoints/types";
-import HeroProfile from "@components/hero/HeroProfile";
-import HeroDetails from "@components/hero/HeroDetails";
-import HeroDetailsNavbar from "@components/hero/detail-nav/HeroDetailsTabList";
+import {useParams} from "next/navigation";
 
-const getHero = (heroes: IHeroStats[] | null, name: string) => {
-  if (heroes === null) {
-    return;
-  }
-  return heroes.find((hero: IHeroStats) => {
+import HeroDetailsNavbar from "@/components/hero/detail-nav/HeroDetailsTabList";
+import HeroDetails from "@/components/hero/HeroDetails";
+import HeroProfile from "@/components/hero/profile/HeroProfile";
+import {API} from "@/services/api";
+import {HeroStats} from "@/types/hero/hero";
+
+const getHero = (heroes: HeroStats[] | null, name: string) => {
+  if (heroes === null) return null
+
+  return heroes.find((hero: HeroStats) => {
     const heroName = hero.localized_name.replaceAll(" ", "_");
 
     if (heroName === name) return hero;
@@ -23,7 +21,8 @@ const getHero = (heroes: IHeroStats[] | null, name: string) => {
 
 const HeroPage = () => {
   const {hero}: { hero: string } = useParams();
-  const [heroStats, setHeroStats] = useState<IHeroStats[] | null>(null);
+  const [heroStats, setHeroStats] = useState<HeroStats[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const currentHero = getHero(heroStats, hero);
 
   useEffect(() => {
@@ -33,14 +32,21 @@ const HeroPage = () => {
         setHeroStats(data);
       })
       .catch(() => {
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <section className="mx-auto w-10/12">
-      <HeroProfile currentHero={currentHero}/>
-      {currentHero && <HeroDetails currentHero={currentHero}/>}
-      <HeroDetailsNavbar currentHero={currentHero}/>
+      {currentHero && (
+        <>
+          <HeroProfile currentHero={currentHero}/>
+          <HeroDetails currentHero={currentHero}/>
+          <HeroDetailsNavbar currentHero={currentHero}/>
+        </>
+      )}
     </section>
   );
 };

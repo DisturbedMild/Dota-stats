@@ -1,19 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import {useEffect, useState} from "react";
-import {ITalent} from "@/services/api/endpoints/types";
-import Talent from "@components/hero/abilities/Talent";
+import Image from "next/image";
 import {v4 as uuidv4} from "uuid";
 
-type TalentsPopupProps = {
-  talents: ITalent[] | null,
-}
+import TalentItem from "@/components/hero/abilities/TalentItem";
+import {Talent} from "@/types/index";
 
-type Talent = {
-  desc: string;
-  level: number;
-  talentLevel?: number;
+type TalentsPopupProps = {
+  talents: Talent[] | null,
 }
 
 type TalentLevel = Pick<Talent, "talentLevel">;
@@ -60,7 +55,7 @@ const TalentsPopup = ({talents}: TalentsPopupProps) => {
           if (talent.talentLevel) {
             return <TalentCircle key={id} talentLevel={talent.talentLevel}/>;
           }
-          if (talent.desc) return <Talent key={id} desc={talent.desc}/>
+          if (talent.desc) return <TalentItem key={id} desc={talent.desc}/>
         })}
       </div>
     </div>

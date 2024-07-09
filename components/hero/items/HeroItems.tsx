@@ -1,10 +1,10 @@
 "use client";
 
 import HeroItemsList from "@/components/hero/items/HeroItemsList";
-import {IHeroItemsPopularity} from "@/services/api/endpoints/types";
+import {HeroItemsPopularity} from "@/types/index";
 
 type HeroItemsProps = {
-  heroItemsPopularity: IHeroItemsPopularity;
+  heroItemsPopularity: HeroItemsPopularity;
 }
 
 const HeroItems = ({heroItemsPopularity}: HeroItemsProps) => {

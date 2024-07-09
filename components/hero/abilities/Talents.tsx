@@ -1,12 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import {useState} from "react";
-import TalentsPopup from "@components/hero/abilities/TalentsPopup";
-import {ITalent} from "@/services/api/endpoints/types";
+import Image from "next/image";
+
+import TalentsPopup from "@/components/hero/abilities/TalentsPopup";
+import {Talent} from "@/types/index";
 
 type TalentsProps = {
-  talents: ITalent[] | null,
+  talents: Talent[] | null,
 }
 
 const Talents = ({talents}: TalentsProps) => {

@@ -2,12 +2,12 @@
 
 import {useMemo, useState} from "react";
 
-import {IHeroPlayer} from "@/services/api/endpoints/types";
-import HeroPlayer from "@components/hero/players/HeroPlayer";
-import Pagination from "@components/ui/pagination/Pagination";
+import {HeroPlayer} from "@/types/index";
+import HeroPlayerItem from "@/components/hero/players/HeroPlayerItem";
+import Pagination from "@/components/ui/pagination/Pagination";
 
 type HeroPlayersProps = {
-  heroPlayers: IHeroPlayer[];
+  heroPlayers: HeroPlayer[];
 }
 
 const HeroPlayers = ({heroPlayers}: HeroPlayersProps) => {
@@ -46,7 +46,7 @@ const HeroPlayers = ({heroPlayers}: HeroPlayersProps) => {
           <div className="w-2/12 text-base text-center cursor-pointer">ADVANTAGE</div>
         </header>
         {currentTableData.map((player) =>
-          <HeroPlayer
+          <HeroPlayerItem
             key={player.account_id} id={player.account_id}
             games={player.games_played} wins={player.wins}
           />)}

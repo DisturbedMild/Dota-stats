@@ -6,10 +6,11 @@ const HeroIcon = ({ name }: { name: string }) => {
   const imageSrc = `/heroes/${name
     .replaceAll(" ", "_")
     .toLocaleLowerCase()}.png`;
-  return <Image src={imageSrc} style={{
-    width: '100%',
-    height: 'auto',
-  }}  sizes="(min-width: 375px) 20px, (min-width:768px) 30px, (min-width:1028px) 92px"  quality={100} width={92} height={20} alt={`${name} icon`} />;
+  return (
+    <div className="w-1/5">
+      <Image src={imageSrc} className="object-cover" width={92} height={20} alt={`${name} icon`} />
+    </div>
+  );
 };
 
 export default HeroIcon;

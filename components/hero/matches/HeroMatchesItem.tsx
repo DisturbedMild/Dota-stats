@@ -1,14 +1,15 @@
 "use client";
 
 import {useMemo} from "react";
-import {IMatch} from "@/services/api/endpoints/types";
+
 import {convertTime} from "@/common/utils/convertTime";
+import {HeroMatch} from "@/types/index";
 
 type HeroMatchesItemProps = {
-  match: IMatch
+  match: HeroMatch
 }
 
-type calcKDAProps = Pick<IMatch, "kills" | "assists" | "deaths">;
+type calcKDAProps = Pick<HeroMatch, "kills" | "assists" | "deaths">;
 
 const calcKDALineWidth = ({kills, assists, deaths}: calcKDAProps): {
   killsPercentage: number,

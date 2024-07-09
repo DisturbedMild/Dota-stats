@@ -1,9 +1,10 @@
 "use client";
 
-import {IHeroPlayersRanking, IHeroPlayerRanking} from "@/services/api/endpoints/types";
+import {PlayerHeroRanking,PlayersHeroRanking} from "@/types/index";
+
 import HeroRankingItem from "./HeroRankingItem";
 
-type HeroRankingProps = IHeroPlayersRanking
+type HeroRankingProps = PlayersHeroRanking
 
 const HeroRanking = ({rankings}: HeroRankingProps) => {
   return (
@@ -18,7 +19,7 @@ const HeroRanking = ({rankings}: HeroRankingProps) => {
           <div className="w-2/12 text-base">SCORE</div>
         </header>
         <div>
-          {rankings.map((player: IHeroPlayerRanking, index) =>
+          {rankings.map((player: PlayerHeroRanking, index) =>
             <HeroRankingItem
               key={player.account_id}
               name={player.personaname}

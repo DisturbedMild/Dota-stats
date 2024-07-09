@@ -1,9 +1,9 @@
 "use client";
 
-import HeroMatchupsItem from "@components/hero/matchups/HeroMatchupsItem";
-import {useContext, useState, useReducer, useEffect} from "react";
-import {APIContext} from "@/common/context/api-context";
-import {ISortedHeroMatchup} from "@/services/api/endpoints/types";
+import {useEffect, useState} from "react";
+
+import HeroMatchupsItem from "@/components/hero/matchups/HeroMatchupsItem";
+import {SortedHeroMatchup} from "@/types/index";
 
 enum Sorting {
   BY_GAMES,
@@ -17,7 +17,7 @@ enum Toggle {
 }
 
 interface THeroMatchupProps {
-  heroMatchups: ISortedHeroMatchup[];
+  heroMatchups: SortedHeroMatchup[];
 }
 
 const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
@@ -52,8 +52,6 @@ const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
     }
   }, [sortBy, orderBy]);
 
-  const {heroes} = useContext(APIContext);
-
   return (
     <>
       <h3 className="mb-3 text-[#ffffff99] text-xls"><span className="font-medium text-[#ffffffde]">
@@ -72,10 +70,9 @@ const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
                onClick={() => handleSorting(Sorting.BY_ADVANTAGE)}>ADVANTAGE
           </div>
         </header>
-        {sortedHeroMatchups && heroes && sortedHeroMatchups.map((matchup: ISortedHeroMatchup) =>
+        {sortedHeroMatchups && sortedHeroMatchups.map((matchup: SortedHeroMatchup) =>
           <HeroMatchupsItem
             key={matchup.hero_id}
-            heroes={heroes}
             id={matchup.hero_id}
             games={matchup.games_played}
             wins={matchup.wins}/>

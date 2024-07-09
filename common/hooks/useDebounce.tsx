@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import {useEffect, useRef} from "react";
 
 type Timer = ReturnType<typeof setTimeout>;
 type CallbackFn = (...args: unknown[]) => void;
@@ -16,13 +16,11 @@ export function useDebounce<Callback extends CallbackFn>(
     };
   }, []);
 
-  const debouncedFunction = ((...args) => {
+  return ((...args) => {
     const newTimer = setTimeout(() => {
       callback(...args);
     }, delay);
     clearTimeout(timer.current);
     timer.current = newTimer;
   }) as Callback;
-
-  return debouncedFunction;
 }

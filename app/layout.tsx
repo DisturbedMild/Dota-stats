@@ -1,12 +1,15 @@
 import React from "react";
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
-import "./globals.css";
-import MainNavigation from "@components/navigation/MainNavigation";
-import ReactQueryProvider from "@/common/utils/ReactQueryProvider";
-import {APIContextProvider} from "@/common/context/api-context";
 
-const roboto = Inter({
+import {APIContextProvider} from "@/common/context/api-context";
+import ReactQueryProvider from "@/common/utils/ReactQueryProvider";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+
+import "./globals.css";
+
+const interFont = Inter({
   weight: '400',
   subsets: ['latin'],
 })
@@ -24,18 +27,14 @@ export default function RootLayout(
   }>) {
   return (
     <html lang="en">
-    <body className={roboto.className}>
-    <MainNavigation/>
+    <body className={interFont.className}>
+    <Header/>
     <ReactQueryProvider>
       <APIContextProvider>
         <main className="container mx-auto">{children}</main>
       </APIContextProvider>
     </ReactQueryProvider>
-    <footer className="mt-8 bg-black/20">
-      <div className="container mx-auto py-8 text-white">
-        @Copyright Vladyslav Dmytrenko 2024.
-      </div>
-    </footer>
+    <Footer/>
     </body>
     </html>
   );

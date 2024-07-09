@@ -11,11 +11,12 @@ import {
   XAxis,
   YAxis
 } from "recharts";
-import {IMatchDuration} from "@/services/api/endpoints/types";
+
 import {convertTime} from "@/common/utils/convertTime";
+import {MatchDuration} from "@/types/index";
 
 type MatchesDurationProps = {
-  heroMatchesDuration: IMatchDuration[]
+  heroMatchesDuration: MatchDuration[]
 }
 
 type BarCustomTooltipProps = {

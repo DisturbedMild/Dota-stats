@@ -1,11 +1,11 @@
 "use client";
 
-import {IHeroBenchmarks} from "@/services/api/endpoints/types";
-import HeroBenchmarksItem from "@components/hero/benchmark/HeroBenchmarksItem";
+import HeroBenchmarksItem from "@/components/hero/benchmark/HeroBenchmarksItem";
+import {HeroBenchmarks} from "@/types/index";
 
-type HeroBenchmarksProps = Pick<IHeroBenchmarks, "result">;
+type HeroBenchmarksProps = Pick<HeroBenchmarks, "result">;
 
-const HeroBenchmarks = ({result}: HeroBenchmarksProps) => {
+const HeroBenchmarksList = ({result}: HeroBenchmarksProps) => {
   const resultKeys = Object.keys(result) as (keyof typeof result)[];
 
   return (
@@ -21,4 +21,4 @@ const HeroBenchmarks = ({result}: HeroBenchmarksProps) => {
     ;
 }
 
-export default HeroBenchmarks;
+export default HeroBenchmarksList;

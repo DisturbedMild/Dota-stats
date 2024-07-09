@@ -1,23 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import {useContext, useEffect, useState} from "react";
-import {API} from "@/services/api";
+import Image from "next/image";
 import {useParams} from "next/navigation";
-import AghanimPopup from "@components/hero/abilities/AghanimPopup";
-import AghanimShardPopup from "@components/hero/abilities/AghanimShardPopup";
+
 import {APIContext} from "@/common/context/api-context";
-import {IAbility} from "@/services/api/endpoints/types";
+import AghanimPopup from "@/components/hero/abilities/AghanimPopup";
+import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
+import {API} from "@/services/api";
+import {Ability} from "@/types/index";
 
 const AghanimAndShard = () => {
   const {hero}: { hero: string } = useParams();
   const {abilities} = useContext(APIContext);
   const [showPopup, setShowPopup] = useState(false);
-  const [aghanimAbility, setAghanimAbility] = useState<IAbility | null>(null);
-  const [shardAbility, setShardAbility] = useState<IAbility | null>(null);
+  const [aghanimAbility, setAghanimAbility] = useState<Ability | null>(null);
+  const [shardAbility, setShardAbility] = useState<Ability | null>(null);
 
   useEffect(() => {
-    const getAghanim = (data: IAbility[]) => {
+    const getAghanim = (data: Ability[]) => {
       const [currentHeroAghanim] = data.filter((element: any) => {
         return (
           element.hero_name === `npc_dota_hero_${hero.toLowerCase()}` ||

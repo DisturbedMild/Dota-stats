@@ -1,16 +1,16 @@
 "use client";
 
-import HeroMatches from "@components/hero/matches/HeroMatches";
-import TabItem from "@components/ui/tablist/TabItem";
 import {useEffect, useState} from "react";
-import {API} from "@/services/api";
-import {IMatch} from "@/services/api/endpoints/types";
-import {HeroDetailsTabList} from "@components/hero/detail-nav/HeroDetailsTabList";
 import {Skeleton} from "@mui/material";
+
+import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
+import HeroMatches from "@/components/hero/matches/HeroMatches";
+import {API} from "@/services/api";
+import {Match} from "@/types/index";
 
 
 const HeroMatchesTab = ({currentHero}: HeroDetailsTabList) => {
-  const [heroMatches, setHeroMatches] = useState<IMatch[] | []>([]);
+  const [heroMatches, setHeroMatches] = useState<Match[] | []>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

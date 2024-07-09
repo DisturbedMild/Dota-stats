@@ -1,10 +1,11 @@
 "use client";
 
 import Image, {type ImageLoaderProps} from "next/image";
-import {IItem} from "@/services/api/endpoints/types";
+
+import {Item} from "@/types/index";
 
 type HeroItemPopupProps = {
-  item: IItem;
+  item: Item;
 }
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;

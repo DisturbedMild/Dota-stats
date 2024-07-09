@@ -1,27 +1,27 @@
 "use client";
 
+import {useContext, useState} from "react";
 import type {ImageLoaderProps} from 'next/image';
 import Image from "next/image";
-import {useContext, useState} from "react";
-import {IAbility} from "@/services/api/endpoints/types";
+
 import {APIContext} from "@/common/context/api-context";
-import AbilityPopup from "@components/hero/abilities/AbilityPopup";
+import AbilityPopup from "@/components/hero/abilities/AbilityPopup";
+import {Ability} from "@/types/index";
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
 }
 
-interface AbilityProps extends IAbility {
+interface AbilityProps extends Ability {
   onErrorAbility: (name: string) => void;
 }
 
-const Ability = ({dname: name, img, onErrorAbility}: AbilityProps) => {
+const AbilityItem = ({dname: name, img, onErrorAbility}: AbilityProps) => {
   const {abilities} = useContext(APIContext);
   const [error, setError] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState(false);
 
   const getAbilityDescription = () => {
-    const ability = [];
     for (const key in abilities) {
       if (abilities[key].dname === name) {
         return abilities[key];
@@ -70,4 +70,4 @@ const Ability = ({dname: name, img, onErrorAbility}: AbilityProps) => {
   )
 };
 
-export default Ability;
+export default AbilityItem;

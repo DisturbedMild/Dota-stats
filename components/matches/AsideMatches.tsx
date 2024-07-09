@@ -1,9 +1,10 @@
 "use client";
 
-import MatchItem from "./MatchItem";
 import {useEffect, useState} from "react";
+
 import {API} from "@/services/api";
-import {Skeleton} from "@components/ui/loaders/Skeleton";
+
+import MatchItem from "./MatchItem";
 
 export interface MatchProps {
   match_id: number;
@@ -33,7 +34,6 @@ const AsideMatches = () => {
     <aside className="w-1/3">
       <h2 className="text-left text-white mb-1 text-xl">Latest Pro public matches</h2>
       <div className="flex flex-col gap-3">
-        {matchesLoading && <Skeleton styles="shadow rounded-md mt-8 p-4 w-full mx-auto"/>}
         {!matchesLoading &&
           matches?.map((match: MatchProps, index: number) => {
             if (index <= 8) {

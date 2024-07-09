@@ -1,11 +1,12 @@
 "use client";
 
-import {IAbility} from "@/services/api/endpoints/types";
-import Image, {type ImageLoaderProps} from "next/image";
 import {useState} from "react";
+import Image, {type ImageLoaderProps} from "next/image";
+
+import {Ability} from "@/types/index";
 
 type AbilityPopupProps = {
-  ability: IAbility;
+  ability: Ability;
 }
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {

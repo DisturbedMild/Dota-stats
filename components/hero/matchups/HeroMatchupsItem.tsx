@@ -1,19 +1,22 @@
 "use client";
 
-import {IHeroes} from "@/services/api/endpoints/types";
+import {useContext} from "react";
 import Image from "next/image";
+
+import {APIContext} from "@/common/context/api-context";
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 
 type HeroMatchupsItem = {
-  heroes: IHeroes;
   id: number | undefined;
   games: number;
   wins: number;
 }
 
-const HeroMatchupsItem = ({heroes, id, games, wins}: HeroMatchupsItem) => {
+const HeroMatchupsItem = ({id, games, wins}: HeroMatchupsItem) => {
+  const {heroes} = useContext(APIContext);
+
   if (!id) return null;
-  const hero = heroes.find((hero) => hero.id === id);
+  const hero = Array.isArray(heroes) && heroes.find((hero) => hero.id === id);
   const imageSrc = `/heroes/${hero?.localized_name
     .replaceAll(" ", "_")
     .toLocaleLowerCase()}.png`;

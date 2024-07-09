@@ -1,10 +1,11 @@
 "use client";
 
-import defaultPostImage from "./default-post.png";
-
 import Image from "next/image";
-import {IPost} from "@/services/api/endpoints/types";
-const formatPostsContent = (post: IPost) => {
+
+import {Post} from "@/types/index";
+
+import defaultPostImage from "./default-post.png";
+const formatPostsContent = (post: Post) => {
   if ((post.feedlabel = "Community Announcements")) {
     const content = post.contents;
     const getImgSrc = content.split("[/img]")[0].split("[img]")[1];
@@ -28,7 +29,7 @@ const imageLoader = ({ src, width, quality }: any) => {
   }`;
 };
 
-export const Post = ({ item }: { item: IPost }) => {
+export const PostItem = ({ item }: { item: Post }) => {
   const updatedContent = formatPostsContent(item);
   return (
     <li key={item.gid} className="flex gap-4">

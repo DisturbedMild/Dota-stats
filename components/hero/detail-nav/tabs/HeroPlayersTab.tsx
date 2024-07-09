@@ -1,14 +1,15 @@
 "use client";
 
-import HeroPlayers from "@components/hero/players/HeroPlayers";
 import {useEffect, useState} from "react";
-import {API} from "@/services/api";
-import {IHeroPlayer} from "@/services/api/endpoints/types";
-import {HeroDetailsTabList} from "@components/hero/detail-nav/HeroDetailsTabList";
 import {Skeleton} from "@mui/material";
 
+import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
+import HeroPlayers from "@/components/hero/players/HeroPlayers";
+import {API} from "@/services/api";
+import {HeroPlayer} from "@/types/index";
+
 const HeroPlayersTab = ({currentHero}: HeroDetailsTabList) => {
-  const [heroPlayers, setHeroPlayers] = useState<IHeroPlayer[] | []>([]);
+  const [heroPlayers, setHeroPlayers] = useState<HeroPlayer[] | []>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

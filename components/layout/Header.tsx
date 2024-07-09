@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const MainNavigation = () => {
+const Header = () => {
   const pathname = usePathname();
   return (
     <header id="header" className="flex container mx-auto mb-10 py-1">
       <nav id="header__nav">
         <ul className="flex items-center gap-4">
-          <li className="">
+          <li>
             <Link
               href="/"
               className="bg-secondary text-white text-size-xl px-2 py-1 uppercase "
@@ -65,4 +65,4 @@ const MainNavigation = () => {
   );
 };
 
-export default MainNavigation;
+export default Header;

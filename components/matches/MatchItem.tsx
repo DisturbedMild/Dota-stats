@@ -1,21 +1,23 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { API } from "@/services/api";
-import HeroIcon from "./HeroIcon";
-import { MatchProps } from "./AsideMatches";
-import { IHeroes } from "@/services/api/endpoints/types";
-import { convertTime } from "@/common/utils/convertTime";
+import Image from "next/image";
 
-const getMatchHeroes = (heroes: IHeroes, arr: number[]) => {
+import { convertTime } from "@/common/utils/convertTime";
+import { API } from "@/services/api";
+import { Heroes } from "@/types/index";
+
+import { MatchProps } from "./AsideMatches";
+import HeroIcon from "./HeroIcon";
+
+const getMatchHeroes = (heroes: Heroes, arr: number[]) => {
   return arr?.map((id) => {
-    return heroes.find((hero: any) => hero.id === id);
+    return Array.isArray(heroes) && heroes.find((hero: any) => hero.id === id);
   });
 };
 
 const MatchItem = ({ match }: { match: MatchProps }) => {
-  const [heroes, setHeroes] = useState<IHeroes>([]);
+  const [heroes, setHeroes] = useState<Heroes>([]);
   const [heroesLoading, setHeroesLoading] = useState(true);
 
   useEffect(() => {

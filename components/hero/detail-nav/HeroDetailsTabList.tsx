@@ -1,22 +1,28 @@
 "use client";
+import HeroBenchmarksTab from "@/components/hero/detail-nav/tabs/HeroBenchmarksTab";
+import HeroItemsPopularityTab from "@/components/hero/detail-nav/tabs/HeroItemsPopularityTab";
+import HeroMatchesDurationTab from "@/components/hero/detail-nav/tabs/HeroMatchesDurationTab";
+import HeroMatchesTab from "@/components/hero/detail-nav/tabs/HeroMatchesTab";
+import HeroMatchupsTab from "@/components/hero/detail-nav/tabs/HeroMatchupsTab";
+import HeroPlayersTab from "@/components/hero/detail-nav/tabs/HeroPlayersTab";
+import HeroRankingTab from "@/components/hero/detail-nav/tabs/HeroRankingTab";
+import TabItem from "@/components/ui/tablist/TabItem";
+import TabList from "@/components/ui/tablist/TabList";
 import {
-  IHeroStats,
-} from "@/services/api/endpoints/types";
-import TabList from "@components/ui/tablist/TabList";
-import HeroRankingTab from "@components/hero/detail-nav/tabs/HeroRankingTab";
-import HeroBenchmarksTab from "@components/hero/detail-nav/tabs/HeroBenchmarksTab";
-import HeroMatchesTab from "@components/hero/detail-nav/tabs/HeroMatchesTab";
-import HeroMatchupsTab from "@components/hero/detail-nav/tabs/HeroMatchupsTab";
-import HeroPlayersTab from "@components/hero/detail-nav/tabs/HeroPlayersTab";
-import HeroItemsPopularityTab from "@components/hero/detail-nav/tabs/HeroItemsPopularityTab";
-import TabItem from "@components/ui/tablist/TabItem";
-import HeroMatchesDurationTab from "@components/hero/detail-nav/tabs/HeroMatchesDurationTab";
+  HeroStats,
+} from "@/types/index";
 
 export type HeroDetailsTabList = {
-  currentHero: IHeroStats | undefined,
+  currentHero: HeroStats,
 }
 
-const tabs = [""]
+const tabs = ["Items",
+  "Players",
+  "Duration",
+  "Ranking",
+  "Matches",
+  "Matchups",
+  "Benchmarks"]
 
 const HeroDetailsTabList = ({currentHero}: HeroDetailsTabList) => {
   return (
@@ -42,7 +48,7 @@ const HeroDetailsTabList = ({currentHero}: HeroDetailsTabList) => {
         <HeroMatchupsTab currentHero={currentHero}/>
       </TabItem>
       <TabItem className="text-white" label="Benchmarks">
-        <HeroBenchmarksTab currentHero={currentHero} />
+        <HeroBenchmarksTab currentHero={currentHero}/>
       </TabItem>
     </TabList>
   )

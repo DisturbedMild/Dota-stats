@@ -1,14 +1,14 @@
 import {
-  IHeroes,
-  IMatchDuration,
-  IHeroPlayers,
-  IHeroItemsPopularity,
-  IHeroStats,
-  IMatchup,
-  IHeroPlayersRanking,
-  IHeroBenchmarks,
-  IMatch,
-} from "@/services/api/endpoints/types";
+  Heroes,
+  MatchDuration,
+  HeroPlayers,
+  HeroItemsPopularity,
+  HeroStats,
+  Matchup,
+  PlayersHeroRanking,
+  HeroBenchmarks,
+  Match,
+} from "@/types/index";
 
 import {AxiosClient} from "@/services/api/axios-client";
 
@@ -17,80 +17,80 @@ export class HeroEndpoint {
     this.httpClient = httpClient;
   }
 
-  async getHeroes(): Promise<IHeroes> {
-    const request = await this.httpClient.get<IHeroes>(
+  async getHeroes(): Promise<Heroes> {
+    const request = await this.httpClient.get<Heroes>(
       "https://api.opendota.com/api/heroes"
     );
 
     return request.data;
   }
 
-  async getItems(): Promise<IHeroes> {
-    const request = await this.httpClient.get<IHeroes>(
+  async getItems(): Promise<Heroes> {
+    const request = await this.httpClient.get<Heroes>(
       "https://api.opendota.com/api/heroes"
     );
 
     return request.data;
   }
 
-  async getHeroMatchups(hero_id: number): Promise<IMatchup[]> {
-    const request = await this.httpClient.get<IMatchup[]>(
+  async getHeroMatchups(hero_id: number): Promise<Matchup[]> {
+    const request = await this.httpClient.get<Matchup[]>(
       `https://api.opendota.com/api/heroes/${hero_id}/matchups`
     );
 
     return request.data;
   }
 
-  async getHeroMatches(hero_id: number): Promise<IMatch[]> {
-    const request = await this.httpClient.get<IMatch[]>(
+  async getHeroMatches(hero_id: number): Promise<Match[]> {
+    const request = await this.httpClient.get<Match[]>(
       `https://api.opendota.com/api/heroes/${hero_id}/matches`
     );
 
     return request.data;
   }
 
-  async geHeroBenchmarks(hero_id: number): Promise<IHeroBenchmarks> {
-    const request = await this.httpClient.get<IHeroBenchmarks>(
+  async geHeroBenchmarks(hero_id: number): Promise<HeroBenchmarks> {
+    const request = await this.httpClient.get<HeroBenchmarks>(
       `https://api.opendota.com/api/benchmarks?hero_id=${hero_id}`
     )
 
     return request.data;
   }
 
-  async getHeroPlayersRanking(hero_id: number): Promise<IHeroPlayersRanking> {
-    const request = await this.httpClient.get<IHeroPlayersRanking>(
+  async getHeroPlayersRanking(hero_id: number): Promise<PlayersHeroRanking> {
+    const request = await this.httpClient.get<PlayersHeroRanking>(
       `https://api.opendota.com/api/rankings?hero_id=${hero_id}`
     );
 
     return request.data;
   }
 
-  async getHeroMatchDuration(hero_id: number): Promise<IMatchDuration[]> {
-    const request = await this.httpClient.get<IMatchDuration[]>(
+  async getHeroMatchDuration(hero_id: number): Promise<MatchDuration[]> {
+    const request = await this.httpClient.get<MatchDuration[]>(
       `https://api.opendota.com/api/heroes/${hero_id}/durations`
     );
 
     return request.data;
   }
 
-  async getHeroPlayers(hero_id: number): Promise<IHeroPlayers> {
-    const request = await this.httpClient.get<IHeroPlayers>(
+  async getHeroPlayers(hero_id: number): Promise<HeroPlayers> {
+    const request = await this.httpClient.get<HeroPlayers>(
       `https://api.opendota.com/api/heroes/${hero_id}/players`
     );
 
     return request.data;
   }
 
-  async getHeroItemsPopularity(hero_id: number): Promise<IHeroItemsPopularity> {
-    const request = await this.httpClient.get<IHeroItemsPopularity>(
+  async getHeroItemsPopularity(hero_id: number): Promise<HeroItemsPopularity> {
+    const request = await this.httpClient.get<HeroItemsPopularity>(
       `https://api.opendota.com/api/heroes/${hero_id}/itemPopularity`
     );
 
     return request.data;
   }
 
-  async getHeroStats(): Promise<IHeroStats[]> {
-    const request = await this.httpClient.get<IHeroStats[]>(
+  async getHeroStats(): Promise<HeroStats[]> {
+    const request = await this.httpClient.get<HeroStats[]>(
       "https://api.opendota.com/api/heroStats"
     );
     return request.data;

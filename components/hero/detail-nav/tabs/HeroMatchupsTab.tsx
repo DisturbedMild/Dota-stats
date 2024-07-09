@@ -1,16 +1,17 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import {API} from "@/services/api";
-import {ISortedHeroMatchup} from "@/services/api/endpoints/types";
-import {HeroDetailsTabList} from "@components/hero/detail-nav/HeroDetailsTabList";
-import HeroMatchups from "@components/hero/matchups/HeroMatchups";
-import TabItem from "@components/ui/tablist/TabItem";
-import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 import {Skeleton} from "@mui/material";
 
+import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
+import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
+import HeroMatchups from "@/components/hero/matchups/HeroMatchups";
+import TabItem from "@/components/ui/tablist/TabItem";
+import {API} from "@/services/api";
+import {SortedHeroMatchup} from "@/types/index";
+
 const HeroMatchupsTab = ({currentHero}: HeroDetailsTabList) => {
-  const [heroMatchups, setHeroMatchups] = useState<ISortedHeroMatchup[] | []>([]);
+  const [heroMatchups, setHeroMatchups] = useState<SortedHeroMatchup[] | []>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (currentHero) {

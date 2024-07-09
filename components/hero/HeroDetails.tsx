@@ -1,9 +1,9 @@
 "use client";
 
-import {IHeroStats} from "@/services/api/endpoints/types";
+import {HeroStats} from "@/types/index";
 
 type HeroDetailsProps = {
-  currentHero: IHeroStats,
+  currentHero: HeroStats,
 }
 
 const calcBaseDamage = (attr: string, str: number, int: number, agi: number) => {

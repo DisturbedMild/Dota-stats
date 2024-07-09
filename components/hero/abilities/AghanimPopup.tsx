@@ -1,10 +1,11 @@
 "use client";
 
 import Image, {type ImageLoaderProps} from "next/image";
-import {IAbility} from "@/services/api/endpoints/types";
+
+import {Ability} from "@/types/index";
 
 type AghanimPopupProps = {
-  aghanimAbility: IAbility
+  aghanimAbility: Ability
 }
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {

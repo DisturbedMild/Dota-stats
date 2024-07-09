@@ -8,7 +8,7 @@ type HeroPlayerProps = {
   wins: number;
 }
 
-const HeroPlayer = ({id, games, wins}: HeroPlayerProps) => {
+const HeroPlayerItem = ({id, games, wins}: HeroPlayerProps) => {
   return (
     <div
       className="flex items-center px-6 py-2 border-t border-b border-gray-200/10 rounded-t text-xls text-[#ffffff99]">
@@ -20,4 +20,4 @@ const HeroPlayer = ({id, games, wins}: HeroPlayerProps) => {
   )
 }
 
-export default HeroPlayer
+export default HeroPlayerItem

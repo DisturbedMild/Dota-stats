@@ -1,17 +1,22 @@
 "use client";
 
 import React, {createContext, useEffect, useState} from "react";
-import {IAbility, IHeroes, IItems} from "@/services/api/endpoints/types";
+
 import {API} from "@/services/api";
+import {Ability, Heroes, Item} from "@/types/index";
 
 
 type Abilities = {
-  [key: string]: IAbility
+  [key: string]: Ability
+}
+
+type Items = {
+  [key: string]: Item
 }
 
 type APIContextType = {
-  heroes: IHeroes | null;
-  items: IItems | null;
+  heroes: Heroes | null;
+  items: Items | null;
   abilities: Abilities | null;
 }
 
@@ -26,8 +31,8 @@ type APIContextProvideProps = {
 }
 
 export const APIContextProvider = ({children}: APIContextProvideProps) => {
-  const [heroes, setHeroes] = useState<IHeroes | null>(null);
-  const [items, setItems] = useState<IItems | null>(null);
+  const [heroes, setHeroes] = useState<Heroes | null>(null);
+  const [items, setItems] = useState<Items | null>(null);
   const [abilities, setAbilities] = useState<Abilities | null>(null);
 
   useEffect(() => {
@@ -43,7 +48,7 @@ export const APIContextProvider = ({children}: APIContextProvideProps) => {
   useEffect(() => {
     API.constants
       .getConstants("items")
-      .then((data: IItems) => {
+      .then((data: Items) => {
         setItems(data);
       })
       .catch((error) => {

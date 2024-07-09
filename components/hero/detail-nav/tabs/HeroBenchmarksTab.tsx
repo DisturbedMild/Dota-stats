@@ -1,14 +1,15 @@
 "use client";
 
-import HeroBenchmarks from "@components/hero/benchmark/HeroBenchmarks";
 import {useEffect, useState} from "react";
-import {API} from "@/services/api";
-import {IHeroBenchmarks} from "@/services/api/endpoints/types";
-import {HeroDetailsTabList} from "@components/hero/detail-nav/HeroDetailsTabList";
 import {Skeleton} from "@mui/material";
 
+import HeroBenchmarksList from "@/components/hero/benchmark/HeroBenchmarksList";
+import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
+import {API} from "@/services/api";
+import {HeroBenchmarks} from "@/types/index";
+
 const HeroBenchmarkTab = ({currentHero}: HeroDetailsTabList) => {
-  const [heroBenchmarks, setHeroBenchmarks] = useState<IHeroBenchmarks | null>(null);
+  const [heroBenchmarks, setHeroBenchmarks] = useState<HeroBenchmarks | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (currentHero) {
@@ -24,7 +25,7 @@ const HeroBenchmarkTab = ({currentHero}: HeroDetailsTabList) => {
   return (
       <>
         {isLoading && <Skeleton variant="rectangular" width="100%" height="400px" />}
-        {!isLoading && heroBenchmarks && <HeroBenchmarks result={heroBenchmarks.result}/>}
+        {!isLoading && heroBenchmarks && <HeroBenchmarksList result={heroBenchmarks.result}/>}
       </>
   )
 }

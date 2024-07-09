@@ -1,17 +1,18 @@
 "use client";
 
 import {useContext} from "react";
+
 import {APIContext} from "@/common/context/api-context";
-import {IHeroItemsPopularity, IItems} from "@/services/api/endpoints/types";
-import HeroItem from "@components/hero/items/HeroItem";
+import HeroItem from "@/components/hero/items/HeroItem";
+import {HeroItemsPopularity, Items} from "@/types/index";
 
 type HeroItemsListProps = {
-  itemsList: Record<string, IHeroItemsPopularity>
+  itemsList: Record<string, HeroItemsPopularity>
 }
 
 const HeroItemsList = ({itemsList}: HeroItemsListProps) => {
   const { items } = useContext(APIContext);
-  const currentItems: IItems = [];
+  const currentItems= [];
 
   if (!items) {
     console.error("Items context is undefined or null")

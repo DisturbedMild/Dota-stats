@@ -2,7 +2,7 @@
 
 import {useMemo} from "react";
 
-type UsePaginationProps = {
+interface UsePaginationProps {
   totalCount: number;
   pageSize: number;
   siblingCount: number;

@@ -1,16 +1,17 @@
 "use client";
 
-import Spinner from "@components/ui/loaders/Spinner";
 import {useCallback, useEffect, useState} from "react";
-import {IHeroStats, IMatchup} from "@/services/api/endpoints/types";
+
+import Spinner from "@/components/ui/loaders/Spinner";
 import {API} from "@/services/api";
+import {HeroStats, Matchup} from "@/types/index";
 
 type HeroShortDescriptionProps = {
-  currentHero: IHeroStats | undefined
+  currentHero: HeroStats | undefined
 }
 
 const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
-  const [heroMatchupsData, setHeroMatchupsData] = useState<IMatchup[] | null>(null);
+  const [heroMatchupsData, setHeroMatchupsData] = useState<Matchup[] | null>(null);
 
   useEffect(() => {
     if (currentHero) {
@@ -22,12 +23,12 @@ const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
     }
   }, [currentHero]);
 
-  const heroOverallWinrate = useCallback((games: IMatchup[] | null): number => {
+  const heroOverallWinrate = useCallback((games: Matchup[] | null): number => {
       if (games === null) {
         return 0;
       }
       const gamesPlayed = games.reduce(
-        (acc: { games: number; wins: number }, curr: IMatchup) => {
+        (acc: { games: number; wins: number }, curr: Matchup) => {
           acc.games += curr.games_played;
           acc.wins += curr.wins;
           return acc;
@@ -51,7 +52,7 @@ const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
       </div>
       <div
         className={`flex items-center gap-2 my-3 text-xs uppercase 
-        ${Number(winrate) === 0 ? "text-white" ? Number(winrate) < 50 : "text-red-500" : "text-green-500"}`}
+        ${Number(winrate) === 0 ? "text-white" ? Number(winrate) < 50 : "text-error" : "text-success"}`}
       >
         Winrate: {winrate === 0 ? <Spinner w={12} h={12} lineColor={"#00da96"}/> : winrate + "%"}
       </div>
