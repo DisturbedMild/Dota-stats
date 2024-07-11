@@ -15,18 +15,22 @@ interface AbilitiesProps {
 const Abilities = ({currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
   const [abilities, setAbilities] = useState<Ability[]>(currentHeroAbilitiesInfo);
 
-  const findAbilityIndex = (abilities: Ability[], name: string) => {
+  const findAbilityIndex = (name: string) => {
       return abilities.findIndex((ability) => ability.dname === name);
+  }
+
+  const changingAbilitiesOrder = (index: number) => {
+    const prevAbilities = [...abilities];
+    const splicedAbility = prevAbilities.splice(index, 1);
+    return [...splicedAbility, ...prevAbilities]
   }
 
   const onErrorAbilityHandler = useCallback((name: string) => {
     setAbilities(prevState => {
-      const abilityIndex = findAbilityIndex(prevState, name);
+      const abilityIndex = findAbilityIndex(name);
       if(abilityIndex <= 0) return prevState
 
-      const prevAbilities = [...prevState];
-      const splicedAbility = prevAbilities.splice(abilityIndex, 1);
-      return [...splicedAbility, ...prevAbilities]
+      return changingAbilitiesOrder(abilityIndex)
     })
   }, [currentHeroAbilitiesInfo])
 
