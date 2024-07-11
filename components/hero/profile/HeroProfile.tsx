@@ -75,8 +75,6 @@ const HeroProfile = ({ currentHero }: HeroProfileProps) => {
       });
   }, []);
 
-  console.log(currentHero)
-
   return (
     <div className="relative w-full rounded-lg bg-black/90">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
@@ -93,7 +91,7 @@ const HeroProfile = ({ currentHero }: HeroProfileProps) => {
         <HeroShortDescription currentHero={currentHero}/>
         <div className="flex flex-col gap-4 w-6/12">
           <Attributes currentHero={currentHero}/>
-          <Abilities talents={currentHeroTalents} currentHeroAbilitiesInfo={currentHeroAbilities}/>
+          {currentHeroAbilities.length > 0 && <Abilities talents={currentHeroTalents} currentHeroAbilitiesInfo={currentHeroAbilities}/>}
         </div>
       </div>
     </div>

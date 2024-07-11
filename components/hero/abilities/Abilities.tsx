@@ -1,6 +1,6 @@
 "use client";
 
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 
 import AbilityItem from "@/components/hero/abilities/AbilityItem";
 import AghanimAndShard from "@/components/hero/abilities/AghanimAndShard";
@@ -14,25 +14,26 @@ interface AbilitiesProps {
 
 const Abilities = ({currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
   const [abilities, setAbilities] = useState<Ability[]>(currentHeroAbilitiesInfo);
-  console.log(currentHeroAbilitiesInfo)
+
+  const findAbilityIndex = (abilities: Ability[], name: string) => {
+      return abilities.findIndex((ability) => ability.dname === name);
+  }
 
   const onErrorAbilityHandler = useCallback((name: string) => {
     setAbilities(prevState => {
-      const abilityIndex = prevState.findIndex((ability) => ability.dname === name);
+      const abilityIndex = findAbilityIndex(prevState, name);
+      if(abilityIndex <= 0) return prevState
 
-      if(abilityIndex <= 0) {
-        return prevState
-      }
-      const abs = [...prevState];
-      const temp = abs.splice(abilityIndex, 1);
-      return [...temp, ...abs]
+      const prevAbilities = [...prevState];
+      const splicedAbility = prevAbilities.splice(abilityIndex, 1);
+      return [...splicedAbility, ...prevAbilities]
     })
-  }, [abilities])
+  }, [currentHeroAbilitiesInfo])
 
   return (
     <div className="flex items-center gap-2 justify-center">
       <Talents talents={talents} />
-      {currentHeroAbilitiesInfo.map((ability: Ability, i) => (
+      {abilities.map((ability: Ability, i) => (
         <AbilityItem key={ability.dname + i} {...ability} onErrorAbility={onErrorAbilityHandler}/>
       ))}
       <AghanimAndShard/>
