@@ -35,7 +35,7 @@ const Abilities = ({currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
   }, [currentHeroAbilitiesInfo])
 
   return (
-    <div className="flex items-center gap-2 justify-center">
+    <div className="flex flex-wrap items-center gap-2 justify-center">
       <Talents talents={talents} />
       {abilities.map((ability: Ability, i) => (
         <AbilityItem key={ability.dname + i} {...ability} onErrorAbility={onErrorAbilityHandler}/>

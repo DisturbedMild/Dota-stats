@@ -26,7 +26,7 @@ const HeroItem = ({item}: HeroItemProps) => {
   }
 
   return (
-    <div className="relative basis-11" onMouseEnter={showPopupHandler} onMouseLeave={hidePopupHandler}>
+    <div className="relative basis-11  bg-black/45 transition-all cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 shadow-xl  hover:shadow-black/40" onMouseEnter={showPopupHandler} onMouseLeave={hidePopupHandler}>
       <Image src={item.img} alt={item.dname} loader={imageLoader} width={52} height={44} className="h-fit"/>
       {showPopup && <HeroItemPopup item={item} />}
     </div>

@@ -31,8 +31,8 @@ const TabList: React.FC<ITabListProps> = ({ activeTabIndex = 0, children, classN
                 aria-controls={`panel-${sanitizeForId(tab.props.label)}`}
                 aria-selected={activeTab === index}
                 onClick={() => handleTabClick(index)}
-                className={`tab-btn ${
-                  activeTab === index && activeTabClasses
+                className={`tab-btn transition-all ${
+                  activeTab === index && "text-green"
                 }`}
               >{tab.props.label}</button>
             </li>

@@ -25,6 +25,7 @@ const AghanimAndShard = () => {
           element.hero_name === `npc_dota_hero_${hero.replaceAll("-", "").toLowerCase()}`
         );
       })
+      console.log(currentHeroAghanim);
       for (const key in abilities) {
         if (abilities[key].dname === currentHeroAghanim.scepter_skill_name) {
           setAghanimAbility(abilities[key])

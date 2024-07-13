@@ -64,7 +64,7 @@ const Pagination = (props: PaginationProps) => {
         return (
           <button
             key={index}
-            className={pageNumber === currentPage ? "px-3 py-1 bg-[#2da65c] rounded " : "px-2 py-1"}
+            className={pageNumber === currentPage ? "px-3 py-1 bg-secondary transition-all rounded " : "px-2 py-1"}
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}

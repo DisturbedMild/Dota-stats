@@ -16,14 +16,6 @@ export type HeroDetailsTabList = {
   currentHero: HeroStats,
 }
 
-const tabs = ["Items",
-  "Players",
-  "Duration",
-  "Ranking",
-  "Matches",
-  "Matchups",
-  "Benchmarks"]
-
 const HeroDetailsTabList = ({currentHero}: HeroDetailsTabList) => {
   return (
     <TabList className="flex gap-12 justify-center mb-10 pb-4 text-white border-b border-gray-700"
