@@ -1,9 +1,10 @@
 "use client";
 
 import React from 'react';
-import {usePagination, DOTS} from "@/common/hooks/usePagination";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+
+import {DOTS,usePagination} from "@/common/hooks/usePagination";
 
 type PaginationProps = {
   onPageChange: (page: number) => void;

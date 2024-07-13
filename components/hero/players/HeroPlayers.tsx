@@ -2,9 +2,9 @@
 
 import {useMemo, useState} from "react";
 
-import {HeroPlayer} from "@/types/index";
 import HeroPlayerItem from "@/components/hero/players/HeroPlayerItem";
 import Pagination from "@/components/ui/pagination/Pagination";
+import {HeroPlayer} from "@/types/index";
 
 type HeroPlayersProps = {
   heroPlayers: HeroPlayer[];
