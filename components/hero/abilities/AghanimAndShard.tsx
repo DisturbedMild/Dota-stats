@@ -10,22 +10,20 @@ import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
 import {API} from "@/services/api";
 import {Ability} from "@/types/index";
 
-const AghanimAndShard = () => {
-  const {hero}: { hero: string } = useParams();
+interface AghanimAndShardProps {
+  heroName: string
+}
+
+const AghanimAndShard = ({heroName}: AghanimAndShardProps) => {
   const {abilities} = useContext(APIContext);
+  const {heroId}: {heroId: string} = useParams();
   const [showPopup, setShowPopup] = useState(false);
   const [aghanimAbility, setAghanimAbility] = useState<Ability | null>(null);
   const [shardAbility, setShardAbility] = useState<Ability | null>(null);
-
   useEffect(() => {
     const getAghanim = (data: Ability[]) => {
-      const [currentHeroAghanim] = data.filter((element: any) => {
-        return (
-          element.hero_name === `npc_dota_hero_${hero.toLowerCase()}` ||
-          element.hero_name === `npc_dota_hero_${hero.replaceAll("-", "").toLowerCase()}`
-        );
-      })
-      console.log(currentHeroAghanim);
+      const [currentHeroAghanim] = data.filter((element: any) => element.hero_id === Number(heroId))
+
       for (const key in abilities) {
         if (abilities[key].dname === currentHeroAghanim.scepter_skill_name) {
           setAghanimAbility(abilities[key])
@@ -35,7 +33,9 @@ const AghanimAndShard = () => {
         }
       }
     }
-    API.constants.getConstants("aghs_desc").then((data) => getAghanim(data));
+    API.constants
+      .getConstants("aghs_desc")
+      .then((data) => getAghanim(data));
   }, []);
 
   return (

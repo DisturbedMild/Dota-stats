@@ -44,7 +44,7 @@ const HeroesPage = () => {
           return (
             <div key={id} className="relative group transition-all hover:scale-110">
               <Link
-                href={`/heroes/${localized_name.replaceAll(" ", "_")}`}
+                href={`/heroes/${id}`}
               >
                 <Image
                   src={imageSrc}

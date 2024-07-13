@@ -9,21 +9,21 @@ import HeroProfile from "@/components/hero/profile/HeroProfile";
 import {API} from "@/services/api";
 import {HeroStats} from "@/types/hero/hero";
 
-const getHero = (heroes: HeroStats[] | null, name: string) => {
+const getHero = (heroes: HeroStats[] | null, id: number) => {
   if (heroes === null) return null
 
   return heroes.find((hero: HeroStats) => {
-    const heroName = hero.localized_name.replaceAll(" ", "_");
+    const heroId = hero.id;
 
-    if (heroName === name) return hero;
+    if (heroId === id) return hero;
   });
 };
 
 const HeroPage = () => {
-  const {hero}: { hero: string } = useParams();
+  const {heroId}: { heroId: string } = useParams();
   const [heroStats, setHeroStats] = useState<HeroStats[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const currentHero = getHero(heroStats, hero);
+  const currentHero = getHero(heroStats, Number(heroId));
 
   useEffect(() => {
     API.heroes

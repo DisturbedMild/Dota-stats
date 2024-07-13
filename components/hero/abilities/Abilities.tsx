@@ -8,11 +8,12 @@ import Talents from "@/components/hero/abilities/Talents";
 import {Ability, Talent} from "@/types/index";
 
 interface AbilitiesProps {
+  heroName: string;
   currentHeroAbilitiesInfo: Ability[] | [];
   talents: Talent[] | null;
 };
 
-const Abilities = ({currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
+const Abilities = ({heroName, currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
   const [abilities, setAbilities] = useState<Ability[]>(currentHeroAbilitiesInfo);
 
   const findAbilityIndex = (name: string) => {
@@ -40,7 +41,7 @@ const Abilities = ({currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
       {abilities.map((ability: Ability, i) => (
         <AbilityItem key={ability.dname + i} {...ability} onErrorAbility={onErrorAbilityHandler}/>
       ))}
-      <AghanimAndShard/>
+      <AghanimAndShard heroName={heroName} />
     </div>
   )
 }
