@@ -1,12 +1,13 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
+import React from "react";
+import {useQuery} from "@tanstack/react-query";
 import {useParams} from "next/navigation";
 
+import {fetchData} from "@/common/utils/fetchData";
 import HeroDetailsNavbar from "@/components/hero/detail-nav/HeroDetailsTabList";
 import HeroDetails from "@/components/hero/HeroDetails";
 import HeroProfile from "@/components/hero/profile/HeroProfile";
-import {API} from "@/services/api";
 import {HeroStats} from "@/types/hero/hero";
 
 const getHero = (heroes: HeroStats[] | null, id: number) => {
@@ -21,22 +22,15 @@ const getHero = (heroes: HeroStats[] | null, id: number) => {
 
 const HeroPage = () => {
   const {heroId}: { heroId: string } = useParams();
-  const [heroStats, setHeroStats] = useState<HeroStats[] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const currentHero = getHero(heroStats, Number(heroId));
+  const {isLoading, data: heroStats, error} = useQuery<HeroStats[]>({
+    queryKey: ['heroesStats'],
+    queryFn: async() => fetchData("https://api.opendota.com/api/heroStats")
+  })
 
-  useEffect(() => {
-    API.heroes
-      .getHeroStats()
-      .then((data) => {
-        setHeroStats(data);
-      })
-      .catch(() => {
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
+  const currentHero = heroStats && getHero(heroStats, Number(heroId));
 
   if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error occurred</p>;
 
   return (
     <section className="mx-auto w-10/12">

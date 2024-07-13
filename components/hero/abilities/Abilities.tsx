@@ -21,16 +21,15 @@ const Abilities = ({heroName, currentHeroAbilitiesInfo, talents}: AbilitiesProps
   }
 
   const changingAbilitiesOrder = (index: number) => {
-    const prevAbilities = [...abilities];
-    const splicedAbility = prevAbilities.splice(index, 1);
-    return [...splicedAbility, ...prevAbilities]
+    const abilitiesCopy = [...abilities];
+    const splicedAbility = abilitiesCopy.splice(index, 1);
+    return [...splicedAbility, ...abilitiesCopy]
   }
 
   const onErrorAbilityHandler = useCallback((name: string) => {
     setAbilities(prevState => {
       const abilityIndex = findAbilityIndex(name);
       if(abilityIndex <= 0) return prevState
-
       return changingAbilitiesOrder(abilityIndex)
     })
   }, [currentHeroAbilitiesInfo])
@@ -39,7 +38,7 @@ const Abilities = ({heroName, currentHeroAbilitiesInfo, talents}: AbilitiesProps
     <div className="flex flex-wrap items-center gap-2 justify-center">
       <Talents talents={talents} />
       {abilities.map((ability: Ability, i) => (
-        <AbilityItem key={ability.dname + i} {...ability} onErrorAbility={onErrorAbilityHandler}/>
+        <AbilityItem key={ability.dname} {...ability} onErrorAbility={onErrorAbilityHandler}/>
       ))}
       <AghanimAndShard heroName={heroName} />
     </div>
