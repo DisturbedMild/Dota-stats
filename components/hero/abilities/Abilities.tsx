@@ -40,7 +40,7 @@ const Abilities = ({heroName, currentHeroAbilitiesInfo, talents}: AbilitiesProps
       {abilities.map((ability: Ability, i) => (
         <AbilityItem key={ability.dname} {...ability} onErrorAbility={onErrorAbilityHandler}/>
       ))}
-      <AghanimAndShard heroName={heroName} />
+      <AghanimAndShard/>
     </div>
   )
 }
