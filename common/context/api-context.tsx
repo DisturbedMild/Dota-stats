@@ -32,9 +32,9 @@ type APIContextProvideProps = {
 
 export const APIContextProvider = ({children}: APIContextProvideProps) => {
 
-  const {data: items}: {data: Items | null} = useReactQueryRequest("items", "https://api.opendota.com/api/constants/items");
-  const {data: heroes}: {data: Heroes | null} = useReactQueryRequest("heroes", "https://api.opendota.com/api/heroes");
-  const {data: abilities}: {data: Abilities | null} = useReactQueryRequest("abilities", "https://api.opendota.com/api/constants/abilities");
+  const {data: items} = useReactQueryRequest("items", "https://api.opendota.com/api/constants/items");
+  const {data: heroes} = useReactQueryRequest("heroes", "https://api.opendota.com/api/heroes");
+  const {data: abilities} = useReactQueryRequest("abilities", "https://api.opendota.com/api/constants/abilities");
 
   const ctxValue = {
     heroes,
