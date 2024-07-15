@@ -74,7 +74,7 @@ export interface HeroStats {
   pub_win: number;
   pub_win_trend: number[];
 }
-export interface Partial<Match> {
+export interface HeroMatch {
   match_id: number;
   duration: number;
   start_time: number;

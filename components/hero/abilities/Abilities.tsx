@@ -1,6 +1,6 @@
 "use client";
 
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useState} from "react";
 
 import AbilityItem from "@/components/hero/abilities/AbilityItem";
 import AghanimAndShard from "@/components/hero/abilities/AghanimAndShard";
@@ -10,7 +10,7 @@ import {Ability, Talent} from "@/types/index";
 interface AbilitiesProps {
   heroName: string;
   currentHeroAbilitiesInfo: Ability[] | [];
-  talents: Talent[] | null;
+  talents: Talent[];
 };
 
 const Abilities = ({heroName, currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
