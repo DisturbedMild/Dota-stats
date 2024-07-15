@@ -1,7 +1,7 @@
 import {Abilities, HeroAbilitiesNames,Ability} from "@/types/ability/ability";
 import {Talent} from "@/types/ability/talent";
 import {HeroBenchmarks} from "@/types/benchmark/benchmark";
-import {Hero, Heroes, HeroStats, HeroMatch} from "@/types/hero/hero";
+import {Hero, Heroes, HeroStats} from "@/types/hero/hero";
 import {HeroItemsPopularity, Item, Items} from "@/types/item/item";
 import {HeroKeys} from "@/types/keys/heroes";
 import {Match, MatchDuration, PublicMatches} from "@/types/match/match";
@@ -18,7 +18,6 @@ export type {
   Heroes,
   HeroItemsPopularity,
   HeroKeys,
-  HeroMatch,
   HeroPlayer,
   HeroPlayers,
   HeroStats,
