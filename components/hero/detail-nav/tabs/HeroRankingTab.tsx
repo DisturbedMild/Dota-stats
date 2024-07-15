@@ -1,36 +1,22 @@
 "use client";
 
-import {useEffect, useState} from "react";
 import {Skeleton} from "@mui/material";
 
+import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
 import HeroRanking from "@/components/hero/ranking/HeroRanking";
-import {API} from "@/services/api";
 import {PlayersHeroRanking} from "@/types/index";
 
 
 
 const HeroRankingTab = ({currentHero}: HeroDetailsTabList) => {
-  const [playersHeroRanking, setPlayersHeroRanking] = useState<PlayersHeroRanking | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const {isLoading, data: playersHeroRanking, error}: {data: PlayersHeroRanking} =
+    useReactQueryRequest("players-hero-ranking", `https://api.opendota.com/api/rankings?hero_id=${currentHero.id}`);
 
-  useEffect(() => {
-    if (currentHero) {
-      API.heroes
-        .getHeroPlayersRanking(currentHero.id)
-        .then((data) => setPlayersHeroRanking(data))
-        .catch(() => {})
-        .finally(() => setIsLoading(false));
-      ;
-    }
-  }, [currentHero]);
+  if (isLoading) return <Skeleton variant="rectangular" width="100%" height="400px" />
+  if (error) return <p>Something went wrong, try again later...</p>
 
-  return (
-    <>
-      {isLoading && <Skeleton variant="rectangular" width="100%" height="400px" />}
-      {!isLoading && playersHeroRanking && <HeroRanking rankings={playersHeroRanking.rankings}/>}
-    </>
-  )
+  return <HeroRanking rankings={playersHeroRanking.rankings}/>
 }
 
 export default HeroRankingTab;

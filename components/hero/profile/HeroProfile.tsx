@@ -1,30 +1,18 @@
 "use client";
 
-import {useEffect, useState} from "react";
-import {useQueries, useQuery} from "@tanstack/react-query";
+import {useCallback, useEffect, useState} from "react";
 import Image from "next/image";
 
-import {fetchData} from "@/common/utils/fetchData";
+import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import Abilities from "@/components/hero/abilities/Abilities";
 import Attributes from "@/components/hero/abilities/Attributes";
 import HeroProfilePortrait from "@/components/hero/profile/HeroProfilePortrait";
 import HeroShortDescription from "@/components/hero/profile/HeroShortDescription";
-import {Ability, HeroAbilitiesNames, HeroKeys, HeroStats, Talent} from "@/types/index";
+import {Ability, HeroStats, Talent} from "@/types/index";
 
 interface HeroProfileProps {
   currentHero: HeroStats,
 }
-
-const abilitiesUrls = [
-  {
-    key: 'heroAbilities',
-    url: "https://api.opendota.com/api/constants/hero_abilities"
-  },
-  {
-    key: 'abilities',
-    url: "https://api.opendota.com/api/constants/abilities"
-  }
-]
 
 const findHeroByKey = (data: any, keyName: string) => {
   let res;
@@ -63,38 +51,31 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
   const [currentHeroAbilities, setCurrentHeroAbilities] = useState<Ability[] | []>([]);
   const [currentHeroTalents, setCurrentHeroTalents] = useState<Talent[] | []>([]);
 
-  const [heroAbilities, abilities] = useQueries({
-    queries: abilitiesUrls.map(({key, url}) => {
-      return {
-        queryKey: [key],
-        queryFn: async () => fetchData(url)
-      }
-    }),
-  })
+  const {isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData, error: errorHeroAbilities} =
+    useReactQueryRequest("heroAbilities", "https://api.opendota.com/api/constants/hero_abilities");
 
-  const {isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData, error: errorHeroAbilities} = heroAbilities;
-  const {isLoading: isAbilitiesLoading, data: abilitiesData, error: errorAbilities} = abilities;
+  const {data: abilitiesData} = useReactQueryRequest("abilities", "https://api.opendota.com/api/constants/abilities");
 
-  const getUpdatedHeroTalents = () => {
+  const getUpdatedHeroTalents = useCallback(() => {
     if (!heroAbilitiesData || !abilitiesData || !currentHero) return heroAbilitiesData;
     const hero = findHeroByKey(heroAbilitiesData, currentHero.name)
     const currentHeroTalents = hero.talents;
     const updatedHeroTalents = updateHeroTalentsArray(currentHeroTalents, abilitiesData);
     setCurrentHeroTalents(updatedHeroTalents);
-  }
+  }, [heroAbilitiesData, abilitiesData, currentHero])
 
-  const getUpdatedHeroAbilities = () => {
-    if (!heroAbilities || !abilities || !currentHero) return heroAbilitiesData;
+  const getUpdatedHeroAbilities = useCallback(() => {
+    if (!heroAbilitiesData || !abilitiesData || !currentHero) return heroAbilitiesData;
     const hero = findHeroByKey(heroAbilitiesData, currentHero.name)
     if (!hero || !abilitiesData) return heroAbilitiesData
     const updatedHeroAbilities = updateHeroAbilities(hero.abilities, abilitiesData);
     setCurrentHeroAbilities(updatedHeroAbilities);
-  }
+  }, [heroAbilitiesData, abilitiesData, currentHero])
 
   useEffect(() => {
     getUpdatedHeroAbilities();
     getUpdatedHeroTalents();
-  }, [heroAbilitiesData, abilitiesData]);
+  }, [getUpdatedHeroTalents,getUpdatedHeroAbilities]);
 
   if (isHeroAbilitiesLoading) return <p>Loading....</p>
 
@@ -105,7 +86,7 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
           className="absolute opacity-35 bg-no-repeat blur-xl object-cover w-[125%] h-[125%]"
           src={`/heroes/${currentHero.localized_name
             ?.replaceAll(" ", "_")
-            .toLocaleLowerCase()}.png`} alt="Backround hero image" width={256} height={144}/>
+            .toLocaleLowerCase()}.png`} alt="Background hero image" width={256} height={144}/>
       </div>
       <div className="flex items-start px-10 py-14 relative z-10 gap-5">
         <div className="w-2/12">

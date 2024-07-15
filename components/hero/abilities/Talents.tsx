@@ -7,7 +7,7 @@ import TalentsPopup from "@/components/hero/abilities/TalentsPopup";
 import {Talent} from "@/types/index";
 
 type TalentsProps = {
-  talents: Talent[] | null,
+  talents: Talent[],
 }
 
 const Talents = ({talents}: TalentsProps) => {

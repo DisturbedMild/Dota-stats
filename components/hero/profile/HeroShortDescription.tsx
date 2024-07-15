@@ -1,9 +1,7 @@
 "use client";
 
-import {useCallback, useEffect, useState} from "react";
-
+import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import Spinner from "@/components/ui/loaders/Spinner";
-import {API} from "@/services/api";
 import {HeroStats, Matchup} from "@/types/index";
 
 type HeroShortDescriptionProps = {
@@ -11,36 +9,30 @@ type HeroShortDescriptionProps = {
 }
 
 const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
-  const [heroMatchupsData, setHeroMatchupsData] = useState<Matchup[] | null>(null);
 
-  useEffect(() => {
-    if (currentHero) {
-      API.heroes
-        .getHeroMatchups(currentHero.id)
-        .then((data) => setHeroMatchupsData(data))
-        .catch(() => {
-        });
+  const {isMatchupLoading, data: heroMatchupsData, error: heroMatchupsError}: {data: Matchup[] | null} =
+    useReactQueryRequest("hero-matchups", `https://api.opendota.com/api/heroes/${currentHero?.id}/matchups`);
+
+  const heroOverallWinrate = (games: Matchup[] | null): number => {
+    if (games === null) {
+      return 0;
     }
-  }, [currentHero]);
+    const gamesPlayed = games?.reduce(
+      (acc: { games: number; wins: number }, curr: Matchup) => {
+        acc.games += curr.games_played;
+        acc.wins += curr.wins;
+        return acc;
+      },
+      {games: 0, wins: 0}
+    );
 
-  const heroOverallWinrate = useCallback((games: Matchup[] | null): number => {
-      if (games === null) {
-        return 0;
-      }
-      const gamesPlayed = games.reduce(
-        (acc: { games: number; wins: number }, curr: Matchup) => {
-          acc.games += curr.games_played;
-          acc.wins += curr.wins;
-          return acc;
-        },
-        {games: 0, wins: 0}
-      );
-
-      return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
-    }, [heroMatchupsData]
-  )
+    return Number(((gamesPlayed?.wins / gamesPlayed?.games) * 100).toFixed(2));
+  };
 
   const winrate = heroOverallWinrate(heroMatchupsData);
+
+  if (isMatchupLoading) return <p>Loading...</p>
+  if (heroMatchupsError) return <p>Something went wrong, try again later...</p>
 
   return (
     <div className="text-lg text-white w-4/12">

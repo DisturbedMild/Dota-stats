@@ -8,7 +8,7 @@ import TalentItem from "@/components/hero/abilities/TalentItem";
 import {Talent} from "@/types/index";
 
 type TalentsPopupProps = {
-  talents: Talent[] | null,
+  talents: Talent[],
 }
 
 type TalentLevel = Pick<Talent, "talentLevel">;
@@ -40,8 +40,8 @@ const TalentsPopup = ({talents}: TalentsPopupProps) => {
   }
 
   useEffect(() => {
-    const arr = addLevelsToArray();
-    setUpdatedTalentsList(arr)
+    const talentsWithLevels = addLevelsToArray();
+    setUpdatedTalentsList(talentsWithLevels)
   }, []);
 
   return (

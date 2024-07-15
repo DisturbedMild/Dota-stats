@@ -1,8 +1,8 @@
 "use client";
 
-import React, {createContext, useEffect, useState} from "react";
+import React, {createContext} from "react";
 
-import {API} from "@/services/api";
+import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import {Ability, Heroes, Item} from "@/types/index";
 
 
@@ -31,39 +31,10 @@ type APIContextProvideProps = {
 }
 
 export const APIContextProvider = ({children}: APIContextProvideProps) => {
-  const [heroes, setHeroes] = useState<Heroes | null>(null);
-  const [items, setItems] = useState<Items | null>(null);
-  const [abilities, setAbilities] = useState<Abilities | null>(null);
 
-  useEffect(() => {
-    API.heroes
-      .getHeroes()
-      .then((data) => {
-        setHeroes(data);
-      })
-      .catch((error) => {
-      });
-  }, []);
-
-  useEffect(() => {
-    API.constants
-      .getConstants("items")
-      .then((data: Items) => {
-        setItems(data);
-      })
-      .catch((error) => {
-      });
-  }, []);
-
-  useEffect(() => {
-    API.constants
-      .getConstants("abilities")
-      .then((data: Abilities) => {
-        setAbilities(data);
-      })
-      .catch((error) => {
-      });
-  }, []);
+  const {data: items}: {data: Items | null} = useReactQueryRequest("items", "https://api.opendota.com/api/constants/items");
+  const {data: heroes}: {data: Heroes | null} = useReactQueryRequest("heroes", "https://api.opendota.com/api/heroes");
+  const {data: abilities}: {data: Abilities | null} = useReactQueryRequest("abilities", "https://api.opendota.com/api/constants/abilities");
 
   const ctxValue = {
     heroes,

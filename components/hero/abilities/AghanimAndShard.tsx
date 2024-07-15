@@ -5,23 +5,23 @@ import Image from "next/image";
 import {useParams} from "next/navigation";
 
 import {APIContext} from "@/common/context/api-context";
+import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import AghanimPopup from "@/components/hero/abilities/AghanimPopup";
 import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
-import {API} from "@/services/api";
 import {Ability} from "@/types/index";
 
-interface AghanimAndShardProps {
-  heroName: string
-}
-
-const AghanimAndShard = ({heroName}: AghanimAndShardProps) => {
-  const {abilities} = useContext(APIContext);
+const AghanimAndShard = () => {
+  const {abilities}: {abilities: Record<string, Ability>} = useContext(APIContext);
   const {heroId}: {heroId: string} = useParams();
   const [showPopup, setShowPopup] = useState(false);
   const [aghanimAbility, setAghanimAbility] = useState<Ability | null>(null);
   const [shardAbility, setShardAbility] = useState<Ability | null>(null);
+
+  const {data}: {data: Ability[]} = useReactQueryRequest("aghs_desc", "https://api.opendota.com/api/constants/aghs_desc");
+
   useEffect(() => {
     const getAghanim = (data: Ability[]) => {
+      if (!data) return null
       const [currentHeroAghanim] = data.filter((element: any) => element.hero_id === Number(heroId))
 
       for (const key in abilities) {
@@ -33,10 +33,8 @@ const AghanimAndShard = ({heroName}: AghanimAndShardProps) => {
         }
       }
     }
-    API.constants
-      .getConstants("aghs_desc")
-      .then((data) => getAghanim(data));
-  }, []);
+    getAghanim(data);
+  }, [abilities, heroId, data]);
 
   return (
     <div

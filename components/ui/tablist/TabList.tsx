@@ -8,6 +8,7 @@ import {ITabListProps, ITabProps} from "@/components/ui/tablist/types";
 
 const TabList: React.FC<ITabListProps> = ({ activeTabIndex = 0, children, className, activeTabClasses }: ITabListProps) => {
     const [activeTab, setActiveTab] = useState(activeTabIndex);
+    console.log(activeTab);
 
     const handleTabClick = (index: number) => {
       setActiveTab(index)

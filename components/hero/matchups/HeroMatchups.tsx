@@ -20,8 +20,8 @@ interface THeroMatchupProps {
   heroMatchups: SortedHeroMatchup[];
 }
 
-const HeroMatchups = ({heroMatchups}: THeroMatchupProps) => {
-  const [sortedHeroMatchups, setSortedHeroMatchups] = useState(heroMatchups);
+const HeroMatchups = ({calculatedHeroMatchupsWinrateWithAdvantage}: THeroMatchupProps) => {
+  const [sortedHeroMatchups, setSortedHeroMatchups] = useState(calculatedHeroMatchupsWinrateWithAdvantage);
   const [sortBy, setSortBy] = useState<Sorting | null>(null);
   const [orderBy, setOrderBy] = useState(Toggle.ASC);
 

@@ -1,42 +1,31 @@
 "use client";
 
-import {useEffect, useState} from "react";
 import {Skeleton} from "@mui/material";
 
+import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
 import HeroItems from "@/components/hero/items/HeroItems";
-import {API} from "@/services/api";
 import {HeroItemsPopularity} from "@/types/index";
 
 const HeroItemsPopularityTab = ({currentHero}: HeroDetailsTabList) => {
-  const [heroItemsPopularity, setHeroItemsPopularity] = useState<HeroItemsPopularity | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const {isLoading, data: heroItemsPopularity, error}: {data: HeroItemsPopularity} =
+    useReactQueryRequest("items-popularity", `https://api.opendota.com/api/heroes/${currentHero.id}/itemPopularity`);
 
-  useEffect(() => {
-    if (currentHero) {
-      API.heroes
-        .getHeroItemsPopularity(currentHero.id)
-        .then((data) => setHeroItemsPopularity(data))
-        .catch(() => {})
-        .finally(() => setIsLoading(false));
-    }
-  }, [currentHero]);
-  return (
+  if (isLoading) return (
     <>
-      {isLoading && (
-        <>
-          <Skeleton/>
-          <div className="flex gap-2 mt-2">
-            <Skeleton variant="rectangular" width="25%" height="250px"/>
-            <Skeleton variant="rectangular" width="25%" height="250px"/>
-            <Skeleton variant="rectangular" width="25%" height="250px"/>
-            <Skeleton variant="rectangular" width="25%" height="250px"/>
-          </div>
-        </>
-      )}
-      {!isLoading && heroItemsPopularity && <HeroItems heroItemsPopularity={heroItemsPopularity}/>}
+      <Skeleton/>
+      <div className="flex gap-2 mt-2">
+        <Skeleton variant="rectangular" width="25%" height="250px"/>
+        <Skeleton variant="rectangular" width="25%" height="250px"/>
+        <Skeleton variant="rectangular" width="25%" height="250px"/>
+        <Skeleton variant="rectangular" width="25%" height="250px"/>
+      </div>
     </>
   )
+
+  if (error) return <p>Something went wrong, try again later</p>
+
+  return <HeroItems heroItemsPopularity={heroItemsPopularity}/>
 }
 
 export default HeroItemsPopularityTab;

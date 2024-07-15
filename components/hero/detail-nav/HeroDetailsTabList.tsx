@@ -1,4 +1,5 @@
 "use client";
+
 import HeroBenchmarksTab from "@/components/hero/detail-nav/tabs/HeroBenchmarksTab";
 import HeroItemsPopularityTab from "@/components/hero/detail-nav/tabs/HeroItemsPopularityTab";
 import HeroMatchesDurationTab from "@/components/hero/detail-nav/tabs/HeroMatchesDurationTab";
@@ -8,9 +9,7 @@ import HeroPlayersTab from "@/components/hero/detail-nav/tabs/HeroPlayersTab";
 import HeroRankingTab from "@/components/hero/detail-nav/tabs/HeroRankingTab";
 import TabItem from "@/components/ui/tablist/TabItem";
 import TabList from "@/components/ui/tablist/TabList";
-import {
-  HeroStats,
-} from "@/types/index";
+import {HeroStats} from "@/types/index";
 
 export type HeroDetailsTabList = {
   currentHero: HeroStats,

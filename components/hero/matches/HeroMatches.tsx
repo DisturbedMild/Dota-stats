@@ -1,10 +1,10 @@
 "use client";
 
 import HeroMatchesItem from "@/components/hero/matches/HeroMatchesItem";
-import {HeroMatch} from "@/types/index";
+import {Match} from "@/types/index";
 
 type HeroMatchesProp = {
-  matches: HeroMatch[]
+  matches: Partial<Match[]>
 }
 
 const HeroMatches = ({matches}: HeroMatchesProp) => {
@@ -22,7 +22,7 @@ const HeroMatches = ({matches}: HeroMatchesProp) => {
             <div className="w-4/12">a</div>
           </div>
         </header>
-        {matches.map((match: HeroMatch) => <HeroMatchesItem key={match.match_id} match={match} />)}
+        {matches.map((match: Partial<Match>) => <HeroMatchesItem key={match.match_id} match={match} />)}
       </article>
     </>
   )
