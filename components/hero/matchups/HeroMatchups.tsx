@@ -17,7 +17,7 @@ enum Toggle {
 }
 
 interface THeroMatchupProps {
-  heroMatchups: SortedHeroMatchup[];
+  calculatedHeroMatchupsWinrateWithAdvantage: SortedHeroMatchup[];
 }
 
 const HeroMatchups = ({calculatedHeroMatchupsWinrateWithAdvantage}: THeroMatchupProps) => {

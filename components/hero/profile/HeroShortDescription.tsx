@@ -10,7 +10,7 @@ type HeroShortDescriptionProps = {
 
 const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
 
-  const {isMatchupLoading, data: heroMatchupsData, error: heroMatchupsError}: {data: Matchup[] | null} =
+  const {isLoading, data: heroMatchupsData, error} =
     useReactQueryRequest("hero-matchups", `https://api.opendota.com/api/heroes/${currentHero?.id}/matchups`);
 
   const heroOverallWinrate = (games: Matchup[] | null): number => {
@@ -31,8 +31,8 @@ const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
 
   const winrate = heroOverallWinrate(heroMatchupsData);
 
-  if (isMatchupLoading) return <p>Loading...</p>
-  if (heroMatchupsError) return <p>Something went wrong, try again later...</p>
+  if (isLoading) return <p>Loading...</p>
+  if (error) return <p>Something went wrong, try again later...</p>
 
   return (
     <div className="text-lg text-white w-4/12">

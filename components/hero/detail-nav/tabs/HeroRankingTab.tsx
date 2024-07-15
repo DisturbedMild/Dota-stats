@@ -5,12 +5,9 @@ import {Skeleton} from "@mui/material";
 import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
 import HeroRanking from "@/components/hero/ranking/HeroRanking";
-import {PlayersHeroRanking} from "@/types/index";
-
-
 
 const HeroRankingTab = ({currentHero}: HeroDetailsTabList) => {
-  const {isLoading, data: playersHeroRanking, error}: {data: PlayersHeroRanking} =
+  const {isLoading, data: playersHeroRanking, error} =
     useReactQueryRequest("players-hero-ranking", `https://api.opendota.com/api/rankings?hero_id=${currentHero.id}`);
 
   if (isLoading) return <Skeleton variant="rectangular" width="100%" height="400px" />

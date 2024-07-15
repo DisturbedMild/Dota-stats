@@ -5,10 +5,9 @@ import {Skeleton} from "@mui/material";
 import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
 import HeroItems from "@/components/hero/items/HeroItems";
-import {HeroItemsPopularity} from "@/types/index";
 
 const HeroItemsPopularityTab = ({currentHero}: HeroDetailsTabList) => {
-  const {isLoading, data: heroItemsPopularity, error}: {data: HeroItemsPopularity} =
+  const {isLoading, data: heroItemsPopularity, error} =
     useReactQueryRequest("items-popularity", `https://api.opendota.com/api/heroes/${currentHero.id}/itemPopularity`);
 
   if (isLoading) return (

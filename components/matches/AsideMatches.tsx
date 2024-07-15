@@ -15,7 +15,7 @@ export interface MatchProps {
 const AsideMatches = () => {
 
   // Fix data: any
-  const {isLoading, data: matches, error}: {data: any} =
+  const {isLoading, data: matches, error} =
     useReactQueryRequest("matches", "https://api.opendota.com/api/publicMatches?min_rank=80")
 
   if (isLoading) return <p>Loading...</p>

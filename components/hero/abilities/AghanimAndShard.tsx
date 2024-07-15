@@ -11,17 +11,17 @@ import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
 import {Ability} from "@/types/index";
 
 const AghanimAndShard = () => {
-  const {abilities}: {abilities: Record<string, Ability>} = useContext(APIContext);
+  const {abilities}: {abilities: Record<string, Ability> | null} = useContext(APIContext);
   const {heroId}: {heroId: string} = useParams();
   const [showPopup, setShowPopup] = useState(false);
   const [aghanimAbility, setAghanimAbility] = useState<Ability | null>(null);
   const [shardAbility, setShardAbility] = useState<Ability | null>(null);
 
-  const {data}: {data: Ability[]} = useReactQueryRequest("aghs_desc", "https://api.opendota.com/api/constants/aghs_desc");
+  const {data} = useReactQueryRequest("aghs_desc", "https://api.opendota.com/api/constants/aghs_desc");
 
   useEffect(() => {
     const getAghanim = (data: Ability[]) => {
-      if (!data) return null
+      if (!data || !abilities) return null
       const [currentHeroAghanim] = data.filter((element: any) => element.hero_id === Number(heroId))
 
       for (const key in abilities) {

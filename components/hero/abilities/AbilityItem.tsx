@@ -17,9 +17,11 @@ interface AbilityProps extends Ability {
 }
 
 const AbilityItem = ({dname: name, img, onErrorAbility}: AbilityProps) => {
-  const {abilities}: {abilities: Record<string, Ability>} = useContext(APIContext);
+  const {abilities}: {abilities: Record<string, Ability> | null} = useContext(APIContext);
   const [error, setError] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
+
+  if(!abilities) return <p>Something went wrong, try again later</p>
 
   const getAbilityDescription = () => {
     for (const key in abilities) {
