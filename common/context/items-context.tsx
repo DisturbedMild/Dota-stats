@@ -7,12 +7,12 @@ import {Item, Items} from "@/common/types";
 
 const initialContext = {
   currentActiveItem: null,
-  setCurrentItem: (id) => {}
+  setCurrentItem: (id: number) => {}
 }
 
 interface ItemsContext {
   currentActiveItem: Item | null;
-  setCurrentItem: (id) => void;
+  setCurrentItem: (id: number) => void;
 }
 
 export const ItemsContext = createContext<ItemsContext>(initialContext)
@@ -22,7 +22,7 @@ type ItemsContextProvideProps = {
 }
 
 export const ItemsContextProvide = ({children}: ItemsContextProvideProps) => {
-  const {items}: {items: Items} = useContext(APIContext);
+  const {items} = useContext(APIContext);
   const [currentActiveItem, setCurrentActiveItem] = useState<Item | null>(null);
 
   const ctxValue = {
@@ -30,7 +30,8 @@ export const ItemsContextProvide = ({children}: ItemsContextProvideProps) => {
     setCurrentItem
   }
 
-  function setCurrentItem(id) {
+  function setCurrentItem(id: number) {
+    if (items === null) return null
     for (const item in items) {
       if (items[item].id === id) {
         setCurrentActiveItem(items[item])

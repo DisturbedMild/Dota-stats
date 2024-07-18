@@ -11,8 +11,8 @@ const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
 }
 
-const ChosenItem = () => {
-  const {currentActiveItem}: {currentActiveItem: Item} = useContext(ItemsContext);
+const ChosenShopItem = () => {
+  const {currentActiveItem} = useContext(ItemsContext);
 
   if (currentActiveItem === null) return (
     <div className="w-3/12 bg-secondary/30">
@@ -90,14 +90,14 @@ const ChosenItem = () => {
                   <div className="flex justify-between currentActiveItems-center px-2 py-1 text-xls bg-gradient-to-r from-[#40b91a99] to-[#020024]">
                     <span>Use: {ability.title}</span>
                     <div className="inline-flex gap-2">
-                      {currentActiveItem.mc && (
+                      {currentActiveItem?.mc && (
                         <div className="flex currentActiveItems-center gap-1 text-xs">
                           <div className="bg-blue-500 w-3 h-3 rounded border-black"/>
                           <span>{currentActiveItem.mc}</span>
                         </div>
                       )
                       }
-                      {currentActiveItem.cd && (
+                      {currentActiveItem?.cd && (
                         <div className="flex currentActiveItems-center gap-1 text-xs">
                           <Image
                             src="/icons/ability_cooldown.png"
@@ -121,13 +121,13 @@ const ChosenItem = () => {
                 <div className="flex justify-between currentActiveItems-center px-2 py-1 text-xls bg-gradient-to-r from-[#2b2d69] to-[#02002499]">
                   <span>Passive: {ability.title}</span>
                   <div className="inline-flex gap-2">
-                    {currentActiveItem.mc &&
+                    {currentActiveItem?.mc &&
                         <div className="flex currentActiveItems-center gap-1 text-xs">
                             <div className="bg-blue-500 w-3 h-3 rounded border-black"/>
                             <span>{currentActiveItem.mc}</span>
                         </div>
                     }
-                    {currentActiveItem.cd &&
+                    {currentActiveItem?.cd &&
                         <div className="flex currentActiveItems-center gap-1 text-xs">
                             <Image src="/icons/ability_cooldown.png" alt={"Ability cooldown"} width={14} height={14}
                                    className="h-fit"/>
@@ -156,4 +156,4 @@ const ChosenItem = () => {
   )
 }
 
-export default ChosenItem
+export default ChosenShopItem

@@ -4,7 +4,7 @@ import {useContext} from "react";
 
 import {APIContext} from "@/common/context/api-context";
 import {Item,Items} from "@/common/types";
-import ItemsList from "@/components/items/ItemsList";
+import ShopItemsList from "@/components/items/ShopItemsList";
 
 const ITEM_COLOR = {
   rare: "#1A87F9",
@@ -16,7 +16,8 @@ const ITEM_COLOR = {
   component: "#FFFFFF"
 }
 
-const filterItemsByType = (items: Items, type: string): Item[] => {
+const filterItemsByType = (items: Items | null, type: string): Item[] | null => {
+  if (items === null) return null
   const filteredItems = [];
 
   for (const item in items) {
@@ -27,8 +28,8 @@ const filterItemsByType = (items: Items, type: string): Item[] => {
   return filteredItems
 }
 
-const Items = () => {
-  const {items}: {items: Items} = useContext(APIContext);
+const ShopItems = () => {
+  const {items}: {items: Items | null} = useContext(APIContext);
 
   const componentItems = filterItemsByType(items, "component");
   const rareItems = filterItemsByType(items, "rare");
@@ -40,15 +41,15 @@ const Items = () => {
 
   return (
     <div className="grid grid-cols-3 gap-2 w-9/12">
-      <ItemsList items={componentItems} type={"component"} color={ITEM_COLOR.component}/>
-      <ItemsList items={rareItems} type={"rare"} color={ITEM_COLOR.rare}/>
-      <ItemsList items={epicItems} type={"epic"} color={ITEM_COLOR.epic}/>
-      <ItemsList items={commonItems} type={"common"} color={ITEM_COLOR.common}/>
-      <ItemsList items={consumableItems} type={"consumable"} color={ITEM_COLOR.consumable}/>
-      <ItemsList items={secretShopItems} type={"secret Shop"} color={ITEM_COLOR.secret_shop}/>
-      <ItemsList items={artifactItems} type={"artifact"} color={ITEM_COLOR.artifact}/>
+      <ShopItemsList items={componentItems} type={"component"} color={ITEM_COLOR.component}/>
+      <ShopItemsList items={rareItems} type={"rare"} color={ITEM_COLOR.rare}/>
+      <ShopItemsList items={epicItems} type={"epic"} color={ITEM_COLOR.epic}/>
+      <ShopItemsList items={commonItems} type={"common"} color={ITEM_COLOR.common}/>
+      <ShopItemsList items={consumableItems} type={"consumable"} color={ITEM_COLOR.consumable}/>
+      <ShopItemsList items={secretShopItems} type={"secret Shop"} color={ITEM_COLOR.secret_shop}/>
+      <ShopItemsList items={artifactItems} type={"artifact"} color={ITEM_COLOR.artifact}/>
     </div>
   )
 }
 
-export default Items;
+export default ShopItems;
