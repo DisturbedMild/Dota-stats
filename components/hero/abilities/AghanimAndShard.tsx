@@ -8,7 +8,7 @@ import {APIContext} from "@/common/context/api-context";
 import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import AghanimPopup from "@/components/hero/abilities/AghanimPopup";
 import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
-import {Ability} from "@/types/index";
+import {Ability,AghDescription} from "@/types/index";
 
 const AghanimAndShard = () => {
   const {abilities}: {abilities: Record<string, Ability> | null} = useContext(APIContext);
@@ -20,9 +20,9 @@ const AghanimAndShard = () => {
   const {data} = useReactQueryRequest("aghs_desc", "https://api.opendota.com/api/constants/aghs_desc");
 
   useEffect(() => {
-    const getAghanim = (data: Ability[]) => {
+    const getAghanim = (data: AghDescription[]) => {
       if (!data || !abilities) return null
-      const [currentHeroAghanim] = data.filter((element: any) => element.hero_id === Number(heroId))
+      const [currentHeroAghanim] = data.filter((element: AghDescription) => element.hero_id === Number(heroId))
 
       for (const key in abilities) {
         if (abilities[key].dname === currentHeroAghanim.scepter_skill_name) {

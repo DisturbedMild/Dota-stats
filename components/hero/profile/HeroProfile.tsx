@@ -14,19 +14,23 @@ interface HeroProfileProps {
   currentHero: HeroStats,
 }
 
-const findHeroByKey = (data: any, keyName: string) => {
+const findHeroByKey = (data: Ability[], keyName: string) => {
+  if (!data) return null
   let res;
   for (const key in data) {
     if (key === keyName) res = data[key]
+    return res
   }
-  return res
 }
 
-const updateHeroTalentsArray = (talents: { name: string, level: string }[], data: any) => {
+interface Talents { name: string, level: string }
+
+const updateHeroTalentsArray = (talents: Talents[], data: Ability[]) => {
   const newTalentsArray: Talent[] = [];
 
   talents.forEach(({name, level}: { name: string, level: string }) => {
-    const talentDesc = data[name].dname;
+    // @ts-expect-error: Unreachable code error
+    const talentDesc: string = data[name].dname;
     const newTalent = {
       desc: talentDesc,
       level: Number(level),
@@ -37,11 +41,12 @@ const updateHeroTalentsArray = (talents: { name: string, level: string }[], data
   return newTalentsArray;
 }
 
-const updateHeroAbilities = (abilities: string[], data: any) => {
+const updateHeroAbilities = (abilities: string[], data: Ability[]) => {
   if (!data) return [];
   const newAbilitiesArray: Ability[] = [];
   abilities.forEach((ability) => {
-    newAbilitiesArray.push(findHeroByKey(data, ability));
+    const newAbility = findHeroByKey(data, ability);
+    if (newAbility) newAbilitiesArray.push();
   })
 
   return newAbilitiesArray.filter((ability) => ability.dname !== "");
@@ -51,7 +56,7 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
   const [currentHeroAbilities, setCurrentHeroAbilities] = useState<Ability[] | []>([]);
   const [currentHeroTalents, setCurrentHeroTalents] = useState<Talent[] | []>([]);
 
-  const {isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData, error: errorHeroAbilities} =
+  const {isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData} =
     useReactQueryRequest("heroAbilities", "https://api.opendota.com/api/constants/hero_abilities");
 
   const {data: abilitiesData} = useReactQueryRequest("abilities", "https://api.opendota.com/api/constants/abilities");
@@ -59,15 +64,18 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
   const getUpdatedHeroTalents = useCallback(() => {
     if (!heroAbilitiesData || !abilitiesData || !currentHero) return heroAbilitiesData;
     const hero = findHeroByKey(heroAbilitiesData, currentHero.name)
-    const currentHeroTalents = hero.talents;
-    const updatedHeroTalents = updateHeroTalentsArray(currentHeroTalents, abilitiesData);
-    setCurrentHeroTalents(updatedHeroTalents);
+    const currentHeroTalents = hero?.talents;
+    if (currentHeroTalents){
+      const updatedHeroTalents = updateHeroTalentsArray(currentHeroTalents, abilitiesData);
+      setCurrentHeroTalents(updatedHeroTalents);
+    }
   }, [heroAbilitiesData, abilitiesData, currentHero])
 
   const getUpdatedHeroAbilities = useCallback(() => {
     if (!heroAbilitiesData || !abilitiesData || !currentHero) return heroAbilitiesData;
     const hero = findHeroByKey(heroAbilitiesData, currentHero.name)
     if (!hero || !abilitiesData) return heroAbilitiesData
+    // @ts-expect-error: Unreachable code error
     const updatedHeroAbilities = updateHeroAbilities(hero.abilities, abilitiesData);
     setCurrentHeroAbilities(updatedHeroAbilities);
   }, [heroAbilitiesData, abilitiesData, currentHero])
@@ -98,7 +106,6 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
           {isHeroAbilitiesLoading && <p>Loading....</p>}
           {currentHeroAbilities.length > 0 &&
               <Abilities
-                  heroName={currentHero.localized_name}
                   talents={currentHeroTalents}
                   currentHeroAbilitiesInfo={currentHeroAbilities}/>
           }

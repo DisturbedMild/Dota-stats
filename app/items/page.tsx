@@ -1,14 +1,10 @@
 "use client";
 
-import {useState} from "react";
-
 import {ItemsContextProvide} from "@/common/context/items-context";
-import {Item} from "@/common/types";
 import ChosenShopItem from "@/components/items/chosenShopItem";
 import ShopItems from "@/components/items/ShopItems";
 
 const ItemsPage = () => {
-  const [currentItem, setCurrentItem] = useState<Item | null>(null)
 
   return (
     <section>

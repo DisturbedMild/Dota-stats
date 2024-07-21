@@ -19,13 +19,8 @@ type MatchesDurationProps = {
   heroMatchesDuration: MatchDuration[]
 }
 
-type BarCustomTooltipProps = {
-  active: boolean;
-  payload: any;
-  label: string;
-}
-
-const CustomTooltip = (props: BarCustomTooltipProps) => {
+// @ts-expect-error: Unreachable code error
+const CustomTooltip = (props) => {
   if (props.active && props.payload && props.payload.length) {
     const {games_played, wins} = props.payload[0].payload;
     const winrate = (wins * 100 / games_played).toFixed(2);

@@ -6,7 +6,7 @@ import {sanitizeForId} from "@/common/utils/stringUtils";
 import TabItem from "@/components/ui/tablist/TabItem";
 import {ITabListProps, ITabProps} from "@/components/ui/tablist/types";
 
-const TabList: React.FC<ITabListProps> = ({ activeTabIndex = 0, children, className, activeTabClasses }: ITabListProps) => {
+const TabList: React.FC<ITabListProps> = ({ activeTabIndex = 0, children, className }: ITabListProps) => {
     const [activeTab, setActiveTab] = useState(activeTabIndex);
     console.log(activeTab);
 

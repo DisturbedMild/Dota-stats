@@ -50,7 +50,7 @@ const TalentsPopup = ({talents}: TalentsPopupProps) => {
       <Image src={'/icons/talent_tree.svg'} width={150} height={150} alt="Talent Tree"
              className="absolute z-1 w-full h-full opacity-10"/>
       <div className="w-full z-2 flex flex-wrap justify-center gap-x-2 gap-y-4 items-center text-center text-white">
-        {updatedTalentsList && updatedTalentsList.map((talent: Talent, i) => {
+        {updatedTalentsList && updatedTalentsList.map((talent: Talent) => {
           const id = uuidv4();
           if (talent.talentLevel) {
             return <TalentCircle key={id} talentLevel={talent.talentLevel}/>;

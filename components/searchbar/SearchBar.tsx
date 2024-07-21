@@ -22,7 +22,7 @@ const SearchBar = () => {
     setSearchValue(value);
   };
 
-  const searchHandler = (text: any) => {
+  const searchHandler = (text: string) => {
     console.log("Searched:", text);
   };
 

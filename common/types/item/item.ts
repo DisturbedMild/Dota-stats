@@ -17,7 +17,7 @@ export interface Item {
   dispellable?: string;
   dmg_type?: string;
   bkbpierce?: string;
-  target_team?: any[] | string;
+  target_team?: unknown[] | string;
   target_type?: string;
   attrib: {key: string, value: string, display?: string}[],
   mc: number | boolean;
@@ -30,7 +30,7 @@ export interface Item {
 }
 
 export interface Items {
-  items: Item[];
+  [key: string]: Item;
 }
 
 export interface HeroItemsPopularity {

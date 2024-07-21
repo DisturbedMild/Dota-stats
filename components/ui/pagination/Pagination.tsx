@@ -43,7 +43,7 @@ const Pagination = (props: PaginationProps) => {
     onPageChange(currentPage - 1);
   };
 
-  let lastPage = paginationRange[paginationRange.length - 1];
+  const lastPage = paginationRange[paginationRange.length - 1];
 
   return (
     <div className="mb-2">

@@ -53,7 +53,7 @@ const AbilityItem = ({dname: name, img, onErrorAbility}: AbilityProps) => {
             <Image
                 className="w-12 h-12 backdrop-blur-1"
                 src={img}
-                onError={(e) => {
+                onError={() => {
                   setError(true)
                   onErrorAbility(name)
                 }}

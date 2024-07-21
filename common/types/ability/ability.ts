@@ -28,6 +28,19 @@ export interface Abilities {
   abilities: Ability[]
 }
 
+export interface AghDescription {
+  hero_name: string,
+  hero_id: number,
+  has_scepter: boolean,
+  scepter_desc: string
+  scepter_skill_name: string,
+  scepter_new_skill: boolean,
+  has_shard: boolean,
+  shard_desc: string,
+  shard_skill_name: string,
+  shard_new_skill: boolean
+}
+
 export interface HeroAbilitiesNames {
   abilities: string[];
   talents: {

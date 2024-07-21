@@ -19,24 +19,16 @@ const COLORS: Record<string, string> = {
   TOWER_DAMAGE: "#F06D0C",
 }
 
-type CustomTooltipProps = {
-  name: string;
-  active: boolean;
-  payload: any;
-  label: string;
-}
-
-const CustomTooltip = (props: CustomTooltipProps) => {
-  if (props.active && props.payload && props.payload.length) {
+// @ts-expect-error: Unreachable code error
+const CustomTooltip = (props) => {
+  if (props && props.payload.length > 0) {
     return (
       <div className="p-2 bg-black/40">
-        <p className="label">{`${props.label}`}</p>
-        <p className="desc capitalize">{props.name.replaceAll("_", " ")}: {props.payload[0].value.toFixed(2)}</p>
+        <p className="label">{`${props?.label}`}</p>
+        <p className="desc capitalize">{props?.name.replaceAll("_", " ")}: <span>{props.payload[0].value.toFixed(2)}</span></p>
       </div>
     );
   }
-
-  return null;
 }
 
 type HeroBenchmarksItemProps = {

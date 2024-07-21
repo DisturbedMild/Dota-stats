@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import Image, {ImageLoaderProps} from "next/image";
 
 import {Post} from "@/types/index";
 
 import defaultPostImage from "./default-post.png";
+
 const formatPostsContent = (post: Post) => {
   if ((post.feedlabel = "Community Announcements")) {
     const content = post.contents;
@@ -23,7 +24,7 @@ const formatPostsContent = (post: Post) => {
   }
 };
 
-const imageLoader = ({ src, width, quality }: any) => {
+const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   return `https://clan.akamai.steamstatic.com/images/${src}?w=${width}&q=${
     quality || 75
   }`;

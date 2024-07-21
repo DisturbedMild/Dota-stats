@@ -50,7 +50,7 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
       <div>
         <p className="mb-2 text-success text-left">Radian</p>
         <div className="flex gap-2">
-          {radiantHeroes?.map((hero: any) => (
+          {radiantHeroes?.map((hero: Hero) => (
             <HeroIcon key={hero.id} name={hero.localized_name} />
           ))}
         </div>
@@ -58,7 +58,7 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
       <div>
         <p className="mt-4 mb-2 text-error text-left">Dire</p>
         <div className="flex gap-2">
-          {direHeroes?.map((hero: any) => (
+          {direHeroes?.map((hero: Hero) => (
             <HeroIcon key={hero.id} name={hero.localized_name} />
           ))}
         </div>

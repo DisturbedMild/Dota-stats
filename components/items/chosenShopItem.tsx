@@ -5,7 +5,6 @@ import {ImageLoaderProps} from "next/image";
 import Image from "next/image";
 
 import {ItemsContext} from "@/common/context/items-context";
-import {Item} from "@/common/types";
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;

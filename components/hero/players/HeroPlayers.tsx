@@ -12,7 +12,7 @@ type HeroPlayersProps = {
 
 const HeroPlayers = ({heroPlayers}: HeroPlayersProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, SetPostsPerPage] = useState(100);
+  const postsPerPage = 100;
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * postsPerPage;

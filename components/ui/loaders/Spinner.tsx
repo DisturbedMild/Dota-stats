@@ -7,7 +7,7 @@ interface ISpinnerProps {
   lineColor?: string;
 }
 
-const Spinner = ({ bgColor, w = 8, h = 8, lineColor }: ISpinnerProps) => {
+const Spinner = ({ w = 8, h = 8, lineColor }: ISpinnerProps) => {
   return (
     <div role="status">
       <svg aria-hidden="true" style={{width: `${w}px`, height: `${h}px`, fill: lineColor}} className={`inline text-gray-200 animate-spin dark:text-gray-600`}
