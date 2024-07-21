@@ -5,6 +5,7 @@ import {ImageLoaderProps} from "next/image";
 import Image from "next/image";
 
 import {ItemsContext} from "@/common/context/items-context";
+import ChoseShopItemComponents from "@/components/items/chosenShopItemComponents";
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
@@ -12,22 +13,24 @@ const imageLoader = ({src, width}: ImageLoaderProps) => {
 
 const ChosenShopItem = () => {
   const {currentActiveItem} = useContext(ItemsContext);
+  console.log(currentActiveItem)
 
   if (currentActiveItem === null) return (
-    <div className="w-3/12 bg-secondary/30">
+    <div className="w-3/12 bg-secondary/30 transition-all">
       <h2>You still didn&apos;t chose an currentActiveItem.</h2>
     </div>
   )
 
   return (
-    <div className="w-3/12 bg-secondary/30 h-max">
-      <div className="grid grid-cols-66-160 currentActiveItems-start gap-x-4 px-1.5 py-3">
+    <div className="w-3/12 h-max bg-secondary/30 transition-all">
+      <div className="grid grid-cols-66-160 gap-x-4 px-1.5 py-3">
         <Image
           src={currentActiveItem.img}
           alt={currentActiveItem.dname}
           loader={imageLoader}
           width={66}
           height={48}
+          loading="lazy"
           className="h-full border border-black"/>
         <div className="flex flex-col w-48">
           <span className="text-xls">{currentActiveItem.dname.toUpperCase()}</span>
@@ -151,6 +154,13 @@ const ChosenShopItem = () => {
           </div>
         )}
       </div>
+      {currentActiveItem.created &&
+        <ChoseShopItemComponents
+          img={currentActiveItem.img}
+          components={currentActiveItem.components}
+          dname={currentActiveItem.dname}
+        />
+      }
     </div>
   )
 }
