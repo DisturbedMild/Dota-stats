@@ -1,7 +1,7 @@
-// interface Props {}
+
 
 const CybersportPage = () => {
-  return <h1>Cybersport Page</h1>;
+  return <h1>CyberSport Page</h1>;
 };
 
 export default CybersportPage;

@@ -33,3 +33,9 @@ WARNING: TS-IGNORE in HeroBenchmarksItem.tsx
     ==> Player Page
 
 ==> CyberSport
+TODO: Create search by team vs team
+TODO: Show last series between teams
+    TODO: Last series (league+series+details+winner+teams)
+TODO: Show popular teams + active leagues
+    TODO: Teams(logo+win/lose + popularity placement)
+
