@@ -15,12 +15,11 @@ interface HeroProfileProps {
 }
 
 const findHeroByKey = (data: Ability[], keyName: string) => {
-  if (!data) return null
   let res;
   for (const key in data) {
     if (key === keyName) res = data[key]
-    return res
   }
+  return res
 }
 
 interface Talents { name: string, level: string }
@@ -42,11 +41,10 @@ const updateHeroTalentsArray = (talents: Talents[], data: Ability[]) => {
 }
 
 const updateHeroAbilities = (abilities: string[], data: Ability[]) => {
-  if (!data) return [];
   const newAbilitiesArray: Ability[] = [];
   abilities.forEach((ability) => {
     const newAbility = findHeroByKey(data, ability);
-    if (newAbility) newAbilitiesArray.push();
+    if (newAbility) newAbilitiesArray.push(newAbility);
   })
 
   return newAbilitiesArray.filter((ability) => ability.dname !== "");
@@ -74,7 +72,6 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
   const getUpdatedHeroAbilities = useCallback(() => {
     if (!heroAbilitiesData || !abilitiesData || !currentHero) return heroAbilitiesData;
     const hero = findHeroByKey(heroAbilitiesData, currentHero.name)
-    if (!hero || !abilitiesData) return heroAbilitiesData
     // @ts-expect-error: Unreachable code error
     const updatedHeroAbilities = updateHeroAbilities(hero.abilities, abilitiesData);
     setCurrentHeroAbilities(updatedHeroAbilities);
@@ -105,9 +102,7 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
           <Attributes currentHero={currentHero}/>
           {isHeroAbilitiesLoading && <p>Loading....</p>}
           {currentHeroAbilities.length > 0 &&
-              <Abilities
-                  talents={currentHeroTalents}
-                  currentHeroAbilitiesInfo={currentHeroAbilities}/>
+            <Abilities talents={currentHeroTalents} currentHeroAbilitiesInfo={currentHeroAbilities}/>
           }
         </div>
       </div>

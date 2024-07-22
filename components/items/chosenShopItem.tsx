@@ -13,11 +13,10 @@ const imageLoader = ({src, width}: ImageLoaderProps) => {
 
 const ChosenShopItem = () => {
   const {currentActiveItem} = useContext(ItemsContext);
-  console.log(currentActiveItem)
 
   if (currentActiveItem === null) return (
-    <div className="w-3/12 bg-secondary/30 transition-all">
-      <h2>You still didn&apos;t chose an currentActiveItem.</h2>
+    <div className="flex flex-col justify-center p-2 w-3/12 bg-secondary/30 text-center transition-all">
+      <h2 className="text-4xl text-white/20">You still didn&apos;t chose an item.</h2>
     </div>
   )
 

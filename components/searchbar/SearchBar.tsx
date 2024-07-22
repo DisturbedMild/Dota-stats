@@ -30,7 +30,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     debounceSearch(searchValue);
-  }, [searchValue]);
+  }, [searchValue, debounceSearch]);
 
   return (
     <form

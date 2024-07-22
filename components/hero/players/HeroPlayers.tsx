@@ -18,7 +18,7 @@ const HeroPlayers = ({heroPlayers}: HeroPlayersProps) => {
     const firstPageIndex = (currentPage - 1) * postsPerPage;
     const lastPageIndex = firstPageIndex + postsPerPage;
     return heroPlayers.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage, heroPlayers]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)

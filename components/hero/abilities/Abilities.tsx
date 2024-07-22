@@ -15,15 +15,15 @@ interface AbilitiesProps {
 const Abilities = ({currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
   const [abilities, setAbilities] = useState<Ability[]>(currentHeroAbilitiesInfo);
 
-  const findAbilityIndex = (name: string) => {
-      return abilities.findIndex((ability) => ability.dname === name);
-  }
+  const findAbilityIndex = useCallback((name: string) => {
+    return abilities.findIndex((ability) => ability.dname === name);
+  }, [abilities])
 
-  const changingAbilitiesOrder = (index: number) => {
+  const changingAbilitiesOrder = useCallback((index: number) => {
     const abilitiesCopy = [...abilities];
     const splicedAbility = abilitiesCopy.splice(index, 1);
     return [...splicedAbility, ...abilitiesCopy]
-  }
+  }, [abilities])
 
   const onErrorAbilityHandler = useCallback((name: string) => {
     setAbilities(prevState => {
@@ -31,7 +31,7 @@ const Abilities = ({currentHeroAbilitiesInfo, talents}: AbilitiesProps) => {
       if(abilityIndex <= 0) return prevState
       return changingAbilitiesOrder(abilityIndex)
     })
-  }, [currentHeroAbilitiesInfo])
+  }, [findAbilityIndex, changingAbilitiesOrder])
 
   return (
     <div className="flex flex-wrap items-center gap-2 justify-center">

@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import Image from "next/image";
 import {v4 as uuidv4} from "uuid";
 
@@ -23,7 +23,7 @@ const TalentsPopup = ({talents}: TalentsPopupProps) => {
   const [updatedTalentsList, setUpdatedTalentsList] = useState<Talent[] | null>(null);
 
 
-  const addLevelsToArray = () => {
+  const addLevelsToArray = useCallback(() => {
     if (!talents) return null
     let talentLevel = 10;
     let level = 0;
@@ -37,12 +37,12 @@ const TalentsPopup = ({talents}: TalentsPopupProps) => {
       }
     }
     return updatedTalentsArray;
-  }
+  }, [talents])
 
   useEffect(() => {
     const talentsWithLevels = addLevelsToArray();
     setUpdatedTalentsList(talentsWithLevels)
-  }, []);
+  }, [addLevelsToArray]);
 
   return (
     <div
