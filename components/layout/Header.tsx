@@ -19,10 +19,10 @@ const Header = () => {
           </li>
           <li
             className={`${
-              pathname === "/cybersport" ? "text-teal" : "text-white"
+              pathname === "/teams" ? "text-teal" : "text-white"
             }`}
           >
-            <Link href="/cybersport">Cybersport</Link>
+            <Link href="/teams">Teams</Link>
           </li>
           <li
             className={`${
