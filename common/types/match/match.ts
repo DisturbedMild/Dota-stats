@@ -207,7 +207,7 @@ interface FullMatchInfoPlayer {
   backpack_0: number;
   backpack_1: number;
   backpack_2: number;
-  benchmarks: MatchPlayerBenchmarks;
+  benchmarks: Record<string, {pct: number; raw: number}>;
   buyback_count:number;
   buyback_log: any[];
   camps_stacked: number;
@@ -346,16 +346,6 @@ interface MatchObjectives {
   type: string;
   unit?: string;
   value?: number;
-}
-
-interface MatchPlayerBenchmarks {
-  [gold_per_min: string]: {pct: number; raw: number;};
-  [hero_damage_per_min: string]: {pct: number; raw: number};
-  [hero_healing_per_min: string]: {pct: number; raw: number};
-  [kills_per_min: string]: {pct: number;raw: number};
-  [last_hits_per_min: string]: {pct: number;raw: number};
-  [tower_damage: string]: {pct: number;raw: number};
-  [xp_per_min: string]: {pct: number;raw: number};
 }
 
 interface MatchPlayerLeftLog {
