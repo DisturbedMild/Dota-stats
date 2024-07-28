@@ -27,6 +27,43 @@ WARNING: TS-IGNORE in HeroBenchmarksItem.tsx
 ==> Matches
 
  ==> Match Page
+ Architecture/Composition:
+ 1. Result Description >
+    Team winner
+    results(kills, time, side,)
+    League/matchid/region
+ 2. TabNavigation(overview/benchmark/draft/performance/laning/combat/farm/items/graphs/casts/objectives/vision/actions/teamfights/analysis/log/chat)
+    Overview ==>
+        Team1 overview
+          Team1Player:
+            Player:HeroImg+Perk/PlayerNick+rank
+            lvl: HeroLevel
+            kda: K D A (show most kills with underscore)
+            lh/dn: number/number
+            net: number
+            gpm/xpm: number/number
+            hd: number
+            td: number
+            hh: number
+            items: items+buy time + backpack + neutral item agh/shard
+            buffs
+          PlayerTotal
+
+
+        Team1 pick/bans
+          if ban = grayimage with red lane thow image
+          (pick/ban status)
+
+        Team2 overview
+
+        Team2 pick/bans
+
+        Team1 ability builds
+          Player(HeroImg+Perk/PlayerNick+rank) / levels(1 to 25)
+
+        Team2 ability builds
+
+        building map + radiant advantage(exp/gold graph)
 
 ==> Players
 
