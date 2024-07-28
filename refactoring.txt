@@ -6,4 +6,4 @@ TODO: heroDetailsNavbar, create tabs folder with separated tabs
 TODO: Ability component, remove unnecessary condition
 TODO: Hero Item concat handlers to toggle
 TODO: Destructure heroItemPopup into smaller components
-TODO:
+TODO: Create hooks for fetching data, change arg

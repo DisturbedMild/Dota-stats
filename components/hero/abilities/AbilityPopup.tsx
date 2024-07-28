@@ -29,7 +29,7 @@ const AbilityPopup = ({ability}: AbilityPopupProps) => {
   } = ability;
   return (
     <div
-      className="absolute z-10 top-10 right-14 flex items-center p-1 w-[340px] cursor-pointer z-10 border border-gray-900 bg-slate-800 transition-all">
+      className="absolute z-20 top-10 right-14 flex items-center p-1 w-[340px] cursor-pointer border border-gray-900 bg-slate-800 transition-all">
       <div className="p-2 w-full bg-slate-700">
         <div className="flex items-center gap-4 pb-2 border-b border-gray-500">
           {!error && <Image src={img} loader={imageLoader} onError={() => setError(true)} width={30} height={30}

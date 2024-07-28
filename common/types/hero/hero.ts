@@ -88,3 +88,11 @@ export interface HeroMatch {
   deaths: number;
   assists: number;
 }
+
+
+export interface ITeamMostPopularHero {
+  hero_id: number;
+  localized_name: string;
+  games_played: number;
+  wins: number;
+}

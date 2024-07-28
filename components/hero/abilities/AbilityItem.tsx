@@ -34,15 +34,15 @@ const AbilityItem = ({dname: name, img, onErrorAbility}: AbilityProps) => {
   const ability = getAbilityDescription();
 
   return (
-    <div className="relative bg-black/45 rounded transition-all cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 shadow-xl  hover:shadow-black/40"
+    <div className="relative bg-black"
          onMouseEnter={() => setShowPopup(true)}
          onMouseLeave={() => setShowPopup(false)}
     >
-      <div className="flex justify-center flex-col items-center w-12 -z-1">
+      <div className="relative z-1 flex justify-center flex-col items-center w-12 transition-all cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 shadow-xl hover:shadow-black/40">
         {
           error &&
             <Image
-                className="w-12 h-12 backdrop-blur-1 "
+                className="w-12 h-12 relative z-1 backdrop-blur-1 rounded"
                 src={"/innate_icon.png"}
                 alt="error"
                 width={48}
@@ -51,7 +51,7 @@ const AbilityItem = ({dname: name, img, onErrorAbility}: AbilityProps) => {
         }
         {!error &&
             <Image
-                className="w-12 h-12 backdrop-blur-1"
+                className="w-12 h-12 relative z-1 backdrop-blur-1 rounded"
                 src={img}
                 onError={() => {
                   setError(true)

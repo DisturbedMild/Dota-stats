@@ -40,3 +40,8 @@ TODO: Show popular teams + active leagues
     TODO: Teams(logo+win/lose + popularity placement)
     // https://api.opendota.com/api/teams
 
+
+TODO: Integrate react-tooltip package instead of popups
+    link: https://www.npmjs.com/package/react-tooltip
+
+TODO: Rewrite showing popup logic from js to css

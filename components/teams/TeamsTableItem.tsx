@@ -4,6 +4,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Image, {ImageLoaderProps} from "next/image";
 import Link from "next/link";
 
+import {calculatedTimeFromLastMatch} from "@/common/utils/calucateTime";
 import getNumberWithOrdinal from "@/common/utils/getNumberWithOrdinal";
 import {Team} from "@/types/teams/teams";
 
@@ -11,14 +12,8 @@ interface TeamsTableItemProps extends Team {
   rank: number
 }
 
-const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+const imageLoader = ({ src }: ImageLoaderProps) => {
   return src
-}
-
-const calculatedTimeFromLastMatch = (time: number) => {
-  const date = Date.now();
-  const timesGone = (date - time * 1000) / (1000 * 60 * 60 * 24);
-  return timesGone.toFixed(0)
 }
 
 const TeamsTableItem = ({team_id, rating, wins, losses, last_match_time, name, tag, logo_url, rank}: TeamsTableItemProps) => {

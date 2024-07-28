@@ -19,4 +19,12 @@ export interface HeroPlayer {
   wins: number;
 }
 
+export interface ITeamPlayer {
+  account_id: number;
+  name: string;
+  games_played: number;
+  wins: number;
+  is_current_team_member: boolean
+}
+
 export type HeroPlayers = HeroPlayer[];
