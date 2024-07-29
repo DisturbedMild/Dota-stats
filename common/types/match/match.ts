@@ -137,13 +137,6 @@ export interface FullMatchInfo {
   flags: number;
   game_mode: number;
   human_players: number;
-  league: {
-    banner: unknown;
-    leagueid: number;
-    name: number;
-    ticket: any;
-    tier: string
-  }[]
   leagueid: number;
   lobby_type: number;
   loss: number;
@@ -155,7 +148,14 @@ export interface FullMatchInfo {
     has_api: boolean;
     has_gcdata: boolean;
     has_parsed: boolean;
-  }
+  };
+  league: {
+    banner: any;
+    leagueid: number;
+    name: number;
+    ticket: any;
+    tier: string
+  };
   patch: number;
   picks_bans: {
     hero_id: number;

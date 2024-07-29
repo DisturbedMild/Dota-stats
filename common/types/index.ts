@@ -4,7 +4,7 @@ import {HeroBenchmarks} from "@/types/benchmark/benchmark";
 import {Hero, Heroes, HeroMatch,HeroStats, ITeamMostPopularHero} from "@/types/hero/hero";
 import {HeroItemsPopularity, Item, Items} from "@/types/item/item";
 import {HeroKeys} from "@/types/keys/heroes";
-import {ITeamMatch,Match, MatchDuration, PublicMatches} from "@/types/match/match";
+import {FullMatchInfo,ITeamMatch,Match, MatchDuration, PublicMatches} from "@/types/match/match";
 import {Matchup, SortedHeroMatchup} from "@/types/matchup/matchup";
 import {HeroPlayer, HeroPlayers, ITeamPlayer,PlayerHeroRanking, PlayersHeroRanking} from "@/types/player/player";
 import {Post} from "@/types/post/post";
@@ -13,6 +13,7 @@ export type {
   Abilities,
   Ability,
   AghDescription,
+  FullMatchInfo,
   Hero,
   HeroAbilitiesNames,
   HeroBenchmarks,
