@@ -1,11 +1,11 @@
 "use client";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {useTeams} from "@/common/api";
 import TeamsTableItem from "@/components/teams/TeamsTableItem";
 import {Team} from "@/types/teams/teams";
 
 const TeamsTable = () => {
-  const { isLoading, data: teams, error } = useReactQueryRequest("teams", "https://api.opendota.com/api/teams");
+  const { isLoading, data: teams, error } = useTeams();
 
   if (isLoading) return <h1>Wait for it...</h1>
 

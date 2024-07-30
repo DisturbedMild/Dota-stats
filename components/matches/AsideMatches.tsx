@@ -1,6 +1,6 @@
 "use client";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {usePublicMatches} from "@/common/api";
 
 import MatchItem from "./MatchItem";
 
@@ -13,10 +13,7 @@ export interface MatchProps {
 }
 
 const AsideMatches = () => {
-
-  // Fix data: any
-  const {isLoading, data: matches, error} =
-    useReactQueryRequest("matches", "https://api.opendota.com/api/publicMatches?min_rank=80")
+  const {isLoading, data: matches, error} = usePublicMatches();
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Something went wrong, try again later</p>
@@ -28,8 +25,6 @@ const AsideMatches = () => {
         {matches.map((match: MatchProps, index: number) => {
             if (index <= 8) {
               return <MatchItem key={match.match_id} match={match}/>;
-            } else {
-              return;
             }
           })}
       </div>

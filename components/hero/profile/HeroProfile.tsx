@@ -3,7 +3,7 @@
 import {useCallback, useEffect, useState} from "react";
 import Image from "next/image";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {useAbilities, useHeroAbilities} from "@/common/api";
 import Abilities from "@/components/hero/abilities/Abilities";
 import Attributes from "@/components/hero/abilities/Attributes";
 import HeroProfilePortrait from "@/components/hero/profile/HeroProfilePortrait";
@@ -54,10 +54,8 @@ const HeroProfile = ({currentHero}: HeroProfileProps) => {
   const [currentHeroAbilities, setCurrentHeroAbilities] = useState<Ability[] | []>([]);
   const [currentHeroTalents, setCurrentHeroTalents] = useState<Talent[] | []>([]);
 
-  const {isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData} =
-    useReactQueryRequest("heroAbilities", "https://api.opendota.com/api/constants/hero_abilities");
-
-  const {data: abilitiesData} = useReactQueryRequest("abilities", "https://api.opendota.com/api/constants/abilities");
+  const {isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData} = useHeroAbilities();
+  const {data: abilitiesData} = useAbilities();
 
   const getUpdatedHeroTalents = useCallback(() => {
     if (!heroAbilitiesData || !abilitiesData || !currentHero) return heroAbilitiesData;

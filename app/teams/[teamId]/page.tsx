@@ -2,7 +2,7 @@
 
 import {useParams} from "next/navigation";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {useTeamHeroes, useTeamMatches, useTeamPlayers} from "@/common/api";
 import TeamMatches from "@/components/teams/team/teamMatches";
 import TeamMostPopularHeroes from "@/components/teams/team/teamMostPopularHeroes";
 import TeamPlayers from "@/components/teams/team/teamPlayers";
@@ -10,11 +10,11 @@ import TeamShortDescription from "@/components/teams/team/TeamShortDescription";
 
 
 const TeamPage = () => {
-    const { teamId } = useParams();
+    const { teamId }: { teamId: string} = useParams();
 
-    const { data: teamPlayers } = useReactQueryRequest("team-players", `https://api.opendota.com/api/teams/${teamId}/players`);
-    const { data: teamHeroes } = useReactQueryRequest("team-heroes", `https://api.opendota.com/api/teams/${teamId}/heroes`);
-    const { data: teamMatches } = useReactQueryRequest("team-matches", `https://api.opendota.com/api/teams/${teamId}/matches`)
+    const { data: teamPlayers } = useTeamPlayers(teamId.toString());
+    const { data: teamHeroes } = useTeamHeroes(teamId.toString());
+    const { data: teamMatches } = useTeamMatches(teamId.toString());
 
     return (
       <section>

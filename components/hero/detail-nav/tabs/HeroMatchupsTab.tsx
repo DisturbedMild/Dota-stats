@@ -2,15 +2,14 @@
 
 import {Skeleton} from "@mui/material";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {useHeroMatchups} from "@/common/api";
 import {Matchup} from "@/common/types";
 import {calculateWilsonScore} from "@/common/utils/calculateWilsonScore";
 import {HeroDetailsTabList} from "@/components/hero/detail-nav/HeroDetailsTabList";
 import HeroMatchups from "@/components/hero/matchups/HeroMatchups";
 
 const HeroMatchupsTab = ({currentHero}: HeroDetailsTabList) => {
-  const {isLoading, data: heroMatchups, error} =
-    useReactQueryRequest("hero-matchups",  `https://api.opendota.com/api/heroes/${currentHero.id}/matchups`)
+  const {isLoading, data: heroMatchups, error} = useHeroMatchups(currentHero.id);
 
   const calculatedHeroMatchupsWinrateWithAdvantage = heroMatchups.map((heroMatchup: Matchup) => {
     return {

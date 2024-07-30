@@ -2,7 +2,7 @@
 
 import React, {createContext} from "react";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {useAbilities, useHeroes, useItems} from "@/common/api";
 import {Ability, Heroes, Item} from "@/types/index";
 
 
@@ -32,9 +32,9 @@ type APIContextProvideProps = {
 
 export const APIContextProvider = ({children}: APIContextProvideProps) => {
 
-  const {data: items} = useReactQueryRequest("items", "https://api.opendota.com/api/constants/items");
-  const {data: heroes} = useReactQueryRequest("heroes", "https://api.opendota.com/api/heroes");
-  const {data: abilities} = useReactQueryRequest("abilities", "https://api.opendota.com/api/constants/abilities");
+  const {data: items} = useItems();
+  const {data: heroes} = useHeroes();
+  const {data: abilities} = useAbilities();
 
   const ctxValue = {
     heroes,

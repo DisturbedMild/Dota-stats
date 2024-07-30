@@ -4,8 +4,8 @@ import {useContext, useEffect, useState} from "react";
 import Image from "next/image";
 import {useParams} from "next/navigation";
 
+import {useAghsDesc} from "@/common/api";
 import {APIContext} from "@/common/context/api-context";
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import AghanimPopup from "@/components/hero/abilities/AghanimPopup";
 import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
 import {Ability,AghDescription} from "@/types/index";
@@ -17,7 +17,7 @@ const AghanimAndShard = () => {
   const [aghanimAbility, setAghanimAbility] = useState<Ability | null>(null);
   const [shardAbility, setShardAbility] = useState<Ability | null>(null);
 
-  const {data} = useReactQueryRequest("aghs_desc", "https://api.opendota.com/api/constants/aghs_desc");
+  const {data} = useAghsDesc();
 
   useEffect(() => {
     const getAghanim = (data: AghDescription[]) => {

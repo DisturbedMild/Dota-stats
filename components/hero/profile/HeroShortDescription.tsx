@@ -1,6 +1,6 @@
 "use client";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {useHeroMatchups} from "@/common/api";
 import Spinner from "@/components/ui/loaders/Spinner";
 import {HeroStats, Matchup} from "@/types/index";
 
@@ -10,8 +10,7 @@ type HeroShortDescriptionProps = {
 
 const HeroShortDescription = ({currentHero}: HeroShortDescriptionProps) => {
 
-  const {isLoading, data: heroMatchupsData, error} =
-    useReactQueryRequest("hero-matchups", `https://api.opendota.com/api/heroes/${currentHero?.id}/matchups`);
+  const {isLoading, data: heroMatchupsData, error} = useHeroMatchups(currentHero!.id);
 
   const heroOverallWinrate = (games: Matchup[] | null): number => {
     if (games === null) {

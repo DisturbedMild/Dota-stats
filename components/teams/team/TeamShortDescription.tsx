@@ -1,7 +1,7 @@
 import Image, {ImageLoaderProps} from "next/image";
 import {useParams} from "next/navigation";
 
-import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
+import {useTeamDescription} from "@/common/api";
 
 const imageLoader = ({src}: ImageLoaderProps) => {
   return src
@@ -9,7 +9,8 @@ const imageLoader = ({src}: ImageLoaderProps) => {
 
 const TeamShortDescription = () => {
   const { teamId } = useParams();
-  const { data: teamDescription } = useReactQueryRequest("team-desc", `https://api.opendota.com/api/teams/${teamId}`);
+  const { data: teamDescription } = useTeamDescription(teamId.toString());
+
   return (
     <div className="flex gap-6 items-center mb-8">
       <div>
