@@ -1,10 +1,10 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
-import {DOTS,usePagination} from "@/common/hooks/usePagination";
+import { DOTS, usePagination } from "@/common/hooks/usePagination";
 
 type PaginationProps = {
   onPageChange: (page: number) => void;
@@ -12,7 +12,7 @@ type PaginationProps = {
   siblingCount: number;
   currentPage: number;
   pageSize: number;
-}
+};
 
 const Pagination = (props: PaginationProps) => {
   const {
@@ -27,7 +27,7 @@ const Pagination = (props: PaginationProps) => {
     currentPage,
     totalCount,
     siblingCount,
-    pageSize
+    pageSize,
   });
 
   // If there are less than 2 times in pagination range we shall not render the component
@@ -48,24 +48,35 @@ const Pagination = (props: PaginationProps) => {
   return (
     <div className="mb-2">
       {/* Left navigation arrow */}
-      <button className="px-3"
-              disabled={currentPage === 1}
-              onClick={onPrevious}
+      <button
+        className="px-3"
+        disabled={currentPage === 1}
+        onClick={onPrevious}
       >
-        <ArrowCircleLeftIcon style={{fill: `${currentPage === 1 ? 'grey' : ""}`}}/>
+        <ArrowCircleLeftIcon
+          style={{ fill: `${currentPage === 1 ? "grey" : ""}` }}
+        />
       </button>
 
       {paginationRange?.map((pageNumber, index) => {
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
-          return <button key={index} className="px-2 py-1">&#8230;</button>;
+          return (
+            <button key={index} className="px-2 py-1">
+              &#8230;
+            </button>
+          );
         }
 
         // Render our Page Pills
         return (
           <button
             key={index}
-            className={pageNumber === currentPage ? "px-3 py-1 bg-secondary transition-all rounded " : "px-2 py-1"}
+            className={
+              pageNumber === currentPage
+                ? "px-3 py-1 bg-secondary transition-all rounded "
+                : "px-2 py-1"
+            }
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}
@@ -73,11 +84,11 @@ const Pagination = (props: PaginationProps) => {
         );
       })}
       {/*  Right Navigation arrow */}
-      <button
-        disabled={currentPage === lastPage}
-        onClick={onNext}
-      >
-        <div className={`px-3`}><ArrowCircleRightIcon style={{fill: `${currentPage === lastPage ? 'grey' : ""}`}}/>
+      <button disabled={currentPage === lastPage} onClick={onNext}>
+        <div className={`px-3`}>
+          <ArrowCircleRightIcon
+            style={{ fill: `${currentPage === lastPage ? "grey" : ""}` }}
+          />
         </div>
       </button>
     </div>

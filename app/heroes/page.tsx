@@ -1,10 +1,10 @@
 "use client";
 
-import {useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 
-import {Hero} from "@/common/types/hero/hero";
+import { Hero } from "@/common/types/hero/hero";
 
 const fetchHeroes = async () => {
   const response = await fetch("https://api.opendota.com/api/heroes");
@@ -17,14 +17,15 @@ const fetchHeroes = async () => {
 
 const filterHeroes = (heroes: Hero[]) => {
   return heroes.sort((currentHero: Hero, nextHero: Hero) =>
-    currentHero.localized_name.localeCompare(nextHero.localized_name)
+    currentHero.localized_name.localeCompare(nextHero.localized_name),
   );
 };
 
-const setHeroImageSrc = (name: string): string => `/heroes/${name.replaceAll(" ", "_").toLocaleLowerCase()}.png`
+const setHeroImageSrc = (name: string): string =>
+  `/heroes/${name.replaceAll(" ", "_").toLocaleLowerCase()}.png`;
 
 const HeroesPage = () => {
-  const {isPending, error, data} = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ["heroes"],
     queryFn: fetchHeroes,
   });
@@ -38,14 +39,15 @@ const HeroesPage = () => {
     <>
       <h1 className="text-2xl text-white mb-4">Heroes:</h1>
       <div className="grid grid-cols-8 gap-2 text-white">
-        {heroes.map(({id, localized_name}: Hero) => {
+        {heroes.map(({ id, localized_name }: Hero) => {
           const imageSrc = setHeroImageSrc(localized_name);
 
           return (
-            <div key={id} className="relative group transition-all hover:scale-110">
-              <Link
-                href={`/heroes/${id}`}
-              >
+            <div
+              key={id}
+              className="relative group transition-all hover:scale-110"
+            >
+              <Link href={`/heroes/${id}`}>
                 <Image
                   src={imageSrc}
                   alt={localized_name}

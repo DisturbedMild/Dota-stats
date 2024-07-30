@@ -6,4 +6,4 @@ export interface Post {
   contents: string;
   date: number;
   feedlabel: string;
-};
+}

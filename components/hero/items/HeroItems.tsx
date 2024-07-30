@@ -1,19 +1,20 @@
 "use client";
 
 import HeroItemsList from "@/components/hero/items/HeroItemsList";
-import {HeroItemsPopularity} from "@/types/index";
+import { HeroItemsPopularity } from "@/types/index";
 
 type HeroItemsProps = {
   heroItemsPopularity: HeroItemsPopularity;
-}
+};
 
-const HeroItems = ({heroItemsPopularity}: HeroItemsProps) => {
+const HeroItems = ({ heroItemsPopularity }: HeroItemsProps) => {
   const popularItems = Object.entries(heroItemsPopularity);
 
   return (
     <div className="">
       <h3 className="mb-4 text-[#ffffff99] text-xls">
-        <span className="font-medium text-[#ffffffde]">Suggested Items</span> Data from professional matches
+        <span className="font-medium text-[#ffffffde]">Suggested Items</span>{" "}
+        Data from professional matches
       </h3>
       <article>
         <header className="flex gap-4 px-6 py-2 rounded-t text-white uppercase bg-gradient-to-r from-secondary to-teal">
@@ -23,11 +24,13 @@ const HeroItems = ({heroItemsPopularity}: HeroItemsProps) => {
           <div className="w-3/12 text-base cursor-pointer">LATE GAME</div>
         </header>
         <div className="grid grid-cols-4 gap-4 px-6 rounded-b border border-gray-300/10 pb-4">
-          {popularItems.map((items) => <HeroItemsList key={items[0]} itemsList={items[1]} />)}
+          {popularItems.map((items) => (
+            <HeroItemsList key={items[0]} itemsList={items[1]} />
+          ))}
         </div>
       </article>
     </div>
-  )
-}
+  );
+};
 
 export default HeroItems;

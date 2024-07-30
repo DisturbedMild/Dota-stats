@@ -1,12 +1,12 @@
-import type {ITeamMatch} from "@/common/types";
+import type { ITeamMatch } from "@/common/types";
 
-import TeamMatch from "./teamMatch"
+import TeamMatch from "./teamMatch";
 
 interface TeamMatchesProps {
-  matches: ITeamMatch[]
+  matches: ITeamMatch[];
 }
 
-const TeamMatches = ({matches}: TeamMatchesProps) => {
+const TeamMatches = ({ matches }: TeamMatchesProps) => {
   return (
     <div className="flex flex-col w-8/12">
       <h2 className="mb-2">Recent Matches</h2>
@@ -16,9 +16,12 @@ const TeamMatches = ({matches}: TeamMatchesProps) => {
         <div className="w-2/12 text-center">Result</div>
         <div className="w-2/12 text-center">OPPOSING TEAM</div>
       </div>
-      {matches?.map((match, index: number) => index <= 15 && <TeamMatch key={match.match_id} {...match} />)}
+      {matches?.map(
+        (match, index: number) =>
+          index <= 15 && <TeamMatch key={match.match_id} {...match} />,
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default TeamMatches;

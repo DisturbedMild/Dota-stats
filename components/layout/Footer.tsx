@@ -7,7 +7,7 @@ const Footer = () => {
         @Copyright Vladyslav Dmytrenko 2024.
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

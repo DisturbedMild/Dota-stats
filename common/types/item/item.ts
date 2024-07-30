@@ -4,8 +4,8 @@ export interface Item {
       type: string;
       title: string;
       description: string;
-    }
-  ],
+    },
+  ];
   hint: [];
   id: number;
   img: string;
@@ -19,7 +19,7 @@ export interface Item {
   bkbpierce?: string;
   target_team?: unknown[] | string;
   target_type?: string;
-  attrib: {key: string, value: string, display?: string}[],
+  attrib: { key: string; value: string; display?: string }[];
   mc: number | boolean;
   hc: boolean;
   cd: number | boolean;

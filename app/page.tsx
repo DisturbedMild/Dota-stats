@@ -6,10 +6,10 @@ const HomePage = async () => {
   return (
     <section className="content flex gap-2">
       <div className="body w-2/3 bg-secondary/30">
-        <SearchBar/>
-        <Posts/>
+        <SearchBar />
+        <Posts />
       </div>
-      <AsideMatches/>
+      <AsideMatches />
     </section>
   );
 };

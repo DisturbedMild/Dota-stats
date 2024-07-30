@@ -16,7 +16,7 @@ export interface Match {
       player_slot: number;
       extra_time: number;
       total_time_taken: number;
-    }
+    },
   ];
   duration: number;
   engine: number;
@@ -86,13 +86,13 @@ export interface PublicMatches {
 export interface ITeamMatch {
   match_id: number;
   radiant_win: boolean;
-  radiant_score:number;
+  radiant_score: number;
   dire_score: number;
   radiant: boolean;
   duration: number;
   start_time: number;
   leagueid: number;
-  league_name:string;
+  league_name: string;
   cluster: number;
   opposing_team_id: number;
   opposing_team_name: string;
@@ -108,7 +108,7 @@ export interface FullMatchInfo {
     slot: number;
     time: number;
     type: string;
-  }[],
+  }[];
   cluster: number;
   dire_captain: number;
   dire_logo: number;
@@ -127,7 +127,7 @@ export interface FullMatchInfo {
     extra_time: number;
     hero_id: number;
     order: number;
-    pick:boolean;
+    pick: boolean;
     player_slot: null;
     total_time_taken: number;
   }[];
@@ -144,7 +144,7 @@ export interface FullMatchInfo {
   match_seq_num: number;
   metadata: any;
   objectives: MatchObjectives[];
-  od_data:{
+  od_data: {
     has_api: boolean;
     has_gcdata: boolean;
     has_parsed: boolean;
@@ -154,7 +154,7 @@ export interface FullMatchInfo {
     leagueid: number;
     name: number;
     ticket: any;
-    tier: string
+    tier: string;
   };
   patch: number;
   picks_bans: {
@@ -207,8 +207,8 @@ interface FullMatchInfoPlayer {
   backpack_0: number;
   backpack_1: number;
   backpack_2: number;
-  benchmarks: Record<string, {pct: number; raw: number}>;
-  buyback_count:number;
+  benchmarks: Record<string, { pct: number; raw: number }>;
+  buyback_count: number;
   buyback_log: any[];
   camps_stacked: number;
   cluster: number;
@@ -259,14 +259,15 @@ interface FullMatchInfoPlayer {
   killed_by: Record<string, number>;
   kills: number;
   kills_log: {
-    key: string; time: number
+    key: string;
+    time: number;
   }[];
   kills_per_min: number;
   lane: number;
   lane_efficiency: number;
   lane_efficiency_pct: number;
   lane_kills: number;
-  lane_pos: {[key:string]: Record<string, number>};
+  lane_pos: { [key: string]: Record<string, number> };
   lane_role: number;
   last_hits: number;
   last_login: string;
@@ -275,7 +276,7 @@ interface FullMatchInfoPlayer {
   lh_t: Record<string, number>[];
   life_state: Record<string, number>;
   life_state_dead: number;
-  lobby_type:number;
+  lobby_type: number;
   lose: number;
   max_hero_hit: any;
   moonshard: number;
@@ -284,7 +285,7 @@ interface FullMatchInfoPlayer {
   necronomicon_kills: number;
   net_worth: number;
   neutral_kills: number;
-  obs: {[key: string]: Record<string, number>};
+  obs: { [key: string]: Record<string, number> };
   obs_left_log: MatchPlayerLeftLog[];
   obs_log: MatchPlayerLog[];
   obs_placed: number;
@@ -300,7 +301,7 @@ interface FullMatchInfoPlayer {
   player_slot: number;
   pred_vict: boolean;
   purchase: Record<string, number>;
-  purchase_log: {[key:string]: {time: number; key: string}}[];
+  purchase_log: { [key: string]: { time: number; key: string } }[];
   purchase_time: Record<string, number>;
   purchase_tpscroll: number;
   purchase_ward_observer: number;
@@ -313,8 +314,8 @@ interface FullMatchInfoPlayer {
   roshans_killed: number;
   rune_pickups: number;
   runes: Record<string, number>;
-  runes_log: {[key:string]: {time: number; key: string}}[];
-  sen: {[key:string]: {time: number; key: string}}[];
+  runes_log: { [key: string]: { time: number; key: string } }[];
+  sen: { [key: string]: { time: number; key: string } }[];
   sen_left_log: MatchPlayerLeftLog[];
   sen_log: MatchPlayerLog[];
   sen_placed: number;
@@ -334,7 +335,7 @@ interface FullMatchInfoPlayer {
   win: number;
   xp_per_min: number;
   xp_reasons: Record<string, number>;
-  xp_t: Record<string, number>[]
+  xp_t: Record<string, number>[];
 }
 
 interface MatchObjectives {
@@ -349,7 +350,7 @@ interface MatchObjectives {
 }
 
 interface MatchPlayerLeftLog {
-  attackername: string,
+  attackername: string;
   ehandle: number;
   entityleft: boolean;
   key: string;

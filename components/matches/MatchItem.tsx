@@ -1,26 +1,26 @@
 "use client";
 
-import {useContext} from "react";
+import { useContext } from "react";
 import Image from "next/image";
 
-import {APIContext} from "@/common/context/api-context";
+import { APIContext } from "@/common/context/api-context";
 import { convertTime } from "@/common/utils/convertTime";
-import {Hero, Heroes} from "@/types/index";
+import { Hero, Heroes } from "@/types/index";
 
 import { MatchProps } from "./AsideMatches";
 import HeroIcon from "./HeroIcon";
 
 const getMatchHeroes = (heroes: Heroes, team: number[]): Hero[] | null => {
-  if (!heroes) return null
+  if (!heroes) return null;
   return team.map((id) => {
     return Array.isArray(heroes) && heroes.find((hero: Hero) => hero.id === id);
   });
 };
 
 const MatchItem = ({ match }: { match: MatchProps }) => {
-  const {heroes} = useContext(APIContext);
+  const { heroes } = useContext(APIContext);
 
-  if (!heroes) return <p>Something went wrong, try again later</p>
+  if (!heroes) return <p>Something went wrong, try again later</p>;
 
   const radiantHeroes = getMatchHeroes(heroes, match.radiant_team);
   const direHeroes = getMatchHeroes(heroes, match.dire_team);

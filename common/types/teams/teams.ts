@@ -3,10 +3,10 @@ export interface Team {
   rating: number;
   wins: number;
   losses: number;
-  last_match_time:number;
+  last_match_time: number;
   name: string;
   tag: string;
   logo_url: string;
 }
 
-export type Teams = Team[]
+export type Teams = Team[];

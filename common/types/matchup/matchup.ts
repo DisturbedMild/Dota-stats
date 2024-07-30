@@ -6,5 +6,5 @@ export interface Matchup {
 
 export interface SortedHeroMatchup extends Matchup {
   winrate: number;
-  advantage: number
+  advantage: number;
 }

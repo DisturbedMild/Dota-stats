@@ -1,4 +1,4 @@
-import {HeroKeys} from "@/common/types/keys/heroes";
+import { HeroKeys } from "@/common/types/keys/heroes";
 
 export interface Hero {
   id: number;
@@ -10,8 +10,8 @@ export interface Hero {
   legs: number;
 }
 
-export interface Heroes  {
-  heroes: Hero[]
+export interface Heroes {
+  heroes: Hero[];
 }
 
 export interface HeroStats {
@@ -88,7 +88,6 @@ export interface HeroMatch {
   deaths: number;
   assists: number;
 }
-
 
 export interface ITeamMostPopularHero {
   hero_id: number;

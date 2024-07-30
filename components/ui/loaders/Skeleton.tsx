@@ -1,6 +1,6 @@
 type SkeletonProps = {
   styles?: string;
-}
+};
 
 export const Skeleton = ({ styles }: SkeletonProps) => {
   return (
@@ -23,5 +23,5 @@ export const Skeleton = ({ styles }: SkeletonProps) => {
         </div>
       </div>
     </div>
-  )
+  );
 };

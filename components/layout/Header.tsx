@@ -18,23 +18,17 @@ const Header = () => {
             </Link>
           </li>
           <li
-            className={`${
-              pathname === "/teams" ? "text-teal" : "text-white"
-            }`}
+            className={`${pathname === "/teams" ? "text-teal" : "text-white"}`}
           >
             <Link href="/teams">Teams</Link>
           </li>
           <li
-            className={`${
-              pathname === "/heroes" ? "text-teal" : "text-white"
-            }`}
+            className={`${pathname === "/heroes" ? "text-teal" : "text-white"}`}
           >
             <Link href="/heroes">Heroes</Link>
           </li>
           <li
-            className={`${
-              pathname === "/items" ? "text-teal" : "text-white"
-            }`}
+            className={`${pathname === "/items" ? "text-teal" : "text-white"}`}
           >
             <Link href="/items">Items</Link>
           </li>
@@ -53,9 +47,7 @@ const Header = () => {
             <Link href="/matches">Matches</Link>
           </li>
           <li
-            className={`${
-              pathname === "/blog" ? "text-teal" : "text-white"
-            }`}
+            className={`${pathname === "/blog" ? "text-teal" : "text-white"}`}
           >
             <Link href="/blog">Blog</Link>
           </li>

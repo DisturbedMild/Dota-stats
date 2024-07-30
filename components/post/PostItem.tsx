@@ -1,8 +1,8 @@
 "use client";
 
-import Image, {ImageLoaderProps} from "next/image";
+import Image, { ImageLoaderProps } from "next/image";
 
-import {Post} from "@/types/index";
+import { Post } from "@/types/index";
 
 import defaultPostImage from "./default-post.png";
 
@@ -66,7 +66,11 @@ export const PostItem = ({ item }: { item: Post }) => {
         </div>
         <p>
           {item.author}&nbsp;|&nbsp;
-          <a href={item.url} target="_blank" className="transition-all hover:text-teal">
+          <a
+            href={item.url}
+            target="_blank"
+            className="transition-all hover:text-teal"
+          >
             Read More
           </a>
         </p>

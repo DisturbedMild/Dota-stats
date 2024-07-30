@@ -8,7 +8,13 @@ const HeroIcon = ({ name }: { name: string }) => {
     .toLocaleLowerCase()}.png`;
   return (
     <div className="w-1/5">
-      <Image src={imageSrc} className="object-cover" width={92} height={20} alt={`${name} icon`} />
+      <Image
+        src={imageSrc}
+        className="object-cover"
+        width={92}
+        height={20}
+        alt={`${name} icon`}
+      />
     </div>
   );
 };

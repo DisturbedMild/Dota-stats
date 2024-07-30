@@ -1,38 +1,41 @@
 "use client";
 
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import {useParams} from "next/navigation";
+import { useParams } from "next/navigation";
 
-import {useAghsDesc} from "@/common/api";
-import {APIContext} from "@/common/context/api-context";
+import { useAghsDesc } from "@/common/api";
+import { APIContext } from "@/common/context/api-context";
 import AghanimPopup from "@/components/hero/abilities/AghanimPopup";
 import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
-import {Ability,AghDescription} from "@/types/index";
+import { Ability, AghDescription } from "@/types/index";
 
 const AghanimAndShard = () => {
-  const {abilities}: {abilities: Record<string, Ability> | null} = useContext(APIContext);
-  const {heroId}: {heroId: string} = useParams();
+  const { abilities }: { abilities: Record<string, Ability> | null } =
+    useContext(APIContext);
+  const { heroId }: { heroId: string } = useParams();
   const [showPopup, setShowPopup] = useState(false);
   const [aghanimAbility, setAghanimAbility] = useState<Ability | null>(null);
   const [shardAbility, setShardAbility] = useState<Ability | null>(null);
 
-  const {data} = useAghsDesc();
+  const { data } = useAghsDesc();
 
   useEffect(() => {
     const getAghanim = (data: AghDescription[]) => {
-      if (!data || !abilities) return null
-      const [currentHeroAghanim] = data.filter((element: AghDescription) => element.hero_id === Number(heroId))
+      if (!data || !abilities) return null;
+      const [currentHeroAghanim] = data.filter(
+        (element: AghDescription) => element.hero_id === Number(heroId),
+      );
 
       for (const key in abilities) {
         if (abilities[key].dname === currentHeroAghanim.scepter_skill_name) {
-          setAghanimAbility(abilities[key])
+          setAghanimAbility(abilities[key]);
         }
         if (abilities[key].dname === currentHeroAghanim.shard_skill_name) {
-          setShardAbility(abilities[key])
+          setShardAbility(abilities[key]);
         }
       }
-    }
+    };
     getAghanim(data);
   }, [abilities, heroId, data]);
 
@@ -42,19 +45,36 @@ const AghanimAndShard = () => {
       onMouseEnter={() => setShowPopup(true)}
       onMouseLeave={() => setShowPopup(false)}
     >
-      <Image src={'/icons/scepter.png'} width={30} height={30} alt="Talent Tree"/>
-      <Image src={'/icons/shard.png'} width={28} height={20} alt="Talent Tree"/>
+      <Image
+        src={"/icons/scepter.png"}
+        width={30}
+        height={30}
+        alt="Talent Tree"
+      />
+      <Image
+        src={"/icons/shard.png"}
+        width={28}
+        height={20}
+        alt="Talent Tree"
+      />
       {showPopup && (
         <div className="absolute -top-12 right-24">
-          {aghanimAbility && <AghanimPopup key={aghanimAbility.dname} aghanimAbility={aghanimAbility}/>}
-          {shardAbility && <AghanimShardPopup key={shardAbility.dname} aghanimShardAbility={shardAbility} />}
+          {aghanimAbility && (
+            <AghanimPopup
+              key={aghanimAbility.dname}
+              aghanimAbility={aghanimAbility}
+            />
+          )}
+          {shardAbility && (
+            <AghanimShardPopup
+              key={shardAbility.dname}
+              aghanimShardAbility={shardAbility}
+            />
+          )}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default AghanimAndShard;
-
-
-

@@ -3,11 +3,11 @@
 import Image from "next/image";
 
 interface HeroProfilePortraitProps {
-  hero: string,
-  name: string | null
+  hero: string;
+  name: string | null;
 }
 
-const HeroProfilePortrait = ({hero, name}:HeroProfilePortraitProps) => {
+const HeroProfilePortrait = ({ hero, name }: HeroProfilePortraitProps) => {
   return (
     <Image
       className="rounded-xl"
@@ -16,7 +16,7 @@ const HeroProfilePortrait = ({hero, name}:HeroProfilePortraitProps) => {
       width={256}
       height={144}
     />
-  )
-}
+  );
+};
 
 export default HeroProfilePortrait;

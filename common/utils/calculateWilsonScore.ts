@@ -1,11 +1,18 @@
-export function calculateWilsonScore(successes: number, total: number, confidence = 0.95): number {
+export function calculateWilsonScore(
+  successes: number,
+  total: number,
+  confidence = 0.95,
+): number {
   if (total === 0) return 0;
 
   const z = getZScore(confidence)!;
   const p = successes / total;
 
-  const score = (p + ((z * z) / (2 * total)) - (z * Math.sqrt((p * (1 - p)) / total + (z * z) / (4 * total * total)))) /
-    (1 + ((z * z) / total));
+  const score =
+    (p +
+      (z * z) / (2 * total) -
+      z * Math.sqrt((p * (1 - p)) / total + (z * z) / (4 * total * total))) /
+    (1 + (z * z) / total);
 
   return Number((score * 100 + 1).toFixed(0));
 }

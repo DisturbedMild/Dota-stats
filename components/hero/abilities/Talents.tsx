@@ -1,16 +1,16 @@
 "use client";
 
-import {useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 import TalentsPopup from "@/components/hero/abilities/TalentsPopup";
-import {Talent} from "@/types/index";
+import { Talent } from "@/types/index";
 
 type TalentsProps = {
-  talents: Talent[],
-}
+  talents: Talent[];
+};
 
-const Talents = ({talents}: TalentsProps) => {
+const Talents = ({ talents }: TalentsProps) => {
   const [showPopup, setShowPopup] = useState(false);
   return (
     <div
@@ -18,10 +18,16 @@ const Talents = ({talents}: TalentsProps) => {
       onMouseEnter={() => setShowPopup(true)}
       onMouseLeave={() => setShowPopup(false)}
     >
-      <Image src={'/icons/talent_tree.svg'} width={48} height={48} alt="Talent Tree" className="w-full h-full"/>
-      {showPopup && <TalentsPopup talents={talents}/>}
+      <Image
+        src={"/icons/talent_tree.svg"}
+        width={48}
+        height={48}
+        alt="Talent Tree"
+        className="w-full h-full"
+      />
+      {showPopup && <TalentsPopup talents={talents} />}
     </div>
-  )
-}
+  );
+};
 
 export default Talents;

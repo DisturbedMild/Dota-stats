@@ -5,8 +5,8 @@ const TeamsPage = () => {
   return (
     <section>
       <h1>Teams ranking calculated by Elo</h1>
-      <TeamsSearchBar/>
-      <TeamsTable/>
+      <TeamsSearchBar />
+      <TeamsTable />
     </section>
   );
 };

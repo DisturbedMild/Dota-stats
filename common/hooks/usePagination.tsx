@@ -1,6 +1,6 @@
 "use client";
 
-import {useMemo} from "react";
+import { useMemo } from "react";
 
 interface UsePaginationProps {
   totalCount: number;
@@ -11,13 +11,18 @@ interface UsePaginationProps {
 
 export const DOTS = "...";
 
-const range = (start: number, end: number)  => {
+const range = (start: number, end: number) => {
   let length = end - start + 1;
 
-  return Array.from({length}).map((_, i) => i + start);
-}
+  return Array.from({ length }).map((_, i) => i + start);
+};
 
-export const usePagination = ({totalCount, pageSize, siblingCount = 1, currentPage}: UsePaginationProps): any[] => {
+export const usePagination = ({
+  totalCount,
+  pageSize,
+  siblingCount = 1,
+  currentPage,
+}: UsePaginationProps): any[] => {
   const paginationRange = useMemo(() => {
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
@@ -31,7 +36,7 @@ export const usePagination = ({totalCount, pageSize, siblingCount = 1, currentPa
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
     const rightSiblingIndex = Math.min(
       currentPage + siblingCount,
-      totalPageCount
+      totalPageCount,
     );
 
     const shouldShowLeftDots = leftSiblingIndex > 2;
@@ -48,11 +53,10 @@ export const usePagination = ({totalCount, pageSize, siblingCount = 1, currentPa
     }
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
-
       let rightItemCount = 3 + 2 * siblingCount;
       let rightRange = range(
         totalPageCount - rightItemCount + 1,
-        totalPageCount
+        totalPageCount,
       );
       return [firstPageIndex, DOTS, ...rightRange];
     }
@@ -64,4 +68,4 @@ export const usePagination = ({totalCount, pageSize, siblingCount = 1, currentPa
   }, [totalCount, pageSize, siblingCount, currentPage]);
 
   return paginationRange!;
-}
+};

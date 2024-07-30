@@ -5,12 +5,12 @@ export interface PlayerHeroRanking {
   name?: string | null;
   avatar: string;
   last_login?: string;
-  rank_tier: number
+  rank_tier: number;
 }
 
 export interface PlayersHeroRanking {
   hero_id?: number;
-  rankings: PlayerHeroRanking[]
+  rankings: PlayerHeroRanking[];
 }
 
 export interface HeroPlayer {
@@ -24,7 +24,7 @@ export interface ITeamPlayer {
   name: string;
   games_played: number;
   wins: number;
-  is_current_team_member: boolean
+  is_current_team_member: boolean;
 }
 
 export type HeroPlayers = HeroPlayer[];

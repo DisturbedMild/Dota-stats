@@ -1,15 +1,15 @@
 "use client";
 
-import {useTeams} from "@/common/api";
+import { useTeams } from "@/common/api";
 import TeamsTableItem from "@/components/teams/TeamsTableItem";
-import {Team} from "@/types/teams/teams";
+import { Team } from "@/types/teams/teams";
 
 const TeamsTable = () => {
   const { isLoading, data: teams, error } = useTeams();
 
-  if (isLoading) return <h1>Wait for it...</h1>
+  if (isLoading) return <h1>Wait for it...</h1>;
 
-  if (error) return <h1>Oops, something went wrong, try again later</h1>
+  if (error) return <h1>Oops, something went wrong, try again later</h1>;
 
   return (
     <div className="mt-10">
@@ -20,9 +20,14 @@ const TeamsTable = () => {
         <div className="w-2/12 text-center">Wins</div>
         <div className="w-2/12 text-center">Losses</div>
       </div>
-      {teams.map((team: Team, index: number) => index < 100 && <TeamsTableItem key={team.team_id} rank={index + 1} {...team} />)}
+      {teams.map(
+        (team: Team, index: number) =>
+          index < 100 && (
+            <TeamsTableItem key={team.team_id} rank={index + 1} {...team} />
+          ),
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default TeamsTable;

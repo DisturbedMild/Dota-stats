@@ -1,7 +1,7 @@
 "use client";
 
 const TeamsSearchBar = () => {
-  return <></>
-}
+  return <></>;
+};
 
 export default TeamsSearchBar;

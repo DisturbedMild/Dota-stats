@@ -1,12 +1,12 @@
 "use client";
 
-import {PlayerHeroRanking,PlayersHeroRanking} from "@/types/index";
+import { PlayerHeroRanking, PlayersHeroRanking } from "@/types/index";
 
 import HeroRankingItem from "./HeroRankingItem";
 
-type HeroRankingProps = PlayersHeroRanking
+type HeroRankingProps = PlayersHeroRanking;
 
-const HeroRanking = ({rankings}: HeroRankingProps) => {
+const HeroRanking = ({ rankings }: HeroRankingProps) => {
   return (
     <>
       <h3 className="mb-4 text-[#ffffff99] text-xls">
@@ -19,18 +19,20 @@ const HeroRanking = ({rankings}: HeroRankingProps) => {
           <div className="w-2/12 text-base">SCORE</div>
         </header>
         <div>
-          {rankings.map((player: PlayerHeroRanking, index) =>
+          {rankings.map((player: PlayerHeroRanking, index) => (
             <HeroRankingItem
               key={player.account_id}
               name={player.personaname}
               avatar={player.avatar}
               score={player.score}
               rank={index + 1}
-              tier={player.rank_tier}/>)}
+              tier={player.rank_tier}
+            />
+          ))}
         </div>
       </article>
     </>
-  )
+  );
 };
 
 export default HeroRanking;
