@@ -1,20 +1,18 @@
-import {useContext} from "react";
 import {useParams} from "next/navigation";
 
 import {REGION} from "@/common/constants/constants";
-import {MatchContext} from "@/common/context/match-context";
+import {useMatch} from "@/common/context/match-context";
 import CopyIcon from "@/components/ui/icons/copyIcon";
 
 
 const MatchResultAdditionalInfo = () => {
   const {matchId} = useParams();
-  const data = useContext(MatchContext);
-  console.log(data)
+  const {league, region} = useMatch();
   return (
     <div className="flex gap-6">
       <div className="flex flex-col items-end">
         <span className="text-xls text-neutral-500">LEAGUE</span>
-        <span className="mt-2 text-xl">{data?.league.name}</span>
+        <span className="mt-2 text-xl">{league.name}</span>
       </div>
       <div className="flex flex-col items-end">
         <span className="text-xls text-neutral-500">MATCH ID</span>
@@ -25,7 +23,7 @@ const MatchResultAdditionalInfo = () => {
       </div>
       <div className="flex flex-col items-end">
         <span className="text-xls text-neutral-500">REGION</span>
-        {/*<span className="mt-2 text-xl">{REGION[data?.region]}</span>*/}
+        <span className="mt-2 text-xl">{REGION[region]}</span>
       </div>
     </div>
   )

@@ -13,7 +13,10 @@ const TeamShortDescription = () => {
   return (
     <div className="flex gap-6 items-center mb-8">
       <div>
-        <Image src={teamDescription?.logo_url} alt={teamDescription?.name} width={124} height={75} loader={imageLoader} />
+        {teamDescription?.logo_url ?
+          <Image src={teamDescription?.logo_url} alt={teamDescription?.name} width={124} height={75} loader={imageLoader} /> :
+          null
+        }
       </div>
       <div>
         <h1 className="text-2xl">{teamDescription?.name}</h1>

@@ -1,11 +1,9 @@
-import {useContext} from "react";
 import Image from "next/image";
 
-import {MatchContext} from "@/common/context/match-context";
+import {useMatch} from "@/common/context/match-context";
 
 const MatchResultTeam = () => {
-  // @ts-expect-error: Unreachable code error
-  const {radiant_win, dire_name, radiant_name} = useContext(MatchContext);
+  const {radiant_win, dire_name, radiant_name } = useMatch();
   return (
     <div className="m-4">
         <span className={
@@ -13,7 +11,7 @@ const MatchResultTeam = () => {
             "text-success bg-success/10 border-success/40" :
             "text-error bg-error/10 border-error/40"}`
         }>
-          <Image src={`${radiant_win ? "/icons/radiant_icon.svg" : "/icons/dire_icon.svg"}`} alt="Dota side icon" width={32} height={32} className="fill-white" />
+          <Image src={`/icons/${radiant_win ? "radiant" : "dire"}_icon.svg`} alt="Dota side icon" width={32} height={32} className="fill-white" />
           {radiant_win ? radiant_name : dire_name} Victory
         </span>
     </div>

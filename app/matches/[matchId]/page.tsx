@@ -3,7 +3,7 @@
 import React from "react";
 import {useParams} from "next/navigation";
 
-import {MatchContext} from "@/common/context/match-context";
+import {MatchContextProvider} from "@/common/context/match-context";
 import {useReactQueryRequest} from "@/common/hooks/useReactQueryRequest";
 import {FullMatchInfo} from "@/common/types";
 import MatchResult from "@/components/match/heading/matchResult";
@@ -15,9 +15,9 @@ const MatchPage = () => {
   if (data) {
     const matchData: FullMatchInfo = data;
     return (
-      <MatchContext.Provider value={matchData}>
+      <MatchContextProvider>
         <MatchResult/>
-      </MatchContext.Provider>
+      </MatchContextProvider>
     )
   }
 

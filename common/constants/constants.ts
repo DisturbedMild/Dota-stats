@@ -1,4 +1,10 @@
-export const GAME_MODE = {
+interface GameMode {
+    id: number;
+    name: string;
+    balanced?: boolean
+}
+
+export const GAME_MODE: Record<number, GameMode> = {
     "0": {
         "id": 0,
         "name": "game_mode_unknown",
@@ -115,27 +121,27 @@ export const GAME_MODE = {
     }
 }
 
-export const REGION = {
-    "1": "US WEST",
-    "2": "US EAST",
-    "3": "EUROPE",
-    "5": "SINGAPORE",
-    "6": "DUBAI",
-    "7": "AUSTRALIA",
-    "8": "STOCKHOLM",
-    "9": "AUSTRIA",
-    "10": "BRAZIL",
-    "11": "SOUTHAFRICA",
-    "12": "PW TELECOM SHANGHAI",
-    "13": "PW UNICOM",
-    "14": "CHILE",
-    "15": "PERU",
-    "16": "INDIA",
-    "17": "PW TELECOM GUANGDONG",
-    "18": "PW TELECOM ZHEJIANG",
-    "19": "JAPAN",
-    "20": "PW TELECOM WUHAN",
-    "25": "PW UNICOM TIANJIN",
-    "37": "TAIWAN",
-    "38": "ARGENTINA"
-}
+export const REGION: Record<number,string> = {
+    1: "US WEST",
+    2: "US EAST",
+    3: "EUROPE",
+    5: "SINGAPORE",
+    6: "DUBAI",
+    7: "AUSTRALIA",
+    8: "STOCKHOLM",
+    9: "AUSTRIA",
+    10: "BRAZIL",
+    11: "SOUTHAFRICA",
+    12: "PW TELECOM SHANGHAI",
+    13: "PW UNICOM",
+    14: "CHILE",
+    15: "PERU",
+    16: "INDIA",
+    17: "PW TELECOM GUANGDONG",
+    18: "PW TELECOM ZHEJIANG",
+    19: "JAPAN",
+    20: "PW TELECOM WUHAN",
+    25: "PW UNICOM TIANJIN",
+    37: "TAIWAN",
+    38: "ARGENTINA"
+};
