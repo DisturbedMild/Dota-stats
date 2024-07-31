@@ -27,7 +27,7 @@ const TabList: React.FC<ITabListProps> = ({
     <div className="tabs">
       <nav className="tab-list-wrapper">
         <ul
-          className={`tab-list ${className}`}
+          className={`tab-list flex ${className}`}
           role="tablist"
           aria-orientation="vertical"
         >
@@ -40,8 +40,8 @@ const TabList: React.FC<ITabListProps> = ({
                 aria-controls={`panel-${sanitizeForId(tab.props.label)}`}
                 aria-selected={activeTab === index}
                 onClick={() => handleTabClick(index)}
-                className={`tab-btn transition-all ${
-                  activeTab === index && "text-green"
+                className={`tab-btn transition-all px-4 pb-3  uppercase hover:text-green ${
+                  activeTab === index ? "text-green border-b-4 border-green" : "border-b-4 border-transparent"
                 }`}
               >
                 {tab.props.label}
