@@ -1,3 +1,5 @@
+import {Talent} from "@/common/types";
+
 export interface Ability {
   dname: string;
   behavior: string | string[];
@@ -22,6 +24,16 @@ export interface Ability {
   ];
   lore: string;
   img: string;
+}
+
+interface Talents {
+  name: string;
+  level: string;
+}
+
+export interface ShortAbilitiesDesc {
+  abilities: string[],
+  talents: Talents[]
 }
 
 export interface Abilities {

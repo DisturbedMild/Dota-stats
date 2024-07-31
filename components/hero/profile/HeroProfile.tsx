@@ -1,20 +1,20 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
 import Image from "next/image";
 
-import { useAbilities, useHeroAbilities } from "@/common/api";
+import {useAbilities, useHeroAbilities} from "@/common/api";
 import Abilities from "@/components/hero/abilities/Abilities";
 import Attributes from "@/components/hero/abilities/Attributes";
 import HeroProfilePortrait from "@/components/hero/profile/HeroProfilePortrait";
 import HeroShortDescription from "@/components/hero/profile/HeroShortDescription";
-import { Ability, HeroStats, Talent } from "@/types/index";
+import {Ability, HeroStats, ShortAbilitiesDesc, Talent} from "@/types/index";
 
 interface HeroProfileProps {
   currentHero: HeroStats;
 }
 
-const findHeroByKey = (data: Ability[], keyName: string) => {
+const findHeroByKey = (data: Record<string, Ability>, keyName: string) => {
   let res;
   for (const key in data) {
     if (key === keyName) res = data[key];
@@ -30,7 +30,7 @@ interface Talents {
 const updateHeroTalentsArray = (talents: Talents[], data: Ability[]) => {
   const newTalentsArray: Talent[] = [];
 
-  talents.forEach(({ name, level }: { name: string; level: string }) => {
+  talents.forEach(({name, level}: { name: string; level: string }) => {
     // @ts-expect-error: Unreachable code error
     const talentDesc: string = data[name].dname;
     const newTalent = {
@@ -43,27 +43,26 @@ const updateHeroTalentsArray = (talents: Talents[], data: Ability[]) => {
   return newTalentsArray;
 };
 
-const updateHeroAbilities = (abilities: string[], data: Ability[]) => {
+const updateHeroAbilities = (abilities: string[], data: Record<string, Ability>): Ability[] => {
   const newAbilitiesArray: Ability[] = [];
   abilities.forEach((ability) => {
-    const newAbility = findHeroByKey(data, ability);
+    // @ts-ignore
+    const newAbility: Ability = findHeroByKey(data, ability);
     if (newAbility) newAbilitiesArray.push(newAbility);
   });
 
   return newAbilitiesArray.filter((ability) => ability.dname !== "");
 };
 
-const HeroProfile = ({ currentHero }: HeroProfileProps) => {
-  const [currentHeroAbilities, setCurrentHeroAbilities] = useState<
-    Ability[] | []
-  >([]);
+const HeroProfile = ({currentHero}: HeroProfileProps) => {
+  const [currentHeroAbilities, setCurrentHeroAbilities] = useState<Ability[] | []>([]);
   const [currentHeroTalents, setCurrentHeroTalents] = useState<Talent[] | []>(
     [],
   );
 
-  const { isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData } =
+  const {isLoading: isHeroAbilitiesLoading, data: heroAbilitiesData} =
     useHeroAbilities();
-  const { data: abilitiesData } = useAbilities();
+  const {data: abilitiesData} = useAbilities();
 
   const getUpdatedHeroTalents = useCallback(() => {
     if (!heroAbilitiesData || !abilitiesData || !currentHero)
@@ -82,13 +81,15 @@ const HeroProfile = ({ currentHero }: HeroProfileProps) => {
   const getUpdatedHeroAbilities = useCallback(() => {
     if (!heroAbilitiesData || !abilitiesData || !currentHero)
       return heroAbilitiesData;
-    const hero = findHeroByKey(heroAbilitiesData, currentHero.name);
-    // @ts-expect-error: Unreachable code error
-    const updatedHeroAbilities = updateHeroAbilities(
-      hero.abilities,
-      abilitiesData,
-    );
-    setCurrentHeroAbilities(updatedHeroAbilities);
+    // @ts-ignore
+    const hero: ShortAbilitiesDesc = findHeroByKey(heroAbilitiesData, currentHero.name);
+    if (currentHeroAbilities) {
+      const updatedHeroAbilities = updateHeroAbilities(
+        hero.abilities,
+        abilitiesData,
+      );
+      setCurrentHeroAbilities(updatedHeroAbilities);
+    }
   }, [heroAbilitiesData, abilitiesData, currentHero]);
 
   useEffect(() => {
@@ -118,9 +119,9 @@ const HeroProfile = ({ currentHero }: HeroProfileProps) => {
             name={currentHero.localized_name}
           />
         </div>
-        <HeroShortDescription currentHero={currentHero} />
+        <HeroShortDescription currentHero={currentHero}/>
         <div className="flex flex-col gap-4 w-6/12">
-          <Attributes currentHero={currentHero} />
+          <Attributes currentHero={currentHero}/>
           {isHeroAbilitiesLoading && <p>Loading....</p>}
           {currentHeroAbilities.length > 0 && (
             <Abilities

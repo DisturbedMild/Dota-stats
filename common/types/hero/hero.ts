@@ -8,6 +8,7 @@ export interface Hero {
   attack_type: string;
   roles: string[];
   legs: number;
+  abilities?: any
 }
 
 export interface Heroes {
