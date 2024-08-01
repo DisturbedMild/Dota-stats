@@ -12,7 +12,6 @@ const TabList: React.FC<ITabListProps> = ({
   className,
 }: ITabListProps) => {
   const [activeTab, setActiveTab] = useState(activeTabIndex);
-  console.log(activeTab);
 
   const handleTabClick = (index: number) => {
     setActiveTab(index);

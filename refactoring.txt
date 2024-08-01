@@ -7,3 +7,21 @@ TODO: Ability component, remove unnecessary condition
 TODO: Hero Item concat handlers to toggle
 TODO: Destructure heroItemPopup into smaller components
 TODO: Create hooks for fetching data, change arg
+
+
+// Colors
+
+Purple
+0 1 2
+Blue
+ 0 1 2 3
+Gray
+0 1 2 3
+Yellow
+0 1 2 3
+Red
+0 1 2
+Green
+0 1 2
+
+gradient_id 0/1/2/3/5

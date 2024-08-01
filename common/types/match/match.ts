@@ -193,7 +193,7 @@ export interface FullMatchInfo {
   version: number;
 }
 
-interface FullMatchInfoPlayer {
+export interface FullMatchInfoPlayer {
   abandons: number;
   ability_targets: unknown;
   ability_upgrades_arr: number[];
@@ -238,6 +238,7 @@ interface FullMatchInfoPlayer {
   hero_hits: Record<string, number>;
   hero_id: number;
   hero_kills: number;
+  //Faceit
   hero_variant: number;
   isRadiant: boolean;
   is_contributor: boolean;

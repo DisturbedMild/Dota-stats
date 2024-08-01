@@ -3,7 +3,7 @@
 import React, { createContext } from "react";
 
 import { useAbilities, useHeroes, useItems } from "@/common/api";
-import { Ability, Heroes, Item } from "@/types/index";
+import {Ability, Hero, Item} from "@/types/index";
 
 type Abilities = {
   [key: string]: Ability;
@@ -14,7 +14,7 @@ type Items = {
 };
 
 type APIContextType = {
-  heroes: Heroes | null;
+  heroes: Hero[] | null;
   items: Items | null;
   abilities: Abilities | null;
 };

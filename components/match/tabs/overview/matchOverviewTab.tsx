@@ -1,7 +1,12 @@
+import MatchOverviewTeams from "@/components/match/tabs/overview/matchOverviewTeams";
 
 
 const MatchOverviewTab = () => {
-  return <div className="pb-2">hello</div>
+  return (
+    <>
+      <MatchOverviewTeams/>
+    </>
+  )
 }
 
 export default MatchOverviewTab;

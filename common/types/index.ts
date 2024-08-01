@@ -18,6 +18,7 @@ import {HeroItemsPopularity, Item, Items} from "@/types/item/item";
 import {HeroKeys} from "@/types/keys/heroes";
 import {
   FullMatchInfo,
+  FullMatchInfoPlayer,
   ITeamMatch,
   Match,
   MatchDuration,
@@ -53,6 +54,7 @@ export type {
   ITeamMostPopularHero,
   ITeamPlayer,
   Item,
+  FullMatchInfoPlayer,
   Items,
   Match,
   MatchDuration,
