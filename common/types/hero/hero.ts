@@ -12,7 +12,7 @@ export interface Hero {
 }
 
 export interface Heroes {
-  heroes: Hero[];
+  heroes: Record<string, Hero>;
 }
 
 export interface HeroStats {

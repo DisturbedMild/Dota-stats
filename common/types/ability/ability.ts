@@ -60,3 +60,12 @@ export interface HeroAbilitiesNames {
     level: string;
   }[];
 }
+
+export interface HeroFacet {
+  color: string
+  description: string
+  gradient_id: number
+  icon: string
+  name: string
+  title: string
+}

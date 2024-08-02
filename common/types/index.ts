@@ -3,6 +3,7 @@ import {
   Ability,
   AghDescription,
   HeroAbilitiesNames,
+  HeroFacet,
   ShortAbilitiesDesc,
 } from "@/types/ability/ability";
 import {Talent} from "@/types/ability/talent";
@@ -56,6 +57,7 @@ export type {
   Item,
   FullMatchInfoPlayer,
   Items,
+  HeroFacet,
   Match,
   MatchDuration,
   Matchup,

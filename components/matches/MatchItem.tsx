@@ -1,31 +1,30 @@
-"use client";
-
-import { useContext } from "react";
+import * as heroesData from "dotaconstants/build/heroes.json"
 import Image from "next/image";
 
-import { APIContext } from "@/common/context/api-context";
-import { convertTime } from "@/common/utils/convertTime";
-import { Hero, Heroes } from "@/types/index";
+import {convertTime} from "@/common/utils/convertTime";
+import {Hero} from "@/types/index";
 
-import { MatchProps } from "./AsideMatches";
+import {MatchProps} from "./AsideMatches";
 import HeroIcon from "./HeroIcon";
 
-const getMatchHeroes = (heroes: Heroes, team: number[]): Hero[] | null => {
-  if (!heroes) return null;
+const getMatchHeroes = (heroes: Record<string, Hero>, team: number[]) => {
+  if (!heroes) return;
   return team.map((id) => {
-    return Array.isArray(heroes) && heroes.find((hero: Hero) => hero.id === id);
+    for (const key in heroes) {
+      if (heroes[key].id === id) {
+        return heroes[key]
+      }
+    }
   });
 };
 
-const MatchItem = ({ match }: { match: MatchProps }) => {
-  const { heroes } = useContext(APIContext);
-
-  if (!heroes) return <p>Something went wrong, try again later</p>;
+const MatchItem = ({match}: { match: MatchProps }) => {
+  const heroes: Record<string, Hero> = heroesData;
 
   const radiantHeroes = getMatchHeroes(heroes, match.radiant_team);
   const direHeroes = getMatchHeroes(heroes, match.dire_team);
   const matchDuration = convertTime(match.duration);
-
+  console.log(radiantHeroes, direHeroes)
   return (
     <div className="p-2 bg-secondary/30 text-white transition-all">
       <div className="flex items-center gap-2 mb-2">
@@ -50,17 +49,15 @@ const MatchItem = ({ match }: { match: MatchProps }) => {
       <div>
         <p className="mb-2 text-success text-left">Radian</p>
         <div className="flex gap-2">
-          {radiantHeroes?.map((hero: Hero) => (
-            <HeroIcon key={hero.id} name={hero.localized_name} />
-          ))}
+          {radiantHeroes ? radiantHeroes.map((hero) => hero ?
+            <HeroIcon key={hero.id} name={hero.localized_name}/> : null) : null}
         </div>
       </div>
       <div>
         <p className="mt-4 mb-2 text-error text-left">Dire</p>
         <div className="flex gap-2">
-          {direHeroes?.map((hero: Hero) => (
-            <HeroIcon key={hero.id} name={hero.localized_name} />
-          ))}
+          {direHeroes ? direHeroes.map((hero) => hero ?
+            <HeroIcon key={hero.id} name={hero.localized_name}/> : null) : null}
         </div>
       </div>
     </div>
