@@ -24,7 +24,7 @@ const getPlayerItems = (playerItems: number[], items: Items): Item[] => {
 }
 
 const MatchOverviewTeamItems = ({playerItems, backpackPlayerItems}: MatchOverviewTeamItemsProps) => {
-  const items: any = itemsData;
+  const items: Items = JSON.parse(JSON.stringify(itemsData));
   const playerEndGameItems = getPlayerItems(playerItems, items)
   const backpackEndGameItems = getPlayerItems(backpackPlayerItems, items);
   return (

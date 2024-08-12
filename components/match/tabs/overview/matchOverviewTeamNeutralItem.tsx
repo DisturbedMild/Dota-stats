@@ -20,7 +20,7 @@ const getNeutralItem = (item: number, items: Items) => {
 }
 
 const MatchOverviewTeamNeutralItem = ({neutralItem}: MatchOverviewTeamNeutralItemProps) => {
-  const items: any = itemsData
+  const items: Items = JSON.parse(JSON.stringify(itemsData))
 
   const neutralEndGameItem = getNeutralItem(neutralItem, items)
   return (
