@@ -26,10 +26,10 @@ const MatchResultAdditionalInfo = () => {
           {matchId}
         </button>
       </div>
-      <div className="flex flex-col items-end">
+      {region ?  <div className="flex flex-col items-end">
         <span className="text-xls text-neutral-500">REGION</span>
         <span className="mt-2 text-xl">{REGION[region]}</span>
-      </div>
+      </div> : null}
     </div>
   );
 };

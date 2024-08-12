@@ -302,7 +302,7 @@ export interface FullMatchInfoPlayer {
   player_slot: number;
   pred_vict: boolean;
   purchase: Record<string, number>;
-  purchase_log: { [key: string]: { time: number; key: string } }[];
+  purchase_log: Record<string, { time: number; key: string } >[];
   purchase_time: Record<string, number>;
   purchase_tpscroll: number;
   purchase_ward_observer: number;

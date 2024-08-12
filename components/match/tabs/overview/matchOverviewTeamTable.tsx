@@ -7,7 +7,7 @@ const MatchOverviewTeamTable = ({team}: {team: FullMatchInfoPlayer[]}) => {
       <table className="w-full border border-main/40 rounded">
         <thead className="px-6 py-2 text-white text-xls uppercase bg-gradient-to-r from-secondary to-teal">
         <tr>
-          <th scope="col" className="px-6 py-3 rounded-tl-lg">Player</th>
+          <th scope="col" className="px-6 py-3 w-[290px] rounded-tl-lg">Player</th>
           <th scope="col" className="px-6 py-3 w-[40px]">LVL</th>
           <th scope="col" className="px-6 py-3 w-[40px]">K</th>
           <th scope="col" className="px-6 py-3 w-[40px]">D</th>

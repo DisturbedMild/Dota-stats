@@ -4,6 +4,8 @@ import * as heroesData from "dotaconstants/build/heroes.json"
 import Link from "next/link";
 
 import {FullMatchInfoPlayer, Hero, HeroFacet} from "@/common/types";
+import MatchOverviewTeamItems from "@/components/match/tabs/overview/matchOverviewTeamItems";
+import MatchOverviewTeamNeutralItem from "@/components/match/tabs/overview/matchOverviewTeamNeutralItem";
 import PlayerHeroFacet from "@/components/match/tabs/overview/playerHeroFacet";
 
 interface MatchOverviewTeamProps {
@@ -61,9 +63,12 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
         const hero = getHero(heroId, heroes);
         const heroName = hero !== null ? formatHeroLocalizedName(hero.localized_name) : null;
         const facet = hero !== null ? getChosenHeroFacet(hero, heroAbilities, player.hero_variant) : null;
+        const playerItems = [player.item_0, player.item_1, player.item_2, player.item_3, player.item_4, player.item_5];
+        const backpackPlayerItems = [player.backpack_0, player.backpack_1, player.backpack_2];
+
         return (
           <tr key={player.account_id} className="h-16 border border-secondary hover:bg-neutral-500/20">
-            <td className="text-center flex gap-4 items-center pl-4 h-16">
+            <td className="flex gap-4 items-center pl-4 w-[290px] h-16 text-center ">
               {facet !== null && heroName !== null ? <PlayerHeroFacet facet={facet} heroName={heroName}/> : null}
               <div className="flex flex-col text-xls text-left">
                 <Link href={"/players/player.account_id"}
@@ -84,11 +89,11 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
             <td className="text-center w-[40px] text-xls">{player.hero_damage}</td>
             <td className="text-center w-[40px] text-xls">{player.tower_damage}</td>
             <td className="text-center w-[40px] text-xls">{player.hero_healing}</td>
-            <td className="w-[270px]">Items</td>
+            <MatchOverviewTeamItems playerItems={playerItems} backpackPlayerItems={backpackPlayerItems} />
             {/* Neutral Item*/}
-            <th scope="col" className="px-6 py-3"></th>
+            <MatchOverviewTeamNeutralItem neutralItem={player.item_neutral} />
             {/* Aghanim/Shard */}
-            <th scope="col" className="px-6 py-3"></th>
+            <td scope="col" className="px-6 py-3"></td>
             <td>Buffs</td>
           </tr>)
       })
