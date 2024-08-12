@@ -1,4 +1,4 @@
-import * as itemsData from "dotaconstants/build/items.json";
+import itemsData from "dotaconstants/build/items.json";
 import Image, {ImageLoaderProps} from "next/image";
 
 import {Item, Items} from "@/common/types";
@@ -24,7 +24,7 @@ const getPlayerItems = (playerItems: number[], items: Items): Item[] => {
 }
 
 const MatchOverviewTeamItems = ({playerItems, backpackPlayerItems}: MatchOverviewTeamItemsProps) => {
-  const items = itemsData;
+  const items: any = itemsData;
   const playerEndGameItems = getPlayerItems(playerItems, items)
   const backpackEndGameItems = getPlayerItems(backpackPlayerItems, items);
   return (

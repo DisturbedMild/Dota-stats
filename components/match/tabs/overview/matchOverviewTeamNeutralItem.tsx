@@ -1,7 +1,7 @@
-import * as itemsData from 'dotaconstants/build/items.json'
+import itemsData from 'dotaconstants/build/items.json'
 import Image, {ImageLoaderProps} from "next/image";
 
-import {Items} from "@/common/types";
+import {Item, Items} from "@/common/types";
 
 interface MatchOverviewTeamNeutralItemProps {
   neutralItem: number
@@ -20,7 +20,8 @@ const getNeutralItem = (item: number, items: Items) => {
 }
 
 const MatchOverviewTeamNeutralItem = ({neutralItem}: MatchOverviewTeamNeutralItemProps) => {
-  const items: Items = itemsData
+  const items: any = itemsData
+
   const neutralEndGameItem = getNeutralItem(neutralItem, items)
   return (
     <td>
