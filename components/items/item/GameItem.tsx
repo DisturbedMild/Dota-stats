@@ -24,7 +24,7 @@ const GameItem = ({ item, className = "", imageClassName = "", onClick, width = 
 
   return (
     <div
-      className={"relative group w-[40px] h-[30px] cursor-pointer " + className}
+      className={"relative group cursor-pointer " + className}
       onClick={onClick}
     >
       <Image

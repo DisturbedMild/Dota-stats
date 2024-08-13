@@ -24,13 +24,17 @@ const MatchOverviewTeamItems = ({playerItems, backpackPlayerItems}: MatchOvervie
   const playerEndGameItems = getPlayerItems(playerItems, items)
   const backpackEndGameItems = getPlayerItems(backpackPlayerItems, items);
   return (
-    <td className="w-[270px] flex flex-col justify-start pb-2">
-      <div className="flex h-8">
-        {playerEndGameItems.map((item) => <GameItem key={item.id} item={item} withPopup={true} />)}
+    <td className="w-[210px] flex flex-col justify-start pt-4">
+      <div className="flex h-6">
+        {playerEndGameItems.map((item) => (
+          <GameItem key={item.id} item={item} imageClassName="w-auto h-auto" className="w-8 h-6" width={20} height={16} withPopup={true}/>
+        ))}
       </div>
       <div className="flex items-center gap-1 pt-1">
         <BackpackIcon/>
-        {backpackEndGameItems.map((item) => <GameItem key={item.id} item={item} withPopup={true} />)}
+        {backpackEndGameItems.map((item) => (
+          <GameItem key={item.id} imageClassName="w-auto h-auto" className="w-8 h-6" width={20} height={16} item={item} withPopup={true}/>
+        ))}
       </div>
     </td>
   )

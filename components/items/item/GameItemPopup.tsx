@@ -14,7 +14,7 @@ const imageLoader = ({src, width}: ImageLoaderProps) => {
 const GameItemPopup = ({item, className = ""}: GameItemPopup) => {
   return (
     <div
-      className={"absolute bottom-4 right-10 -translate-x-1 translate-y-48 w-72 bg-gray-800 cursor-pointer z-10 border border-gray-900 " + className}>
+      className={"absolute bottom-4 right-10 -translate-x-1 translate-y-2/4 w-72 bg-gray-800 cursor-pointer z-10 border border-gray-900 " + className}>
       <div className="grid grid-cols-66-160 items-start gap-x-4 px-1.5 py-3">
         <Image
           src={item.img}
@@ -50,7 +50,7 @@ const GameItemPopup = ({item, className = ""}: GameItemPopup) => {
             {typeof item.behavior === "string" && <span>{item.behavior}</span>}
             {Array.isArray(item.behavior) &&
               item.behavior.map((behavior) => (
-                <span key={behavior}> {behavior} </span>
+                <span key={Math.random() * 10000}> {behavior} </span>
               ))}
           </div>
         )}
@@ -92,7 +92,7 @@ const GameItemPopup = ({item, className = ""}: GameItemPopup) => {
           {item?.attrib.map(
             (attr) =>
               attr.display && (
-                <span key={attr.key} className="text-xls py-[1px]">
+                <span key={Math.random() * 10000} className="text-xls py-[1px]">
                   {attr.display?.replace("{value}", attr.value)}
                 </span>
               ),
@@ -101,7 +101,7 @@ const GameItemPopup = ({item, className = ""}: GameItemPopup) => {
         {item?.abilities?.map((ability) => {
           if (ability.type === "active") {
             return (
-              <div className="mt-2" key={ability.title}>
+              <div className="mt-2" key={Math.random() * 10000}>
                 <div
                   className="flex justify-between items-center px-2 py-1 text-xls bg-gradient-to-r from-[#40b91a99] to-[#020024]">
                   <span>Use: {ability.title}</span>
@@ -134,7 +134,7 @@ const GameItemPopup = ({item, className = ""}: GameItemPopup) => {
           }
 
           return (
-            <div className="my-2" key={ability.title}>
+            <div className="my-2" key={Math.random() * 10000}>
               <div
                 className="flex justify-between items-center px-2 py-1 text-xls bg-gradient-to-r from-[#2b2d69] to-[#02002499]">
                 <span>Passive: {ability.title}</span>
@@ -168,7 +168,7 @@ const GameItemPopup = ({item, className = ""}: GameItemPopup) => {
         {item.hint?.length > 0 && (
           <div className="flex flex-col my-2 px-2 py-1 bg-black/30 text-white/40 text-xls">
             {item.hint.map((hint) => (
-              <div key={hint}>{hint}</div>
+              <div key={Math.random() * 10000}>{hint}</div>
             ))}
           </div>
         )}

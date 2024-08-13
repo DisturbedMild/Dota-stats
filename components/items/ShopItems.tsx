@@ -1,8 +1,5 @@
-"use client";
+import itemsData from "dotaconstants/build/items.json"
 
-import { useContext } from "react";
-
-import { APIContext } from "@/common/context/api-context";
 import { Item, Items } from "@/common/types";
 import ShopItemsList from "@/components/items/ShopItemsList";
 
@@ -32,7 +29,7 @@ const filterItemsByType = (
 };
 
 const ShopItems = () => {
-  const { items }: { items: Items | null } = useContext(APIContext);
+  const items: Items = JSON.parse(JSON.stringify(itemsData))
 
   const componentItems = filterItemsByType(items, "component");
   const rareItems = filterItemsByType(items, "rare");

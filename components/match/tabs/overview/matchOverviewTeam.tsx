@@ -4,9 +4,11 @@ import * as heroesData from "dotaconstants/build/heroes.json"
 import Link from "next/link";
 
 import {FullMatchInfoPlayer, Hero, HeroFacet} from "@/common/types";
+import MatchOverviewTeamAghanim from "@/components/match/tabs/overview/MatchOverviewTeamAghanim";
 import MatchOverviewTeamItems from "@/components/match/tabs/overview/matchOverviewTeamItems";
 import MatchOverviewTeamNeutralItem from "@/components/match/tabs/overview/matchOverviewTeamNeutralItem";
 import PlayerHeroFacet from "@/components/match/tabs/overview/playerHeroFacet";
+import MatchOverviewTeamBuffs from "@/components/match/tabs/overview/MatchOverviewTeamBuffs";
 
 interface MatchOverviewTeamProps {
   team: FullMatchInfoPlayer[]
@@ -65,7 +67,7 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
         const facet = hero !== null ? getChosenHeroFacet(hero, heroAbilities, player.hero_variant) : null;
         const playerItems = [player.item_0, player.item_1, player.item_2, player.item_3, player.item_4, player.item_5];
         const backpackPlayerItems = [player.backpack_0, player.backpack_1, player.backpack_2];
-
+        console.log(player)
         return (
           <tr key={player.account_id} className="h-16 border border-secondary hover:bg-neutral-500/20">
             <td className="w-[290px] h-20 text-center">
@@ -73,7 +75,7 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
                 {facet !== null && heroName !== null ? <PlayerHeroFacet facet={facet} heroName={heroName}/> : null}
                 <div className="flex flex-col text-xls text-left">
                   <Link href={"/players/player.account_id"}
-                        className="flex items-center text-xls text-light-blue truncate transition-all hover:text-cyan-500"><span>{player?.name}</span>
+                        className="flex items-center text-xls text-light-blue truncate transition-all hover:text-cyan-500"><span>{player?.personaname}</span>
                     <ArrowRightIcon style={{width: "20px", height: "20px"}}/></Link>
                   <span className="text-xls text-neutral-500">{player.rank_tier === 80 ? "Immortal" : ""}</span>
                 </div>
@@ -82,9 +84,9 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
             <td className="text-center h-20 w-[40px] text-xls">
               <span className="p-2 border-2  border-transparent rounded-full">{player.level}</span>
             </td>
-            <td className="text-center h-20 w-[40px] text-xls text-purple">{player.kills}</td>
+            <td className="text-center h-20 w-[40px] text-xls text-green">{player.kills}</td>
             <td className="text-center h-20 w-[40px] text-xls text-error">{player.deaths}</td>
-            <td className="text-center h-20 w-[40px] text-xls text-neutral-500">{player.assists}</td>
+            <td className="text-center h-20 w-[40px] text-xls text-teal">{player.assists}</td>
             <td className="text-center h-20 w-[80px] text-xls">{player.last_hits}/{player.denies}</td>
             <td className="text-center h-20 w-[40px] text-xls text-amber-400">{player.net_worth}</td>
             <td className="text-center h-20 w-[80px] text-xls">{player.gold_per_min}/{player.xp_per_min}</td>
@@ -92,11 +94,9 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
             <td className="text-center h-20 w-[40px] text-xls">{player.tower_damage}</td>
             <td className="text-center h-20 w-[40px] text-xls">{player.hero_healing}</td>
             <MatchOverviewTeamItems playerItems={playerItems} backpackPlayerItems={backpackPlayerItems} />
-            {/* Neutral Item*/}
             <MatchOverviewTeamNeutralItem neutralItem={player.item_neutral} />
-            {/* Aghanim/Shard */}
-            <td scope="col" className="px-6 py-3"></td>
-            <td>Buffs</td>
+            <MatchOverviewTeamAghanim id={heroId} haveAghanim={player.aghanims_scepter} haveShard={player.aghanims_shard} />
+            <MatchOverviewTeamBuffs/>
           </tr>)
       })
       }

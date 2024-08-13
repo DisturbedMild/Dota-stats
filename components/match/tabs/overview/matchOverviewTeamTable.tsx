@@ -18,12 +18,10 @@ const MatchOverviewTeamTable = ({team}: {team: FullMatchInfoPlayer[]}) => {
           <th scope="col" className="px-6 py-3 w-[40px]">HD</th>
           <th scope="col" className="px-6 py-3 w-[40px]">TD</th>
           <th scope="col" className="px-6 py-3 w-[40px]">HH</th>
-          <th scope="col" className="px-6 py-3 w-[270px]">ITEMS</th>
-          {/* Neutral Item*/}
-          <th scope="col" className="px-6 py-3"></th>
-          {/* Aghanim/Shard */}
-          <th scope="col" className="px-6 py-3"></th>
-          <th scope="col" className="px-6 py-3 rounded-tr-lg">BUFFS</th>
+          <th scope="col" className="px-6 py-3 w-[210px]">ITEMS</th>
+          <th scope="col" className="px-6 py-3 w-[30px]"></th>
+          <th scope="col" className="px-6 py-3 w-[30px]"></th>
+          <th scope="col" className="px-6 py-3 w-[40px] rounded-tr-lg">BUFFS</th>
         </tr>
         </thead>
         <tbody>

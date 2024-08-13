@@ -1,24 +1,23 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import abilitiesData from "dotaconstants/build/abilities.json"
+import aghsDescData from "dotaconstants/build/aghs_desc.json"
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
-import { useAghsDesc } from "@/common/api";
-import { APIContext } from "@/common/context/api-context";
 import AghanimPopup from "@/components/hero/abilities/AghanimPopup";
 import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
-import { Ability, AghDescription } from "@/types/index";
+import {Abilities, Ability, AghDescription} from "@/types/index";
 
 const AghanimAndShard = () => {
-  const { abilities }: { abilities: Record<string, Ability> | null } =
-    useContext(APIContext);
+  const abilities: Record<string, Ability> = JSON.parse(JSON.stringify(abilitiesData))
   const { heroId }: { heroId: string } = useParams();
   const [showPopup, setShowPopup] = useState(false);
   const [aghanimAbility, setAghanimAbility] = useState<Ability | null>(null);
   const [shardAbility, setShardAbility] = useState<Ability | null>(null);
 
-  const { data } = useAghsDesc();
+  const aghsDesc = JSON.parse(JSON.stringify(aghsDescData))
 
   useEffect(() => {
     const getAghanim = (data: AghDescription[]) => {
@@ -36,8 +35,8 @@ const AghanimAndShard = () => {
         }
       }
     };
-    getAghanim(data);
-  }, [abilities, heroId, data]);
+    getAghanim(aghsDesc);
+  }, [heroId]);
 
   return (
     <div
@@ -61,13 +60,13 @@ const AghanimAndShard = () => {
         <div className="absolute -top-12 right-24">
           {aghanimAbility && (
             <AghanimPopup
-              key={aghanimAbility.dname}
+              key={Math.random() * 1000}
               aghanimAbility={aghanimAbility}
             />
           )}
           {shardAbility && (
             <AghanimShardPopup
-              key={shardAbility.dname}
+              key={Math.random() * 1000}
               aghanimShardAbility={shardAbility}
             />
           )}

@@ -25,9 +25,9 @@ const MatchOverviewTeamNeutralItem = ({neutralItem}: MatchOverviewTeamNeutralIte
 
   const neutralEndGameItem = getNeutralItem(neutralItem, items)
   return (
-    <td>
+    <td className="h-20 w-[30px] text-xls">
       {neutralEndGameItem ? (
-        <GameItem item={neutralEndGameItem} imageClassName="rounded-full h-9" width={40} height={30} withPopup={true} />
+        <GameItem item={neutralEndGameItem} className="flex justify-center" imageClassName="rounded-full h-7" width={28} height={28} withPopup={true} />
       ) : null
       }
     </td>)
