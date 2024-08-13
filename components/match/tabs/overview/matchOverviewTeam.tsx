@@ -5,10 +5,10 @@ import Link from "next/link";
 
 import {FullMatchInfoPlayer, Hero, HeroFacet} from "@/common/types";
 import MatchOverviewTeamAghanim from "@/components/match/tabs/overview/MatchOverviewTeamAghanim";
+import MatchOverviewTeamBuffs from "@/components/match/tabs/overview/MatchOverviewTeamBuffs";
 import MatchOverviewTeamItems from "@/components/match/tabs/overview/matchOverviewTeamItems";
 import MatchOverviewTeamNeutralItem from "@/components/match/tabs/overview/matchOverviewTeamNeutralItem";
 import PlayerHeroFacet from "@/components/match/tabs/overview/playerHeroFacet";
-import MatchOverviewTeamBuffs from "@/components/match/tabs/overview/MatchOverviewTeamBuffs";
 
 interface MatchOverviewTeamProps {
   team: FullMatchInfoPlayer[]
