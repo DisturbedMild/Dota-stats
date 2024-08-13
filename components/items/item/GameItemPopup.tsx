@@ -1,19 +1,20 @@
-"use client";
+import Image, {type ImageLoaderProps} from "next/image";
 
-import Image, { type ImageLoaderProps } from "next/image";
+import {Item} from "@/types/index";
 
-import { Item } from "@/types/index";
-
-type HeroItemPopupProps = {
-  item: Item;
+type GameItemPopup = {
+  item: Item
+  className?: string
 };
-const imageLoader = ({ src, width }: ImageLoaderProps) => {
+
+const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
 };
 
-const HeroItemPopup = ({ item }: HeroItemPopupProps) => {
+const GameItemPopup = ({item, className = ""}: GameItemPopup) => {
   return (
-    <div className="absolute bottom-4 right-14 w-72 bg-gray-800 cursor-pointer z-10 border border-gray-900">
+    <div
+      className={"absolute bottom-4 right-10 -translate-x-1 translate-y-48 w-72 bg-gray-800 cursor-pointer z-10 border border-gray-900 " + className}>
       <div className="grid grid-cols-66-160 items-start gap-x-4 px-1.5 py-3">
         <Image
           src={item.img}
@@ -101,12 +102,13 @@ const HeroItemPopup = ({ item }: HeroItemPopupProps) => {
           if (ability.type === "active") {
             return (
               <div className="mt-2" key={ability.title}>
-                <div className="flex justify-between items-center px-2 py-1 text-xls bg-gradient-to-r from-[#40b91a99] to-[#020024]">
+                <div
+                  className="flex justify-between items-center px-2 py-1 text-xls bg-gradient-to-r from-[#40b91a99] to-[#020024]">
                   <span>Use: {ability.title}</span>
                   <div className="inline-flex gap-2">
                     {item.mc && (
                       <div className="flex items-center gap-1 text-xs">
-                        <div className="bg-blue-500 w-3 h-3 rounded border-black" />
+                        <div className="bg-blue-500 w-3 h-3 rounded border-black"/>
                         <span>{item.mc}</span>
                       </div>
                     )}
@@ -133,12 +135,13 @@ const HeroItemPopup = ({ item }: HeroItemPopupProps) => {
 
           return (
             <div className="my-2" key={ability.title}>
-              <div className="flex justify-between items-center px-2 py-1 text-xls bg-gradient-to-r from-[#2b2d69] to-[#02002499]">
+              <div
+                className="flex justify-between items-center px-2 py-1 text-xls bg-gradient-to-r from-[#2b2d69] to-[#02002499]">
                 <span>Passive: {ability.title}</span>
                 <div className="inline-flex gap-2">
                   {item.mc && (
                     <div className="flex items-center gap-1 text-xs">
-                      <div className="bg-blue-500 w-3 h-3 rounded border-black" />
+                      <div className="bg-blue-500 w-3 h-3 rounded border-black"/>
                       <span>{item.mc}</span>
                     </div>
                   )}
@@ -179,4 +182,4 @@ const HeroItemPopup = ({ item }: HeroItemPopupProps) => {
   );
 };
 
-export default HeroItemPopup;
+export default GameItemPopup;

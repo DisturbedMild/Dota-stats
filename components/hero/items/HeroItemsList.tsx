@@ -1,9 +1,7 @@
-"use client";
-
 import { useContext } from "react";
 
 import { APIContext } from "@/common/context/api-context";
-import HeroItem from "@/components/hero/items/HeroItem";
+import GameItem from "@/components/items/item/GameItem";
 import { HeroItemsPopularity } from "@/types/index";
 
 type HeroItemsListProps = {
@@ -32,7 +30,7 @@ const HeroItemsList = ({ itemsList }: HeroItemsListProps) => {
   return (
     <div className="flex flex-wrap gap-1 h-fit items-start mt-4">
       {currentItems.map((item) => (
-        <HeroItem key={item.id} item={item} />
+        <GameItem key={item.id} item={item} withPopup={true} />
       ))}
     </div>
   );

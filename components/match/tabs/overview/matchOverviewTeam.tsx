@@ -68,27 +68,29 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
 
         return (
           <tr key={player.account_id} className="h-16 border border-secondary hover:bg-neutral-500/20">
-            <td className="flex gap-4 items-center pl-4 w-[290px] h-16 text-center ">
-              {facet !== null && heroName !== null ? <PlayerHeroFacet facet={facet} heroName={heroName}/> : null}
-              <div className="flex flex-col text-xls text-left">
-                <Link href={"/players/player.account_id"}
-                      className="flex items-center text-xls text-light-blue truncate transition-all hover:text-cyan-500"><span>{player?.name}</span>
-                  <ArrowRightIcon style={{width: "20px", height: "20px"}}/></Link>
-                <span className="text-xls text-neutral-500">{player.rank_tier === 80 ? "Immortal" : ""}</span>
+            <td className="w-[290px] h-20 text-center">
+              <div className="flex gap-4 items-center pl-4">
+                {facet !== null && heroName !== null ? <PlayerHeroFacet facet={facet} heroName={heroName}/> : null}
+                <div className="flex flex-col text-xls text-left">
+                  <Link href={"/players/player.account_id"}
+                        className="flex items-center text-xls text-light-blue truncate transition-all hover:text-cyan-500"><span>{player?.name}</span>
+                    <ArrowRightIcon style={{width: "20px", height: "20px"}}/></Link>
+                  <span className="text-xls text-neutral-500">{player.rank_tier === 80 ? "Immortal" : ""}</span>
+                </div>
               </div>
             </td>
-            <td className="text-center w-[40px] text-xls">
+            <td className="text-center h-20 w-[40px] text-xls">
               <span className="p-2 border-2  border-transparent rounded-full">{player.level}</span>
             </td>
-            <td className="text-center w-[40px] text-xls text-purple">{player.kills}</td>
-            <td className="text-center w-[40px] text-xls text-error">{player.deaths}</td>
-            <td className="text-center w-[40px] text-xls text-neutral-500">{player.assists}</td>
-            <td className="text-center w-[80px] text-xls">{player.last_hits}/{player.denies}</td>
-            <td className="text-center w-[40px] text-xls text-amber-400">{player.net_worth}</td>
-            <td className="text-center w-[80px] text-xls">{player.gold_per_min}/{player.xp_per_min}</td>
-            <td className="text-center w-[40px] text-xls">{player.hero_damage}</td>
-            <td className="text-center w-[40px] text-xls">{player.tower_damage}</td>
-            <td className="text-center w-[40px] text-xls">{player.hero_healing}</td>
+            <td className="text-center h-20 w-[40px] text-xls text-purple">{player.kills}</td>
+            <td className="text-center h-20 w-[40px] text-xls text-error">{player.deaths}</td>
+            <td className="text-center h-20 w-[40px] text-xls text-neutral-500">{player.assists}</td>
+            <td className="text-center h-20 w-[80px] text-xls">{player.last_hits}/{player.denies}</td>
+            <td className="text-center h-20 w-[40px] text-xls text-amber-400">{player.net_worth}</td>
+            <td className="text-center h-20 w-[80px] text-xls">{player.gold_per_min}/{player.xp_per_min}</td>
+            <td className="text-center h-20 w-[40px] text-xls">{player.hero_damage}</td>
+            <td className="text-center h-20 w-[40px] text-xls">{player.tower_damage}</td>
+            <td className="text-center h-20 w-[40px] text-xls">{player.hero_healing}</td>
             <MatchOverviewTeamItems playerItems={playerItems} backpackPlayerItems={backpackPlayerItems} />
             {/* Neutral Item*/}
             <MatchOverviewTeamNeutralItem neutralItem={player.item_neutral} />

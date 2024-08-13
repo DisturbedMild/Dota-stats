@@ -1,7 +1,8 @@
 import itemsData from 'dotaconstants/build/items.json'
 import Image, {ImageLoaderProps} from "next/image";
 
-import {Item, Items} from "@/common/types";
+import {Items} from "@/common/types";
+import GameItem from "@/components/items/item/GameItem";
 
 interface MatchOverviewTeamNeutralItemProps {
   neutralItem: number
@@ -26,10 +27,7 @@ const MatchOverviewTeamNeutralItem = ({neutralItem}: MatchOverviewTeamNeutralIte
   return (
     <td>
       {neutralEndGameItem ? (
-        <div className="flex w-8 h-8">
-          <Image src={neutralEndGameItem.img} loader={imageLoader} alt={neutralEndGameItem.dname} width={40}
-                 height={40} className="rounded-full" />
-        </div>
+        <GameItem item={neutralEndGameItem} imageClassName="rounded-full h-9" width={40} height={30} withPopup={true} />
       ) : null
       }
     </td>)

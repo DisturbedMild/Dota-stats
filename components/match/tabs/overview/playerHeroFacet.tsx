@@ -10,7 +10,7 @@ const facetImageLoader = ({src}: ImageLoaderProps) => {
 const PlayerHeroFacet = ({heroName, facet}: {heroName: string, facet: HeroFacet}) => {
   const facetColor = facet.color + "_" + facet.gradient_id;
   return (
-    <div className="relative">
+    <div className="relative w-14">
       <Image src={`/heroes/${heroName}.png`} alt="Hero Icon" width={60} height={20}/>
       <div
         className={`group absolute -right-2 -bottom-1 flex items-center justify-center w-5 h-5 ${facetColors[facetColor]}`}>
