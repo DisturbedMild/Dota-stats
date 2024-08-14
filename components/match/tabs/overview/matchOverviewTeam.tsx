@@ -67,7 +67,6 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
         const facet = hero !== null ? getChosenHeroFacet(hero, heroAbilities, player.hero_variant) : null;
         const playerItems = [player.item_0, player.item_1, player.item_2, player.item_3, player.item_4, player.item_5];
         const backpackPlayerItems = [player.backpack_0, player.backpack_1, player.backpack_2];
-        console.log(player)
         return (
           <tr key={player.account_id} className="h-16 border border-secondary hover:bg-neutral-500/20">
             <td className="w-[290px] h-20 text-center">
@@ -96,7 +95,7 @@ const MatchOverviewTeam = ({team}: MatchOverviewTeamProps) => {
             <MatchOverviewTeamItems playerItems={playerItems} backpackPlayerItems={backpackPlayerItems} />
             <MatchOverviewTeamNeutralItem neutralItem={player.item_neutral} />
             <MatchOverviewTeamAghanim id={heroId} haveAghanim={player.aghanims_scepter} haveShard={player.aghanims_shard} />
-            <MatchOverviewTeamBuffs/>
+            <MatchOverviewTeamBuffs permanent_buffs={player.permanent_buffs} />
           </tr>)
       })
       }
