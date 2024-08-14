@@ -3,7 +3,7 @@ import MatchOverviewTeam from "@/components/match/tabs/overview/matchOverviewTea
 
 const MatchOverviewTeamTable = ({team}: {team: FullMatchInfoPlayer[]}) => {
   return (
-    <div className="mb-12">
+    <div className="mb-6">
       <table className="w-full border border-main/40 rounded">
         <thead className="px-6 py-2 text-white text-xls uppercase bg-gradient-to-r from-secondary to-teal">
         <tr>

@@ -9,6 +9,7 @@ export interface Hero {
   roles: string[];
   legs: number;
   abilities?: any
+  img?: string
 }
 
 export interface Heroes {

@@ -1,9 +1,8 @@
 import React, { createContext, useContext } from "react";
 import { useParams } from "next/navigation";
 
-import { useReactQueryRequest } from "@/common/hooks/useReactQueryRequest";
-import { FullMatchInfo } from "@/common/types";
 import { useMatchRequest } from "@/common/api";
+import { FullMatchInfo } from "@/common/types";
 
 export const MatchContext = createContext<FullMatchInfo | undefined>(undefined);
 
