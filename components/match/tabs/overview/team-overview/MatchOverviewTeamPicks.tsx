@@ -1,7 +1,7 @@
 import heroesData from "dotaconstants/build/heroes.json"
 import Image, {ImageLoaderProps} from "next/image";
 
-import {Hero, Heroes} from "@/common/types";
+import {Hero} from "@/types/index";
 
 interface MatchOverviewTeamPicksProps {
   picks: {
@@ -30,7 +30,7 @@ const MatchOverviewTeamPicks = ({picks}: MatchOverviewTeamPicksProps) => {
   return <div className="flex gap-2 mb-6">
     {picks.map((round) => {
       const hero = getHero(round.hero_id, heroes);
-      return <div key={Math.random() * 1000}>
+      return <div className="w-18 h-18" key={Math.random() * 1000}>
         {hero ? <Image src={hero.img!} alt={hero.localized_name!} className={`${!round.is_pick ? "grayscale" : ""}`}
                        loader={imageLoader} width={64} height={64}/> : null}
         <div className="py-0.5 bg-black/60 w-16 text-center text-xs">

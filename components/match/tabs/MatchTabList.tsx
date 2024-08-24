@@ -1,4 +1,4 @@
-import MatchOverviewTab from "@/components/match/tabs/overview/matchOverviewTab";
+import MatchOverviewTab from "@/components/match/tabs/overview/MatchOverviewTab";
 import TabItem from "@/components/ui/tablist/TabItem";
 import TabList from "@/components/ui/tablist/TabList";
 

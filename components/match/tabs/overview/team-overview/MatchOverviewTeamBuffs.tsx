@@ -3,7 +3,7 @@ import itemsData from "dotaconstants/build/items.json"
 import buffsData from "dotaconstants/build/permanent_buffs.json"
 import Image, {ImageLoaderProps} from "next/image";
 
-import {Ability, Items} from "@/common/types";
+import {Ability, Items} from "@/types/index";
 
 interface MatchOverviewTeamBuffsProps {
   permanent_buffs: Record<string, number>[]

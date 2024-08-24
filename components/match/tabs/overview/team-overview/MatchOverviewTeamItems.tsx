@@ -1,8 +1,8 @@
 import itemsData from "dotaconstants/build/items.json";
 
-import {Item, Items} from "@/common/types";
 import GameItem from "@/components/items/item/GameItem";
 import BackpackIcon from "@/components/ui/icons/backpackIcon";
+import {Item, Items} from "@/types/index";
 
 interface MatchOverviewTeamItemsProps {
   playerItems: number[],

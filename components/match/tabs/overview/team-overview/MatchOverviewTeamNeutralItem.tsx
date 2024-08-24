@@ -1,16 +1,11 @@
 import itemsData from 'dotaconstants/build/items.json'
-import Image, {ImageLoaderProps} from "next/image";
 
-import {Items} from "@/common/types";
 import GameItem from "@/components/items/item/GameItem";
+import {Items} from "@/types/index";
 
 interface MatchOverviewTeamNeutralItemProps {
   neutralItem: number
 }
-
-const imageLoader = ({src, width}: ImageLoaderProps) => {
-  return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
-};
 
 const getNeutralItem = (item: number, items: Items) => {
   for (const key in items) {

@@ -3,9 +3,9 @@ import abilitiesData from "dotaconstants/build/abilities.json"
 import aghanimsDescriptionsData from 'dotaconstants/build/aghs_desc.json'
 import Image from "next/image";
 
-import {Ability, AghDescription} from "@/common/types";
 import AghanimPopup from "@/components/hero/abilities/AghanimPopup";
 import AghanimShardPopup from "@/components/hero/abilities/AghanimShardPopup";
+import {Ability, AghDescription} from "@/types/index";
 
 interface MatchOverviewTeamAghanimProps {
   id: number,
@@ -58,7 +58,7 @@ const MatchOverviewTeamAghanim = ({id, haveAghanim, haveShard}: MatchOverviewTea
         )
         }
         <Tooltip anchorSelect={`.scepter-anchor-${id}`} place="left"
-                 style={{padding: 0, zIndex: 1000, textAlign: "left", opacity: 0.9}}>
+                 style={{padding: 0, zIndex: 1000, textAlign: "left"}}>
           {getAghanimAbilityWithDescription ? <AghanimPopup aghanimAbility={getAghanimAbilityWithDescription}/> : null}
         </Tooltip>
       </div>
@@ -81,7 +81,7 @@ const MatchOverviewTeamAghanim = ({id, haveAghanim, haveShard}: MatchOverviewTea
         )
         }
         <Tooltip anchorSelect={`.shard-anchor-${id}`} place="left"
-                 style={{padding: 0, zIndex: 1000, textAlign: "left", opacity: 0.9}}>
+                 style={{padding: 0, zIndex: 1000, textAlign: "left"}}>
           {getShardAbilityWithDescription ?
             <AghanimShardPopup aghanimShardAbility={getShardAbilityWithDescription}/> : null}
         </Tooltip>

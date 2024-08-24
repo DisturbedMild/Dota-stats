@@ -1,5 +1,5 @@
-import {FullMatchInfoPlayer} from "@/common/types";
-import MatchOverviewTeam from "@/components/match/tabs/overview/matchOverviewTeam";
+import MatchOverviewTeam from "@/components/match/tabs/overview/team-overview/matchOverviewTeam";
+import {FullMatchInfoPlayer} from "@/types/index";
 
 const MatchOverviewTeamTable = ({team}: {team: FullMatchInfoPlayer[]}) => {
   return (

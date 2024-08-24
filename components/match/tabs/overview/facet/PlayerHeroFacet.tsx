@@ -1,8 +1,8 @@
 import {Tooltip} from "react-tooltip";
 import Image, {ImageLoaderProps} from "next/image";
 
-import {HeroFacet} from "@/common/types";
-import {facetColors} from "@/components/match/tabs/overview/facetColors";
+import {facetColors} from "@/components/match/tabs/overview/facet/facetColors";
+import {HeroFacet} from "@/types/index";
 
 const facetImageLoader = ({src}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/facets/${src}.png`
@@ -12,7 +12,7 @@ const PlayerHeroFacet = ({heroName, facet}: { heroName: string, facet: HeroFacet
   const facetColor = facet.color + "_" + facet.gradient_id;
   return (
     <div className="relative w-14">
-      <Image src={`/heroes/${heroName}.png`} alt="Hero Icon"width={60} height={20}/>
+      <Image src={`/heroes/${heroName}.png`} alt="Hero Icon" width={56} height={20}/>
       <div
         className={`group absolute -right-2 -bottom-1 flex items-center justify-center w-5 h-5 ${facetColors[facetColor]}`}>
         <Image src={facet.icon} alt="Facet Icon" className={heroName} loader={facetImageLoader} width={18} height={18}/>
