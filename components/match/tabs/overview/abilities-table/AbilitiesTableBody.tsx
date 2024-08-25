@@ -27,13 +27,13 @@ const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
 }
 
-const getHero = (heroId: number, heroes: Record<string, Hero>): Hero | undefined => {
+const getHero = (heroId: number, heroes: Record<string, Hero>): Hero | null => {
   for (const key in heroes) {
     if (key === heroId.toString()) {
       return heroes[key]
     }
   }
-  return
+  return null
 }
 
 const formatHeroLocalizedName = (name: string): string => {
@@ -49,28 +49,23 @@ const getChosenHeroFacet = (hero: Hero, heroAbilities: Record<string, HeroAbilit
   return null
 }
 
-const getHeroAbilitiesUpgradeOrder = (upgradesOrder: number[]): Ability[] => {
-  const abilitiesIds = JSON.parse(JSON.stringify(abilitiesIdsData));
+const getHeroAbilitiesUpgradeOrder = (upgradesOrder: number[]): (Ability | null)[] | null => {
+  const abilitiesIds: Record<string, string> = JSON.parse(JSON.stringify(abilitiesIdsData));
   const abilities: Record<string, Ability> = JSON.parse(JSON.stringify(abilitiesData));
-  const abilitiesNames = upgradesOrder.map((ability): string[] => {
-    if (abilitiesIds[ability]) {
-      return abilitiesIds[ability]
-    }
-    return
-  });
-
-  const filterAbilitiesByUpgradeOrder = abilitiesNames.map((name) => {
-    if (abilities[name]) {
+  const abilitiesNames = upgradesOrder.map((ability): string | null => abilitiesIds.hasOwnProperty(ability) ? abilitiesIds[ability] : null);
+  const filterAbilitiesByUpgradeOrder = abilitiesNames.map((name): Ability | null => {
+    if (name !== null && abilities.hasOwnProperty(name)) {
       return abilities[name]
     }
-    return
+    return null
   })
-  if (filterAbilitiesByUpgradeOrder.length < 24) {
+  if (!filterAbilitiesByUpgradeOrder.includes(null) && filterAbilitiesByUpgradeOrder.length < 24) {
     for (let i = filterAbilitiesByUpgradeOrder.length; i <= 24; i++) {
       filterAbilitiesByUpgradeOrder.push(null)
     }
+    return filterAbilitiesByUpgradeOrder
   }
-  return filterAbilitiesByUpgradeOrder;
+  return null
 }
 
 const AbilitiesTableBody = ({team}: { team: FullMatchInfoPlayer[] }) => {
@@ -93,7 +88,7 @@ const AbilitiesTableBody = ({team}: { team: FullMatchInfoPlayer[] }) => {
                              rank_tier={player.rank_tier}/>
             ) : null}
           </td>
-          {heroAbilitiesUpgradeOrder.map((ability: Ability) => (
+          {heroAbilitiesUpgradeOrder && heroAbilitiesUpgradeOrder.map((ability: Ability | null) => (
             <td key={Math.random() * 1000} className="w-10">
               {(ability && ability.img) ? (
                 <Image src={ability.img} alt={ability.dname} loader={imageLoader} width={40} height={40}/>
@@ -105,7 +100,7 @@ const AbilitiesTableBody = ({team}: { team: FullMatchInfoPlayer[] }) => {
                   width={48}
                   height={48}
                 />
-              ) : null}
+              ) : <div>+</div>}
             </td>
           ))}
         </tr>

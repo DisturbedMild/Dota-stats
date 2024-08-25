@@ -1,7 +1,7 @@
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import Link from "next/link";
 
-import PlayerHeroFacet from "@/components/match/tabs/overview/facet/playerHeroFacet";
+import PlayerHeroFacet from "@/components/match/tabs/overview/facet/PlayerHeroFacet";
 import {HeroFacet} from "@/types/index";
 
 interface ShortHeroDescProps {

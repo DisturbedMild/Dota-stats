@@ -1,4 +1,4 @@
-import MatchOverviewTeams from "@/components/match/tabs/overview/team-overview/matchOverviewTeams";
+import MatchOverviewTeams from "@/components/match/tabs/overview/team-overview/MatchOverviewTeams";
 
 
 const MatchOverviewTab = () => {

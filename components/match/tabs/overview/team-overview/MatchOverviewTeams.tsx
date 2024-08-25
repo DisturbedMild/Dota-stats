@@ -1,7 +1,7 @@
 import {useMatch} from "@/common/context/match-context";
 import AbilitiesTable from "@/components/match/tabs/overview/abilities-table/AbilitiesTable";
 import MatchOverviewTeamPicks from "@/components/match/tabs/overview/team-overview/MatchOverviewTeamPicks";
-import MatchOverviewTeamTable from "@/components/match/tabs/overview/team-overview/matchOverviewTeamTable";
+import MatchOverviewTeamTable from "@/components/match/tabs/overview/team-overview/MatchOverviewTeamTable";
 import {FullMatchInfoPlayer} from "@/types/index";
 
 type PickAndBans = {
@@ -27,6 +27,8 @@ const filterPickAndBansByTeam = (picks_bans: PickAndBans) => {
 
 const MatchOverviewTeams = () => {
   const {picks_bans, players, dire_name, radiant_name} = useMatch();
+
+  // UseMemo players with all logic
 
   const teams: { radiantTeam: FullMatchInfoPlayer[], direTeam: FullMatchInfoPlayer[] } = filterPlayersByTeam(players);
   const {
