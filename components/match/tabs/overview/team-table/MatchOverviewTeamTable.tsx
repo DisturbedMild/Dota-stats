@@ -1,13 +1,13 @@
-import MatchOverviewTeam from "@/components/match/tabs/overview/team-overview/MatchOverviewTeam";
-import {FullMatchInfoPlayer} from "@/types/index";
+import MatchOverviewTeam from "@/components/match/tabs/overview/team-table/MatchOverviewTeam";
+import {PlayerInfo} from "@/components/match/tabs/overview/team-table/MatchOverviewTeams";
 
-const MatchOverviewTeamTable = ({team}: {team: FullMatchInfoPlayer[]}) => {
+const MatchOverviewTeamTable = ({team}: {team: PlayerInfo[]}) => {
   return (
     <div className="mb-6">
       <table className="w-full border border-main/40 rounded">
         <thead className="px-6 py-2 text-white text-xls uppercase bg-gradient-to-r from-secondary to-teal">
         <tr>
-          <th scope="col" className="px-6 py-3 w-[290px] rounded-tl-lg">Player</th>
+          <th scope="col" className="px-6 py-3 w-[210px] rounded-tl-lg">Player</th>
           <th scope="col" className="px-6 py-3 w-[40px]">LVL</th>
           <th scope="col" className="px-6 py-3 w-[40px]">K</th>
           <th scope="col" className="px-6 py-3 w-[40px]">D</th>

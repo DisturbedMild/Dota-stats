@@ -5,6 +5,7 @@ import heroesData from "dotaconstants/build/heroes.json";
 import Image, {ImageLoaderProps} from "next/image";
 
 import {Ability, FullMatchInfoPlayer, Hero, HeroFacet} from "@/common/types";
+import getHero from "@/common/utils/getHero";
 import ShortHeroDesc from "@/components/match/tabs/overview/facet/ShortHeroDesc";
 
 interface HeroAbilities {
@@ -25,15 +26,6 @@ interface HeroAbilities {
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
-}
-
-const getHero = (heroId: number, heroes: Record<string, Hero>): Hero | null => {
-  for (const key in heroes) {
-    if (key === heroId.toString()) {
-      return heroes[key]
-    }
-  }
-  return null
 }
 
 const formatHeroLocalizedName = (name: string): string => {
@@ -59,10 +51,11 @@ const getHeroAbilitiesUpgradeOrder = (upgradesOrder: number[]): (Ability | null)
     }
     return null
   })
-  if (!filterAbilitiesByUpgradeOrder.includes(null) && filterAbilitiesByUpgradeOrder.length < 24) {
+  if (filterAbilitiesByUpgradeOrder.length < 24) {
     for (let i = filterAbilitiesByUpgradeOrder.length; i <= 24; i++) {
       filterAbilitiesByUpgradeOrder.push(null)
     }
+
     return filterAbilitiesByUpgradeOrder
   }
   return null
@@ -84,7 +77,7 @@ const AbilitiesTableBody = ({team}: { team: FullMatchInfoPlayer[] }) => {
         <tr key={`ability-${player.hero_id}`} className="h-16 border border-secondary hover:bg-neutral-500/20">
           <td scope="row" className="w-[180px]">
             {heroName && facet ? (
-              <ShortHeroDesc heroName={heroName} facet={facet} personaname={player.personaname}
+              <ShortHeroDesc heroName={heroName.replaceAll("'", "")} facet={facet} personaname={player.personaname}
                              rank_tier={player.rank_tier}/>
             ) : null}
           </td>

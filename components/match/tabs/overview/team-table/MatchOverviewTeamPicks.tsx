@@ -1,6 +1,7 @@
 import heroesData from "dotaconstants/build/heroes.json"
 import Image, {ImageLoaderProps} from "next/image";
 
+import getHero from "@/common/utils/getHero";
 import {Hero} from "@/types/index";
 
 interface MatchOverviewTeamPicksProps {
@@ -14,15 +15,6 @@ interface MatchOverviewTeamPicksProps {
 
 const imageLoader = ({src, width}: ImageLoaderProps) => {
   return `https://cdn.cloudflare.steamstatic.com${src}?w=${width}`;
-}
-
-const getHero = (id: number, heroes: Record<string, Hero>): Hero | null => {
-  for (const key in heroes) {
-    if (heroes[key].id === id) {
-      return heroes[key]
-    }
-  }
-  return null
 }
 
 const MatchOverviewTeamPicks = ({picks}: MatchOverviewTeamPicksProps) => {
