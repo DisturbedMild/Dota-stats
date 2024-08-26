@@ -16,7 +16,13 @@ const AsideMatches = () => {
   const { isLoading, data: matches, error } = usePublicMatches();
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong, try again later</p>;
+  if (error) {
+    return (
+      <div className="p-4 w-1/3 bg-black/20">
+        <p className="text-error">Sorry, something went wrong. Try again later.</p>
+      </div>
+    )
+  }
 
   return (
     <aside className="w-1/3">

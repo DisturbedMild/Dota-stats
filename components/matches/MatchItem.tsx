@@ -20,11 +20,9 @@ const getMatchHeroes = (heroes: Record<string, Hero>, team: number[]) => {
 
 const MatchItem = ({match}: { match: MatchProps }) => {
   const heroes: Record<string, Hero> = heroesData;
-
   const radiantHeroes = getMatchHeroes(heroes, match.radiant_team);
   const direHeroes = getMatchHeroes(heroes, match.dire_team);
   const matchDuration = convertTime(match.duration);
-  console.log(radiantHeroes, direHeroes)
   return (
     <div className="p-2 bg-secondary/30 text-white transition-all">
       <div className="flex items-center gap-2 mb-2">

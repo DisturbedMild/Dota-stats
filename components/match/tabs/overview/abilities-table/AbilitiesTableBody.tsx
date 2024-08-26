@@ -48,14 +48,16 @@ const getHeroAbilitiesUpgradeOrder = (upgradesOrder: number[]): (Ability | null)
   const filterAbilitiesByUpgradeOrder = abilitiesNames.map((name): Ability | null => {
     if (name !== null && abilities.hasOwnProperty(name)) {
       return abilities[name]
+    } else {
+      return null
     }
-    return null
   })
-  if (filterAbilitiesByUpgradeOrder.length < 24) {
+
+  if (filterAbilitiesByUpgradeOrder.length <= 24) {
     for (let i = filterAbilitiesByUpgradeOrder.length; i <= 24; i++) {
       filterAbilitiesByUpgradeOrder.push(null)
     }
-
+    console.log(filterAbilitiesByUpgradeOrder)
     return filterAbilitiesByUpgradeOrder
   }
   return null
@@ -84,16 +86,20 @@ const AbilitiesTableBody = ({team}: { team: FullMatchInfoPlayer[] }) => {
           {heroAbilitiesUpgradeOrder && heroAbilitiesUpgradeOrder.map((ability: Ability | null) => (
             <td key={Math.random() * 1000} className="w-10">
               {(ability && ability.img) ? (
-                <Image src={ability.img} alt={ability.dname} loader={imageLoader} width={40} height={40}/>
-              ) : (ability && !ability.img) ? (
-                <Image
-                  className="w-12 h-12 relative z-1 backdrop-blur-1 rounded"
-                  src={"/icons/talent_tree.svg"}
-                  alt="error"
-                  width={48}
-                  height={48}
-                />
-              ) : <div>+</div>}
+                <div className="flex justify-center">
+                  <Image src={ability.img} alt={ability.dname} loader={imageLoader}
+                         width={40} height={40}/></div>
+              ) : (ability && !ability.img && ability.dname) ? (
+                <div className="flex justify-center">
+                  <Image
+                    className="w-12 h-12 relative z-1 backdrop-blur-1 rounded"
+                    src={"/icons/talent_tree.svg"}
+                    alt="error"
+                    width={48}
+                    height={48}
+                  />
+                </div>
+              ) : <div className="text-center">+</div>}
             </td>
           ))}
         </tr>

@@ -32,7 +32,7 @@ const HeroPage = () => {
   });
 
   const currentHero = heroStats && getHero(heroStats, Number(heroId));
-
+  console.log(heroId)
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error occurred</p>;
 

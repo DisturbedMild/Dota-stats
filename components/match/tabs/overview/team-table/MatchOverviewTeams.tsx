@@ -72,7 +72,7 @@ const MatchOverviewTeams = () => {
     const heroes: Record<string, Hero> = JSON.parse(JSON.stringify(heroesData));
     const heroAbilities: Record<string, HeroAbilities> = JSON.parse(JSON.stringify(heroAbilitiesData));
 
-    return players.map((player) => {
+    const updatedPlayers = players.map((player) => {
       const heroId = player.hero_id;
       const hero = getHero(heroId, heroes);
       const heroName = hero ? formatHeroLocalizedName(hero.localized_name) : null
@@ -80,18 +80,21 @@ const MatchOverviewTeams = () => {
       const playerItems = [player.item_0, player.item_1, player.item_2, player.item_3, player.item_4, player.item_5];
       const backpackPlayerItems = [player.backpack_0, player.backpack_1, player.backpack_2];
       return {
-        ...player,
         hero,
+        heroId,
         heroName,
         facet,
         playerItems,
-        backpackPlayerItems
+        backpackPlayerItems,
+        ...player,
       }
     })
+    return updatedPlayers
   }
-
   //@ts-ignore
-  const teams: { radiantTeam: PlayerInfo[], direTeam: PlayerInfo[] } = filterPlayersByTeam(updatedPlayers);
+  const getUpdatedPlayers: PlayerInfo[] = updatedPlayers();
+
+  const teams: { radiantTeam: PlayerInfo[], direTeam: PlayerInfo[] } = filterPlayersByTeam(getUpdatedPlayers);
   const {
     radiantPicks,
     direPicks

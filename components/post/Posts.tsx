@@ -19,14 +19,14 @@ const getHeroes = async () => {
 };
 
 async function Posts() {
-  const data = await getHeroes();
-  const posts = data.appnews.newsitems;
+  const { appnews } = await getHeroes();
+  const posts: Post[] = appnews.newsitems;
 
   return (
     <div className="flex flex-col gap-6 mt-2 px-2 py-2 w-full text-white">
       <div className="flex justify-between">
         <h1 className="text-2xl">Recent News:</h1>
-        <Link href="/posts">All posts --- </Link>
+        <Link href="posts">All posts --- </Link>
       </div>
       {posts.map((item: Post) => (
         <Suspense key={item.gid} fallback={<Skeleton />}>
